@@ -1,0 +1,599 @@
+/*
+ * Custom CSS for memodump theme for moinmoin
+ * Copyright 2014 dossist.
+ * Use Twitter Bootstrap 3.1.1 as base CSS.
+ */
+
+/*=========================================================
+   outbox
+===========================================================*/
+
+html, body {
+	/* need this to use relative sizes in children */
+	/* don't worry about contents longer than one screen height; they are just rendered properly */
+    height: 100%;
+    padding: 0;
+    margin: 0;
+}
+#outbox {
+	position: relative; /* child elements are relative to this */
+    min-height: 100%;
+	height: auto !important;
+	width: 100%;
+    padding-top: 51px; /* navbar height. 50px + 1px border */
+    padding-bottom: 60px; /* footer height */
+}
+/* sticky footer; sticks to the bottom of the screen as long as contents are less than 1 screen long */
+#footer {
+    position: absolute;
+    bottom: 0;
+    height: 60px; /* height of the footer */
+    width: 100%;
+}
+/* the footer will overflow in narrow screens. this extends the footer without masking contents */
+#footer > .container-fluid {
+    background-color: #f5f5f5;
+    padding: 20px 15px;
+}
+
+/*=========================================================
+   footer elements
+===========================================================*/
+
+/* inline list */
+#footer ul {
+    margin: 0 0 0 -5px;
+    padding: 0;
+    list-style: none;
+    display: inline-block;
+}
+#footer ul li {
+    display: inline-block;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+/*=========================================================
+   navbar elements
+===========================================================*/
+
+/* search form customization: search icon inside input area */
+input.form-search {
+    padding-right: 24px;
+}
+form.form-search {
+	position: relative;
+}
+form.form-search:before {
+    display: block;
+    width: 14px;
+    height: 14px;
+    font-size: small;
+    content: "\e003";
+    font-family: 'Glyphicons Halflings';
+    position: absolute;
+    top: 9px;
+    right: 8px;
+    opacity: .5;
+}
+/* truncate too long elements */
+@media screen and (min-width: 768px) { /* sm */
+    .nav-maxwidth-100 {
+        display: table-cell;
+        max-width: 100px;
+        overflow-x: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+    .pagepath {
+        display: table-cell;
+        max-width: 90px;
+        overflow-x: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+    }
+}
+@media screen and (min-width: 992px) { /* md */
+    .pagepath {
+        max-width: 270px; /* 78px(md column)*10(columns) - 60px(sm column)*10 + 100px(.pagepath@sm) */
+    }
+}
+@media screen and (min-width: 1200px) { /* lg */
+    .pagepath {
+        max-width: 440px; /* 95px(lg column)*10(columns) - 78px(md column)*10 + 280px(.pagepath@md) */
+    }
+}
+
+/*=========================================================
+   content area wrappers
+===========================================================*/
+
+#sidebar {
+	padding-top: 40px;
+	padding-bottom: 20px;
+}
+#contentbox {
+	padding-top: 20px;
+}
+
+/*=========================================================
+   sidebar elements
+===========================================================*/
+
+/* taken from bootstrap to fit into wiki output (to enable styles without classes) */
+#sidebar ul, #sidebar ol { /* .nav */
+    padding-left: 0;
+    margin-bottom: 0;
+    list-style: none;
+}
+#sidebar li { /* .nav > li */
+    position: relative;
+    display: block;
+}
+#sidebar li a { /* .nav > li > a */
+    position: relative;
+    display: block;
+    padding: 10px 15px;
+}
+#sidebar li a:hover,
+#sidebar li a:focus { /* .nav > li > a:* */
+    text-decoration: none;
+    background-color: #eee;
+}
+#sidebar li a img { /* .nav > li > a > img */
+    max-width: none;
+}
+
+/* list style */
+#sidebar ul, #sidebar ol {
+	background-color: #f7f7f7;
+    border-radius: 3px; /* box cornering */
+}
+/* workaround for cornering when hovered */
+#sidebar div > ul > li:first-child,
+#sidebar div > ol > li:first-child {
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+}
+#sidebar div > ul > li:last-child,
+#sidebar div > ol > li:last-child {
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+}
+#sidebar div > ul > li:first-child > a:hover,
+#sidebar div > ul > li:first-child > a:focus,
+#sidebar div > ol > li:first-child > a:hover,
+#sidebar div > ol > li:first-child > a:focus {
+    border-top-left-radius: inherit;
+    border-top-right-radius: inherit;
+}
+#sidebar div > ul > li:last-child > a:hover,
+#sidebar div > ul > li:last-child > a:focus,
+#sidebar div > ol > li:last-child > a:hover,
+#sidebar div > ol > li:last-child > a:focus {
+    border-bottom-left-radius: inherit;
+    border-bottom-right-radius: inherit;
+}
+
+/* list padding */
+#sidebar ul, #sidebar ol {
+	padding: 0px 15px; /* whole list gets paddings on the left and the right */
+}
+#sidebar li {
+    padding: 5px 0px; /* every list item gets paddings on top and bottom */
+}
+/* padding workaround needed for highlighting behavior when hovered */
+#sidebar li a {
+    margin: -5px -15px; /* neutralize ul and li paddings */
+	padding: 5px 15px; /* and add same amount of paddings manually, which allows colorizing the hole background */
+}
+/* padding in nested list */
+#sidebar ul ul, #sidebar ul ol, #sidebar ol ul, #sidebar ol ol {
+    padding: 0;
+	padding-top: 5px;
+    padding-left: 5px; /* we want to give some additional indent */
+	margin: -5px 0px; /* neutralize top/bottom paddings as we have some in our own <li> */
+}
+/* padding of a in nested list */
+#sidebar li li a {
+    margin-left: -20px; /* we only need to change what has changed, i.e. padding on the left */
+    padding-left: 20px;
+}
+#sidebar li li li a {
+    margin-left: -25px;
+    padding-left: 25px;
+}
+#sidebar li li li li a {
+    margin-left: -30px;
+    padding-left: 30px;
+}
+#sidebar li li li li li a { /* enough, isn't it? */
+    margin-left: -35px;
+    padding-left: 35px;
+}
+/* workaround for overflow */
+#sidebar div > ul,
+#sidebar div > ol {
+    overflow-x: hidden;
+}
+
+/* head indenting */
+#sidebar div > h1, #sidebar div > h2, #sidebar div > h3,
+#sidebar div > h4, #sidebar div > h5, #sidebar div > h6 {
+	padding: 0 15px;
+}
+#sidebar div > h1[class], #sidebar div > h2[class], #sidebar div > h3[class],
+#sidebar div > h4[class], #sidebar div > h5[class], #sidebar div > h6[class] {
+	padding: 0;
+}
+#sidebar h1, #sidebar h2, #sidebar h3,
+#sidebar h4, #sidebar h5, #sidebar h6 {
+    margin-top: 10px;
+    overflow: hidden;
+}
+
+/* trails and quicklinks style inspired by Bootstrap */
+#sidebar li.active > a,
+#sidebar li.active > a:hover,
+#sidebar li.active > a:focus {
+    color: #999;
+    cursor: default;
+    background-color: #f2f2f2;
+}
+
+/*=========================================================
+   content elements
+===========================================================*/
+
+/* prettily underlined headers with better spacing */
+#content > h1, #content > h2, #content > h3,
+#content > h4, #content > h5, #content > h6 {
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+#content > h1:before, #content > h2:before, #content > h3:before,
+#content > h4:before, #content > h5:before, #content > h6:before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    bottom: 0px;
+    border-bottom: 1px solid #51b3e8;
+    width: 100%;
+}
+#content > h1:after, #content > h2:after, #content > h3:after,
+#content > h4:after, #content > h5:after, #content > h6:after {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    bottom: 0px;
+    border-bottom: 1px solid #eee;
+    width: 100%;
+}
+
+/* accented .page-header */
+.page-header > h1, .page-header > h2, .page-header > h3,
+.page-header > h4, .page-header > h5, .page-header > h6 {
+    border-bottom: 2px solid #51b3e8;
+    display: inline-block;
+    margin-top: 0;
+    margin-bottom: -11px;
+    padding-bottom: 19px;
+}
+
+/*=========================================================
+   responsive toggle sidebar
+===========================================================*/
+
+html {
+    overflow-x: hidden;
+}
+#pagebox { /*parent box*/
+    position: relative;
+}
+/* turn on responsibility in "small" screen width (991px) or below */
+/* swipe off sidebar */
+@media screen and (max-width: 991px) { /* sm */
+    .offcanvas {
+        transition: all .25s ease-out; /* animation */
+    }
+    /* when swiped out... */
+    #pagebox {
+        width: 1500px; /* double the original width of 750px to prevent elements to be vertically aligned */
+        left: -316px; /* offset outer box by sidebar width (195px) + max margin (121px) */
+    }
+    #sidebar { /* swipe sidebar out */
+        width: 195px; /* fixed width */
+        float: left; /* float left to prevent stacking vertically with #pagebox */
+    }
+    #contentbox {
+        left: 121px; /* offset from edge of the sidebar (applying max margin of 121px) */
+    }
+    /* then when activated... */
+    #pagebox.offcanvas.active { /* parent box */
+        left: 0px;
+    }
+}
+@media screen and (max-width: 767px) { /* xs */
+    #pagebox {
+        width: 200vw;
+        left: -195px;
+    }
+    #contentbox {
+        left: 0;
+    }
+    #pagebox.offcanvas.active {
+        left: 0;
+    }
+}
+
+.offcanvas-trigger {
+    background-image: none;
+    position: fixed;
+    left: -1px;
+    z-index: 1000;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-left-radius: 0;
+}
+.offcanvas-trigger:focus {
+    background-color: #fff;
+}
+@media screen and (min-width: 992px) {
+    .offcanvas-trigger {
+        display: none;
+    }
+}
+
+/*=========================================================
+   print view
+===========================================================*/
+
+@media print {
+    #sidebar, .offcanvas-trigger, .alert, #footer {
+        display: none;
+    }
+    #outbox, #pagebox, #contentbox {
+        width: 100%;
+        left: 0;
+        padding: 0;
+        margin: 0;
+    }
+}
+
+/*=========================================================
+   misc. elements
+===========================================================*/
+
+.padding {
+    padding: 1px;
+}
+
+/*=========================================================
+   MoinMoin adaption
+===========================================================*/
+
+/* navbar */
+.sep {
+    display: inline-block;
+    margin: 0 5px;
+}
+/* sidebar */
+#sidebar li p { /* workaround for p inside li */
+    padding: 0;
+    margin: 0;
+}
+/* content area */
+#content li p {
+    padding: 0;
+    margin: 0;
+}
+.info { /* pageinfo */
+    float: right;
+    font-size: 0.8em;
+    color: #999;
+}
+#pageinfo-container {
+    position: absolute;
+    bottom: 60px;
+    width: 100%;
+}
+#pageinfo {
+    margin-bottom: 20px;
+}
+#outbox {
+    padding-bottom: 110px; /* footer height + pageinfo height */
+}
+/* edit page */
+textarea {
+    font-family: monospace;
+}
+#editor-textarea, #editor-help {
+    font-family: monospace;
+    width: 100%;
+    padding: 3px;
+    margin: 0.5em 0;
+    border-radius: 4px;
+}
+#editor-help {
+    font-size: small;
+    /* taken from Bootstrap .well */
+    padding: 19px;
+    margin-bottom: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+}
+#preview, #previewbelow {
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    padding: 3px;
+    width: 100%;
+    background: url(../img/draft.png);
+    margin: 20px 0;
+}
+/* footer */
+#version {
+    display: inline-block;
+}
+
+@media print {
+    #pageinfo-container {
+        display: none;
+    }
+}
+/*=========================================================
+   implicit glyphicons
+===========================================================*/
+
+*[class^="menu-"]:before {
+    font-family: 'Glyphicons Halflings' !important;
+    font-style: normal;
+    font-weight: normal;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+*[class^="menu-nav-"]:before {
+    font-size: smaller;
+    padding-left: 5px;
+    float: right;
+}
+*[class^="menu-dd-"]:before {
+    float: right;
+}
+*[class^="menu-dd-"]:after {
+    content: "";
+    padding: 0 10px;
+}
+@media screen and (min-width: 768px) {
+    *[class^="menu-nav-"] {
+        display: inline-table !important;
+    }
+}
+/* user menu dropdown elements */
+.menu-dd-userhome:before {
+    content: "\e008"; /* .glyphicon-user */
+}
+.menu-dd-userprefs:before {
+    content: "\e019"; /* .glyphicon-cog */
+}
+.menu-dd-logout:before {
+    content: "\e163"; /* .glyphicon-logout */
+}
+/* main menu dropdown elems */
+.menu-dd-raw:before {
+    content: "\e105"; /* .glyphicon-eye-open */
+}
+.menu-dd-print:before {
+    content: "\e045"; /* .glyphicon-print */
+}
+.menu-dd-refresh:before {
+    content: "\e030"; /* .glyphicon-repeat */
+}
+.menu-dd-SpellCheck:before {
+    content: "\e013"; /* .glyphicon-ok */
+}
+.menu-dd-RenamePage:before {
+    content: "\e041"; /* .glyphicon-tag */
+}
+.menu-dd-CopyPage:before {
+    content: "\e022"; /* .glyphicon-file */
+}
+.menu-dd-DeletePage:before {
+    content: "\e020"; /* .glyphicon-trash */
+}
+.menu-dd-LikePages:before {
+    content: "\2601"; /* .glyphicon-cloud */
+}
+.menu-dd-LocalSiteMap:before {
+    content: "\e056"; /* .glyphicon-list */
+}
+.menu-dd-MyPages:before {
+    content: "\e044"; /* .glyphicon-bookmark */
+}
+.menu-dd-SubscribeUser:before {
+    content: "\2709"; /* .glyphicon-envelope */
+}
+.menu-dd-Despam:before {
+    content: "\e104"; /* .glyphicon-fire */
+}
+.menu-dd-revert:before {
+    content: "\e070"; /* .glyphicon-fast-backward */
+}
+.menu-dd-PackagePages:before {
+    content: "\e181"; /* .glyphicon-compressed */
+}
+.menu-dd-RenderAsDocbook:before {
+    content: "\e043"; /* .glyphicon-book */
+}
+.menu-dd-SyncPages:before {
+    content: "\e031"; /* .glyphicon-refresh */
+}
+.menu-dd-AttachFile:before {
+    content: "\e142"; /* .glyphicon-paperclip */
+}
+.menu-dd-RecentChanges:before {
+    content: "\e023"; /* .glyphicon-time */
+}
+.menu-dd-FindPage:before {
+    content: "\e003"; /* .glyphicon-search */
+}
+.menu-dd-HelpContents:before {
+    content: "\e085"; /* .glyphicon-question-sign */
+}
+.menu-dd-HelpOnFormatting:before {
+    content: "\e085"; /* .glyphicon-question-sign */
+}
+.menu-dd-HelpOnMoinWikiSyntax:before {
+    content: "\e085"; /* .glyphicon-question-sign */
+}
+.menu-dd-TitleIndex:before {
+    content: "\e056"; /* .glyphicon-list */
+}
+.menu-dd-WordIndex:before {
+    content: "\e056"; /* .glyphicon-list */
+}
+.menu-dd-FrontPage:before {
+    content: "\e021"; /* .glyphicon-home */
+}
+.menu-dd-SideBar:before {
+    content: "\e012"; /* .glyphicon-th-list */
+}
+.menu-dd-editSideBar:before {
+    content: "\270f"; /* .glyphicon-pencil */
+}
+.menu-dd-quicklink:before {
+    content: "\e146"; /* .glyphicon-pushpin */
+}
+.menu-dd-subscribe:before {
+    content: "\2709"; /* .glyphicon-envelope */
+}
+.menu-dd-info:before {
+    content: "\e086"; /* .glyphicon-info-sign */
+}
+.menu-dd-Load:before {
+    content: "\e198"; /* .glyphicon-cloud-upload */
+}
+.menu-dd-Save:before {
+    content: "\e197"; /* .glyphicon-cloud-download */
+}
+/* navbar links */
+.menu-nav-login:before {
+    content: "\e161"; /* .glyphicon-login */
+}
+.menu-nav-login:after {
+    content: "";
+}
+.menu-nav-edit:before {
+    content: "\270f"; /* .glyphicon-pencil */
+}
+.menu-nav-edit:after {
+    content: "";
+}
+.menu-nav-menu:before {
+}
+.menu-nav-user:before {
+}
