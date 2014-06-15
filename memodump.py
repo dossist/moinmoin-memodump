@@ -10,33 +10,6 @@
         memodump_menuoverride
             overrides menu elements. see self.menu() for details.
 
-TODO:
-* improve tables (copy Bootstrap codes)
-* improve <h*>
-* be compatible with common.css (admonition etc)
-* add words to dictionary
-* improve print view (optimize how <a> is displayed)
-* pagename display area is too narrow
-o add load, save in menu
-o add quicklink functionality - done
-o add pageinfo in menu
-o sort methods in the class for better viewing of source code
-o change doctype to match bootstrap codes (HTML5)
-o remove default javascript - done
-o better pageinfo style - done
-o edit screen font -> proportional - done
-o fix navbar overflow - done
-o improve edit screen - done
-o fix sidebar overflow - done
-o improve unclosable dialog - done
-o menu icons - done
-o fix list styles when nested - done
-o fix for styles not applied when <p> is inserted inside elements - done
-o sidebar edit link in menu? - done
-* set .active class to edit button in edit mode?
-* display dates on top?
-* remove whole sidebar div when sidebar doesn't exist?
-
     @copyright: 2014 dossist.
     @license: GNU GPL, see COPYING for details.
 """
