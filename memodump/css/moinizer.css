@@ -679,17 +679,16 @@ p.searchhint a {
 /* recentchanges area */
 .recentchanges table {
     clear: both;
-    border: 1px solid #4d7da9;
+    border: 1px solid #ccc;
 }
 .recentchanges td {
-    background: #e6eaf0;
     border: none;
     vertical-align: top;
 }
 .recentchanges .rcdaybreak td {
-    background: #81bbf2;
+    background: #eee;
     border: none;
-    border: 1px solid #4d7da9;
+    border: 1px solid #ccc;
 }
 .rcdaybreak td a {
     font-size: 0.92em;
