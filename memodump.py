@@ -93,7 +93,7 @@ class Theme(ThemeBase):
         # media         basename
         ('all',         'bootstrap.min'),
         ('all',         'bootstrap-theme.min'),
-        ('all',         'custom'),
+        ('all',         'memodump'),
         ('all',         'moinizer'),
         )
 
