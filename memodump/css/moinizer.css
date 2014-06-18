@@ -355,10 +355,15 @@ div.codearea pre { /* the pre has no border and is inside the div */
 div.codearea a:not([class]):hover { /* we don't like underlines when hovering line numbers */
 	text-decoration: none;
 }
-a.codenumbers { /* format of the line numbering link */
+a.codenumbers { /* format of the line number toggler */
     margin: 0 10pt;
     font-size: 0.85em;
     color: gray;
+}
+@media print {
+	a.codenumbers {
+		display: none;
+	}
 }
 /* format of certain syntax spans */
 div.codearea pre span.LineNumber {color: gray;}
