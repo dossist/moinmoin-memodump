@@ -761,3 +761,9 @@ html {
 }
 .menu-nav-user:before {
 }
+.menu-nav-comment:before {
+    content: "\e106";  /* .glyphicon-eye-close */
+}
+.menu-nav-comment:after {
+    content: "";
+}

@@ -149,6 +149,9 @@ class Theme(ThemeBase):
             <!-- Edit button -->
 %(edit)s
 
+            <!-- Comment toggle button -->
+%(commentbutton)s
+
           </div> <!-- /.collapse -->
         </div> <!-- /.row -->
       </div> <!-- /.container -->
@@ -185,6 +188,7 @@ class Theme(ThemeBase):
         'usermenu': self.username(d),
         'search': self.searchform(d),
         'edit': self.editbutton(d),
+        'commentbutton': self.commentbutton(),
         'sidebar': self.sidebar(d),
         'trail': self.trail(d),
         'quicklinks': self.quicklinks(d),
@@ -363,10 +367,9 @@ class Theme(ThemeBase):
             text = _('Edit')
             querystr['editor'] = 'text'
             attrs = {'name': 'texteditlink', 'rel': 'nofollow', 'css_class': 'menu-nav-edit'}
-            button = page.link_to(self.request, text=text, querystr=querystr, **attrs)
+            button = page.link_to_raw(self.request, text=text, querystr=querystr, **attrs)
 
         html = u'''
-            <!-- Edit button -->
             <ul class="nav navbar-nav navbar-right">
               <li%s>
                 %s
@@ -383,6 +386,23 @@ class Theme(ThemeBase):
                             _('Immutable Page'),
                             self.request.formatter.url(0)
                            )
+        return html
+
+    def commentbutton(self):
+        """
+        Return a comment toggle button html.
+        Don't check if 'Comment' is present in self.request.cfg.edit_bar
+        The button is display:none; (i.e. disappeared) by default, but will automatically appear
+        when default javascript notices there is a comment in the source.
+        """
+        _ = self.request.getText
+        html = u'''
+            <ul class="nav navbar-nav navbar-right toggleCommentsButton" style="display:none;">
+              <li>
+                <a href="#" class="menu-nav-comment nbcomment" rel="nofollow" onClick="toggleComments();return false;">%s</a>
+              </li>
+            </ul>
+''' % _('Comments')
         return html
 
     def username(self, d):
