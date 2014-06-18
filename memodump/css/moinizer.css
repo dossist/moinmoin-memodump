@@ -616,9 +616,9 @@ p.searchhint a {
     color: #66512c;
 }
 #content div.warning { /* Bootstrap .alert-danger */
-    color: #8a6d3b;
-    background-color: #fcf8e3;
-    border-color: #faebcc;
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
 }
 #content div.warning hr {
     border-top-color: #e4b9c0;
