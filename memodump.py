@@ -94,6 +94,7 @@ class Theme(ThemeBase):
         ('all',         'bootstrap.min'),
         ('all',         'bootstrap-theme.min'),
         ('all',         'custom'),
+        ('all',         'moinizer'),
         )
 
     def header(self, d, **kw):

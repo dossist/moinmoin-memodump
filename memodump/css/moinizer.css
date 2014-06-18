@@ -1,0 +1,747 @@
+/*
+ * Custom CSS for memodump theme for moinmoin
+ * Copyright 2014 dossist.
+ * Based on common.css and screen.css from modernized theme, and css from Bootstrap.
+TODO: TableOfContents
+ */
+
+/*=========================================================
+   page frames
+===========================================================*/
+
+/* content area bottom padder */
+#pagebottom {
+	clear: both;
+}
+/* pageinfo */
+.info {
+    float: right;
+    font-size: 0.8em;
+    color: #999;
+}
+#pageinfo {
+    margin-bottom: 20px;
+}
+
+/*=========================================================
+   p insertion workarounds
+===========================================================*/
+
+#sidebar li p,
+#content li p,
+#content dd p,
+table p {
+    padding: 0;
+    margin: 0;
+}
+
+/*=========================================================
+   text decorations etc
+===========================================================*/
+
+/* custom rules ----- to ---------- */
+.hr1 {border-top-width: 2pt;}
+.hr2 {border-top-width: 3pt;}
+.hr3 {border-top-width: 4pt;}
+.hr4 {border-top-width: 5pt;}
+.hr5 {border-top-width: 6pt;}
+.hr6 {border-top-width: 7pt;}
+/* text decorations */
+.u {
+	text-decoration: underline;
+}
+.strike {
+	text-decoration: line-through;
+}
+/* used in SpellCheck results */
+strong.highlight {
+    background-color: #cBe6fd;
+    padding: 1pt;
+}
+/* colored texts (low css priority) */
+.warning {
+    color: #a94442; /* Bootstrap .alert-danger */
+}
+.error {
+    color: #a94442;
+}
+
+/*=========================================================
+   link anchors
+===========================================================*/
+
+#content a.nonexistent:visited,
+#content a.nonexistent,
+#content a.badinterwiki:visited,
+#content a.badinterwiki {
+	color: #999;
+}
+
+/* link type icons (would revisit later to replace with icon fonts) */
+#content a[class]:before {
+	margin: 0 0.2em;
+}
+#content a.www:before {
+	content: url(../img/moin-www.png);
+}
+#content a.http:before {
+	content: url(../img/moin-www.png);
+}
+#content a.https:before {
+	content: url(../img/moin-www.png);
+}
+#content a.file:before {
+	content: url(../img/moin-ftp.png);
+}
+#content a.ftp:before {
+	content: url(../img/moin-ftp.png);
+}
+#content a.nntp:before {
+	content: url(../img/moin-news.png)
+}
+#content a.news:before {
+	content: url(../img/moin-news.png);
+}
+#content a.telnet:before, #content a.ssh:before {
+	content: url(../img/moin-telnet.png);
+}
+#content a.irc:before, #content a.ircs:before {
+	content: url(../img/moin-telnet.png);
+}
+#content a.mailto:before {
+	content: url(../img/moin-email.png);
+}
+#content a.attachment:before {
+	content: url(../img/moin-attach.png);
+}
+#content a.badinterwiki:before {
+	content: url(../img/moin-inter.png);
+}
+#content a.interwiki:before {
+	content: url(../img/moin-inter.png);
+}
+#content a.action:before {
+	content: url(../img/moin-action.png);
+}
+
+/*=========================================================
+   div styles
+===========================================================*/
+
+/* color boxes */
+.comment,
+.red, .green, .blue, .yellow, .orange,
+.solid, .dashed, .dotted {
+	/* taken from Bootstrap .well, but background-color */
+    min-height: 20px;
+    padding: 19px;
+    margin-bottom: 20px;
+    border: 0;
+    border-color: #e3e3e3;
+}
+/* box colors */
+.comment { /* .comment must be on top of other color box classes */
+	color: #999;
+	background-color: #f0f0ff;
+}
+.red { /* Bootstrap .alert-danger */
+    background-color: #f2dede;
+    border-color: #ebccd1;
+}
+.green { /* Bootstrap .alert-success */
+    background-color: #dff0d8;
+    border-color: #d6e9c6;
+}
+.blue { /* Bootstrap .alert-info */
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+}
+.yellow { /* Bootstrap .alert-warning */
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+}
+.orange {
+	background-color: #fdf2e3;
+	border-color: #fae2c4;
+}
+/* box borders */
+.solid, .dashed, .dotted {
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+	border-width: 2px;
+	border-color: #777;
+}
+.solid {
+	border-style: solid;
+}
+.dashed {
+	border-style: dashed;
+}
+.dotted {
+	border-style: dotted;
+}
+/* text align */
+.left {
+	text-align: left;
+}
+.center {
+	text-align: center;
+}
+.right {
+	text-align: right;
+}
+.justify {
+	text-align: justify;
+}
+
+/*=========================================================
+   TableOfContents
+===========================================================*/
+
+div.table-of-contents {
+    font-size: 88%;
+    text-align: left;
+    margin: 0.5em 0 0.5em 1em;
+    max-width: 50%;
+    display: table;
+    /* Bootstrap .well and .well-sm */
+    min-height: 20px;
+    padding: 9px;
+    margin-bottom: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    border-radius: 3px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+}
+div.table-of-contents ol {
+    margin: 0;
+    padding: 0 0 0 2em;
+}
+div.table-of-contents ul {
+    margin: 0;
+    list-style: none;
+}
+div.table-of-contents li {
+    margin: 0;
+    padding: 0;
+}
+p.table-of-contents-heading {
+    font-weight: bold;
+    padding: 0;
+    margin: 0 0 0.5em 0;
+    letter-spacing: 0.075em;
+}
+
+/*=========================================================
+   MonthCalendar (untouched)
+===========================================================*/
+
+/* days without and with pages linked to them */
+a.cal-emptyday {
+    color: #777777;
+    text-align: center;
+}
+a.cal-usedday {
+    color: #000000;
+    font-weight: bold;
+    text-align: center;
+}
+/* general stuff: workdays, weekend, today */
+td.cal-workday {
+    background-color: #DDDDFF;
+    text-align: center;
+}
+td.cal-weekend {
+    background-color: #FFDDDD;
+    text-align: center;
+}
+td.cal-today {
+    background-color: #CCFFCC;
+    border-style: solid;
+    border-width: 2pt;
+    text-align: center;
+}
+/* invalid places on the monthly calendar sheet */
+td.cal-invalidday {
+    background-color: #CCCCCC;
+}
+/* links to prev/next month/year */
+a.cal-link {
+    color: #000000;
+    text-decoration: none;
+}
+th.cal-header {
+    background-color: #DDBBFF;
+    text-align: center;
+}
+
+/* for MonthCalendar mouseover info boxes */
+table.tip {
+    color: black;
+    background-color: #FF8888;
+    font-size: small;
+    font-weight: normal;
+    border-style: solid;
+    border-width: 1px;
+}
+th.tip {
+    background-color: #FF4444;
+    font-weight: bold;
+    text-align: center;
+}
+td.tip {
+    text-align: left;
+}
+*[dir="rtl"] td.tip {
+    text-align: right;
+}
+
+/*=========================================================
+   textcha
+===========================================================*/
+
+#textcha {
+}
+#textcha-question {
+	/* Bootstrap .has-error .control-label */
+    color: #a94442;
+}
+#textcha-answer {
+	display: block;
+	width: 100%;
+	/* Bootstrap .has-error .form-control */
+    border-color: #a94442;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+}
+#textcha-answer:focus {
+	/* Bootstrap .has-error .form-control:focus; */
+    border-color: #843534;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483;
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075), 0 0 6px #ce8483;
+}
+
+/*=========================================================
+   codearea
+===========================================================*/
+
+div.codemsg {
+    margin: 0.5em 0;
+    padding: 0.5em;
+    padding-left: 2.5em;
+    background: none;
+    border: 1pt solid #faebcc;
+    background-color: #fcf8e3;
+    background-image:url('../img/alert.png');
+    background-repeat:no-repeat;
+    background-position: 0.5em 0.5em;
+    color: #8a6d3b;
+    border-radius: 4px;
+}
+div.codearea { /* the div makes the border */
+    margin: 0.5em 0;
+    padding: 0;
+    border: 1pt solid #ccc;
+    background-color: #f5f5f5;
+    color: black;
+    border-radius: 4px;
+}
+div.codearea pre { /* the pre has no border and is inside the div */
+    margin: 0;
+    padding: 10pt;
+    border: none;
+}
+div.codearea a:not([class]):hover { /* we don't like underlines when hovering line numbers */
+	text-decoration: none;
+}
+a.codenumbers { /* format of the line numbering link */
+    margin: 0 10pt;
+    font-size: 0.85em;
+    color: gray;
+}
+/* format of certain syntax spans */
+div.codearea pre span.LineNumber {color: gray;}
+div.codearea pre span.ID         {color: #000000;}
+div.codearea pre span.Operator   {color: #0000c0;}
+div.codearea pre span.Char       {color: #004080;}
+div.codearea pre span.Comment    {color: #008000;}
+div.codearea pre span.Number     {color: #0080c0;}
+div.codearea pre span.String     {color: #004080;}
+div.codearea pre span.SPChar     {color: #0000c0;}
+div.codearea pre span.ResWord    {color: #a00000;}
+div.codearea pre span.ConsWord   {color: #008080; font-weight: bold;}
+div.codearea pre span.Error      {color: #ff8080; border: solid 1.5pt #ff0000;}
+div.codearea pre span.ResWord2   {color: #0080ff; font-weight: bold;}
+div.codearea pre span.Special    {color: #0000ff;}
+div.codearea pre span.Preprc     {color: #803999;}
+/* for diff parser */
+div.codearea pre span.DiffAdded   {color: #4876ff;}
+div.codearea pre span.DiffRemoved {color: #ff0000;}
+div.codearea pre span.DiffChanged {color: #ff7f50;}
+div.codearea pre span.DiffSeparator {color: #228b22; font-weight: bold}
+
+/*=========================================================
+   diff
+===========================================================*/
+
+.diff {
+    width:100%;
+    table-layout: fixed;
+    margin: 10px 0;
+}
+.diff + .diff {
+	margin: 10px 0 30px 0;
+}
+.diff input {
+	display: inline;
+}
+.diff-header {
+    font-weight: bold;
+}
+div.diff-info-header {
+    background-color: #f5f5f5;
+    width: 100%;
+    padding: 0.25em 0.5em;
+    text-align: center;
+}
+.diff-title {
+}
+.diff-added, .diff-removed {
+    vertical-align: top;
+    width: 50%;
+    white-space: pre-wrap;
+    word-wrap: break-word;
+    font-family: courier, monospace;
+}
+.diff-added {
+	background-color: #ddffdd;
+}
+.diff-removed {
+	background-color: #ffdddd;
+}
+.diff-added span {
+    background-color: #aaffaa;
+}
+.diff-removed span {
+    background-color: #ffaaaa;
+}
+td.diff-info {
+    vertical-align: top;
+}
+div.diff-info {
+    white-space: nowrap;
+}
+div.diff-info-rev-comment span.diff-info-value {
+    white-space: normal;
+}
+td.diff-same {
+    text-align: center;
+    border: 0;
+}
+
+/*=========================================================
+   search
+===========================================================*/
+
+/* FindPage */
+.advancedsearch {
+    border: 1px solid #ddd;
+}
+.advancedsearch tbody > tr + tr { /* why should I do this? */
+	border-top: 1px solid #ddd;
+}
+.advancedsearch tbody > tr + tr + tr { /* and this? (something could be wrong with table structure in html) */
+	border: none;
+}
+.advancedsearch td {
+    vertical-align: top;
+    background-color: #f5f5f5;    
+    border: none;
+}
+.advancedsearch td.searchfor {
+    font-weight: bold;
+}
+.advancedsearch td.submit {
+    border-top: 1px solid #ddd;
+    background-color: #fff;
+    text-align: right;
+}
+.advancedsearch input {
+}
+.advancedsearch input[disabled] {
+}
+.advancedsearch option,
+.advancedsearch select {
+}
+
+/* search results */
+.searchresults dt {
+    margin-top: 1em;
+    font-weight: normal;
+}
+.searchresults dd, .searchresults p {
+    font-size: 0.85em;
+}
+.searchresults .searchhitinfobar {
+    color: #008000;
+    margin-left: 15px;
+    margin-top: 0;
+}
+p.searchstats {
+	padding: 0px 5px;
+	border-radius: 2px;
+	border: 1px solid transparent;
+    color: #3c763d;
+    background-color: #dff0d8;
+}
+p.searchhint {
+	/* Bootstrap .alert */
+    padding: 15px;
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    /* .alert-info */
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+}
+p.searchhint a {
+	font-weight: bold;
+    color: #245269;
+}
+/* need to be revisited */
+.searchpages {
+    margin-left: auto;
+    margin-right: auto;
+}
+.searchpages tr, .searchpages td {
+    border: 0;
+    padding: 5px;
+    margin: 0;
+    text-align: center;
+    vertical-align: middle;
+    color: #b93a58;
+    font-weight: bold;
+}
+.searchpages td a, .searchpages td a:link {
+    text-decoration: underline;
+}
+
+/*=========================================================
+   admonitions
+===========================================================*/
+
+#content div.caution,
+#content div.important,
+#content div.note,
+#content div.tip,
+#content div.warning {
+	background-repeat: no-repeat;
+	background-position: 8px 8px;
+    padding: 15px;
+    padding-left: 64px;
+    min-height: 64px;
+    /* Bootstrap .alert */
+    margin-bottom: 20px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+}
+#content div.caution a,
+#content div.important a,
+#content div.note a,
+#content div.tip a,
+#content div.warning a {
+	/* Bootstrap .alert .alert-link */
+    font-weight: bold;
+}
+#content div.caution > p,
+#content div.important > p,
+#content div.note > p,
+#content div.tip > p,
+#content div.warning > p,
+#content div.caution > ul,
+#content div.important > ul,
+#content div.note > ul,
+#content div.tip > ul,
+#content div.warning > ul {
+	/* Bootstrap .alert > p */
+    margin-bottom: 0;
+}
+#content div.caution > p + p,
+#content div.important > p + p,
+#content div.note > p + p,
+#content div.tip > p + p,
+#content div.warning > p + p {
+	/* Bootstrap .alert > p + p */
+    margin-top: 5px;
+}
+#content div.tip       { background-image: url("../img/admon-tip.png"); }
+#content div.note      { background-image: url("../img/admon-note.png"); }
+#content div.important { background-image: url("../img/admon-important.png"); }
+#content div.caution   { background-image: url("../img/admon-caution.png"); }
+#content div.warning   { background-image: url("../img/admon-warning.png"); }
+
+#content div.tip,
+#content div.note { /* Bootstrap .alert-info */
+    color: #31708f;
+    background-color: #d9edf7;
+    border-color: #bce8f1;
+}
+#content div.tip hr,
+#content div.note hr {
+    border-top-color: #a6e1ec;
+}
+#content div.tip a,
+#content div.note a {
+    color: #245269;
+}
+#content div.caution,
+#content div.important { /* Bootstrap .alert-warning */
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+}
+#content div.caution hr,
+#content div.important hr {
+    border-top-color: #f7e1b5;
+}
+#content div.caution a,
+#content div.important a {
+    color: #66512c;
+}
+#content div.warning { /* Bootstrap .alert-danger */
+    color: #8a6d3b;
+    background-color: #fcf8e3;
+    border-color: #faebcc;
+}
+#content div.warning hr {
+    border-top-color: #e4b9c0;
+}
+#content div.warning a {
+    color: #843534;
+}
+
+/*=========================================================
+   edit page
+===========================================================*/
+
+#editor-textarea, #editor-help {
+    font-family: monospace;
+    width: 100%;
+    padding: 3px;
+    margin: 0.5em 0;
+}
+#editor-help {
+    font-size: small;
+    /* Bootstrap .well */
+    padding: 19px;
+    margin-bottom: 20px;
+    background-color: #f5f5f5;
+    border: 1px solid #e3e3e3;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
+}
+#preview, #previewbelow {
+    border: 1px solid #bbb;
+    border-radius: 4px;
+    padding: 3px;
+    width: 100%;
+    background: url(../img/draft.png);
+    margin: 20px 0;
+}
+
+/*=========================================================
+   Recent changes
+===========================================================*/
+
+/* rss icon */
+.rcrss {
+    float: right;
+    margin: 0 7px 0 14px;
+    height: 0;
+    position: relative;
+    top: 9px;
+}
+*[div="rtl"] .rcrss {
+    float: left;
+}
+.recentchanges[dir="rtl"] .rcrss {
+    float: left;
+}
+
+/* recentchanges area */
+.recentchanges table {
+    clear: both;
+    border: 1px solid #4d7da9;
+}
+.recentchanges td {
+    background: #e6eaf0;
+    border: none;
+    vertical-align: top;
+}
+.recentchanges .rcdaybreak td {
+    background: #81bbf2;
+    border: none;
+    border: 1px solid #4d7da9;
+}
+.rcdaybreak td a {
+    font-size: 0.92em;
+}
+.rcicon1, .rcicon2 {
+    text-align: center;
+}
+.rcpagelink {
+    width: 33%;
+}
+.rctime {
+    font-size: 0.92em;
+    white-space: nowrap;
+}
+.rceditor {
+    font-size: 0.92em;
+    white-space: nowrap;
+}
+.rccomment {
+    font-size: 0.92em;
+    width: 50%;
+    color: gray;
+}
+
+/*=========================================================
+   Footer elements
+===========================================================*/
+
+/* inline list */
+#footer ul {
+    margin: 0 0 0 -5px;
+    padding: 0;
+    list-style: none;
+    display: inline-block;
+}
+#footer ul li {
+    display: inline-block;
+    padding-right: 5px;
+    padding-left: 5px;
+}
+#version {
+    display: inline-block;
+}
+#credits img {
+	vertical-align: middle;
+}
+
+/*=========================================================
+   misc actions
+===========================================================*/
+
+/* User Preferences */
+.userpref table, .userpref td {
+	border: none;
+}
+.userpref table tbody tr th,
+.userpref table tbody tr td {
+	vertical-align: middle;
+}

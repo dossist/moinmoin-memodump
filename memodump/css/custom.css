@@ -1,7 +1,8 @@
 /*
- * Custom CSS for memodump theme for moinmoin
+ * CSS for memodump theme for moinmoin
  * Copyright 2014 dossist.
  * Based on Twitter Bootstrap 3.1.1.
+ * Load after bootstrap css.
  */
 
 /*=========================================================
@@ -35,22 +36,13 @@ html, body {
     background-color: #f5f5f5;
     padding: 20px 15px;
 }
-
-/*=========================================================
-   footer elements
-===========================================================*/
-
-/* inline list */
-#footer ul {
-    margin: 0 0 0 -5px;
-    padding: 0;
-    list-style: none;
-    display: inline-block;
+#pageinfo-container {
+    position: absolute;
+    bottom: 60px;
+    width: 100%;
 }
-#footer ul li {
-    display: inline-block;
-    padding-right: 5px;
-    padding-left: 5px;
+#outbox {
+    padding-bottom: 110px; /* footer height + pageinfo height */
 }
 
 /*=========================================================
@@ -329,7 +321,7 @@ table th[class*="col-"] {
     display: table-cell;
     float: none;
 }
-/* table colors, from .table > ... in Bootstrap */
+/* table colors from .table > ... in Bootstrap */
 table > thead > tr > td.active,
 table > tbody > tr > td.active,
 table > tfoot > tr > td.active,
@@ -401,6 +393,124 @@ table > tfoot > tr.danger > th {
     background-color: #f2dede;
 }
 
+/* control styles taken from Bootstrap (mostly from .form-control) */
+#pagebox input[type="text"],
+#pagebox input[type="password"],
+#pagebox select,
+#pagebox textarea {
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+            transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+#pagebox input[type="text"]:focus,
+#pagebox input[type="password"]:focus,
+#pagebox select:focus,
+#pagebox textarea:focus {
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+            box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+}
+#pagebox input[type="text"]::-moz-placeholder,
+#pagebox input[type="password"]::-moz-placeholder,
+#pagebox select::-moz-placeholder,
+#pagebox textarea::-moz-placeholder {
+    color: #999;
+    opacity: 1;
+}
+#pagebox input[type="text"]:-ms-input-placeholder,
+#pagebox input[type="password"]:-ms-input-placeholder,
+#pagebox select:-ms-input-placeholder,
+#pagebox textarea:-ms-input-placeholder {
+    color: #999;
+}
+#pagebox input[type="text"]::-webkit-input-placeholder,
+#pagebox input[type="password"]::-webkit-input-placeholder,
+#pagebox select::-webkit-input-placeholder,
+#pagebox textarea::-webkit-input-placeholder {
+    color: #999;
+}
+#pagebox input[type="text"],
+#pagebox input[type="password"],
+#pagebox select {
+    height: 34px;
+}
+#pagebox select[multiple] {
+    height: auto;
+}
+#pagebox textarea{
+    font-family: monospace;
+}
+/* buttons */
+#pagebox input[type="submit"] {
+    /* Bootstrap .btn */
+    display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: normal;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    cursor: pointer;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    /* Bootstrap .btn-default */
+    color: #333;
+    background-color: #fff;
+    border-color: #ccc;
+}
+#pagebox input[type="submit"]:focus,
+#pagebox input[type="submit"]:active:focus {
+    /* Bootstrap .btn:focus */
+    outline: thin dotted;
+    outline: 5px auto -webkit-focus-ring-color;
+    outline-offset: -2px;
+}
+#pagebox input[type="submit"]:hover,
+#pagebox input[type="submit"]:focus {
+    /* Bootstrap .btn:hover */
+    color: #333;
+    text-decoration: none;
+    /* Bootstrap .btn-default:hover */
+    background-color: #ebebeb;
+    border-color: #adadad;
+}
+#pagebox input[type="submit"]:active {
+    /* Bootstrap .btn:active */
+    background-image: none;
+    outline: 0;
+    -webkit-box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+            box-shadow: inset 0 3px 5px rgba(0, 0, 0, .125);
+}
+/* control margins */
+#pagebox input[type="text"],
+#pagebox input[type="password"],
+#pagebox input[type="submit"],
+#pagebox select {
+    margin-right: 5px;
+}
+#pagebox input[type="radio"],
+#pagebox input[type="checkbox"] {
+    margin-right: 2px;
+}
+
+
 /*=========================================================
    responsive toggle sidebar
 ===========================================================*/
@@ -470,7 +580,7 @@ html {
 ===========================================================*/
 
 @media print {
-    #sidebar, .offcanvas-trigger, .alert, #footer {
+    #sidebar, .offcanvas-trigger, .alert, #footer, #pageinfo-container {
         display: none;
     }
     #outbox, #pagebox, #contentbox {
@@ -485,87 +595,16 @@ html {
    misc. elements
 ===========================================================*/
 
+/* used as nbsp */
 .padding {
     padding: 1px;
 }
-
-/*=========================================================
-   MoinMoin adaption
-===========================================================*/
-
-/* navbar */
+/* pagepath separator */
 .sep {
     display: inline-block;
     margin: 0 5px;
 }
-/* sidebar */
-#sidebar li p { /* workaround for p inside li */
-    padding: 0;
-    margin: 0;
-}
-/* content area */
-#content li p,
-table p {
-    padding: 0;
-    margin: 0;
-}
-/* pageinfo */
-.info {
-    float: right;
-    font-size: 0.8em;
-    color: #999;
-}
-#pageinfo-container {
-    position: absolute;
-    bottom: 60px;
-    width: 100%;
-}
-#pageinfo {
-    margin-bottom: 20px;
-}
-#outbox {
-    padding-bottom: 110px; /* footer height + pageinfo height */
-}
-/* edit page */
-textarea {
-    font-family: monospace;
-}
-#editor-textarea, #editor-help {
-    font-family: monospace;
-    width: 100%;
-    padding: 3px;
-    margin: 0.5em 0;
-    border-radius: 4px;
-}
-#editor-help {
-    font-size: small;
-    /* taken from Bootstrap .well */
-    padding: 19px;
-    margin-bottom: 20px;
-    background-color: #f5f5f5;
-    border: 1px solid #e3e3e3;
-    border-radius: 4px;
-    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
-            box-shadow: inset 0 1px 1px rgba(0, 0, 0, .05);
-}
-#preview, #previewbelow {
-    border: 1px solid #bbb;
-    border-radius: 4px;
-    padding: 3px;
-    width: 100%;
-    background: url(../img/draft.png);
-    margin: 20px 0;
-}
-/* footer */
-#version {
-    display: inline-block;
-}
 
-@media print {
-    #pageinfo-container {
-        display: none;
-    }
-}
 /*=========================================================
    implicit glyphicons
 ===========================================================*/
@@ -581,6 +620,7 @@ textarea {
     font-size: smaller;
     padding-left: 5px;
     float: right;
+    margin-top: -1px;
 }
 *[class^="menu-dd-"]:before {
     float: right;
