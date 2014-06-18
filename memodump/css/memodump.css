@@ -589,7 +589,7 @@ html {
         padding: 0;
         margin: 0;
     }
-    a[href]:after {
+    a[href]:after { /* to stop printing anchor destinations in print mode */
         content: "";
     }
 }

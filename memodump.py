@@ -438,7 +438,7 @@ class Theme(ThemeBase):
             if request.cfg.auth_login_inputs == ['special_no_input']:
                 query['login'] = '1'
             if request.cfg.auth_have_login:
-                loginbutton = (d['page'].link_to(request, text=_("Login"),
+                loginbutton = (d['page'].link_to_raw(request, text=_("Login"),
                                                  querystr=query, css_class='menu-nav-login', rel='nofollow'))
 
         if userbutton:
