@@ -569,10 +569,17 @@ html {
 ===========================================================*/
 
 @media print {
-    #sidebar, .offcanvas-trigger, .alert, #footer, #pageinfo-container, #location {
+    #sidebar,
+    .offcanvas-trigger,
+    .alert,
+    #footer,
+    #pageinfo-container,
+    #location {
         display: none;
     }
-    #outbox, #pagebox, #contentbox {
+    #outbox,
+    #pagebox,
+    #contentbox {
         width: 100%;
         left: 0;
         padding: 0;
