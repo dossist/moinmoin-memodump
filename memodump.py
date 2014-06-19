@@ -10,6 +10,10 @@
         memodump_menuoverride
             overrides menu elements. see self.menu() for details.
 
+        hide_location
+            overrides list of page names that have no location area.
+            e.g. [page_front_page, u'SideBar', ]
+
     @copyright: 2014 dossist.
     @license: GNU GPL, see COPYING for details.
 """
@@ -115,7 +119,7 @@ class Theme(ThemeBase):
         <div class="row">
 
           <!-- Navbar header -->
-          <div class="col-sm-2">
+          <div class="col-md-2">
             <div class="navbar-header">
               <!-- Button to show navbar controls when collapsed -->
               <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -131,9 +135,6 @@ class Theme(ThemeBase):
 
           <!-- Body of navbar -->
           <div class="collapse navbar-collapse">
-
-            <!-- Pagename -->
-            %(pagename)s
 
             <!-- Global menu and user menu -->
             <ul class="nav navbar-nav navbar-right">
@@ -181,9 +182,11 @@ class Theme(ThemeBase):
         <div class="col-xs-6 col-md-10" id="contentbox">
 %(custom_post)s
 %(msg)s
+%(location)s
+
 <!-- Page contents -->
 """ % { 'sitename': self.logo(),
-        'pagename': self.title_with_separators(d),
+        'location': self.location(d),
         'menu': self.menu(d),
         'usermenu': self.username(d),
         'search': self.searchform(d),
@@ -283,32 +286,38 @@ class Theme(ThemeBase):
     def interwiki(self, d):
         return u''
 
-    def title(self, d):
-        return u''
-
-    def title_with_separators(self, d):
-        """ Assemble the title using slashes
-        Backlinking behavior is removed from original code.
-
-        @param d: parameter dictionary
-        @rtype: string
-        @return: title html
+    def location(self, d):
+        """ Assemble location area on top of the page content.
+        Certain pages shouldn't have location area as it feels redundant.
+        Location area is excluded in FrontPage by default.
+        Config variable hide_location will override the list of pages to have no location area.
         """
+        html = u''
+        page = d['page']
+        pages_hide = [self.request.cfg.page_front_page,]
+        try:
+            pages_hide = self.request.cfg.hide_location
+        except AttributeError:
+            pass
+        if not page.page_name in pages_hide:
+            html = u'''
+        <div id="location">
+%(pagename)s
+          %(lastupdate)s
+        </div>
+''' % {'pagename': self.title(d), 'lastupdate': self.lastupdate(d),}
+        return html
+
+    def lastupdate(self, d):
+        """ Return html for last update in location area, if conditions are met. """
         _ = self.request.getText
-        if d['title_text'] == d['page'].split_title():
-            # just showing a page, no action
-            segments = d['page_name'].split('/')
-            content = []
-            curpage = ''
-            for s in segments:
-                curpage += s
-                content.append(Page(self.request, curpage).link_to(self.request, s, css_class="navbar-link"))
-                curpage += '/'
-            path_html = u'<span class="sep">/</span>'.join(content)
-            html = u'<span class="pagepath"><span class="sep">/</span>%s</span>' % path_html
-        else:
-            html = u'<span class="pagepath">%s</span>' % wikiutil.escape(d['title_text'])
-        return u'<p class="navbar-text" id="pagelocation">%s</p>' % html
+        page = d['page']
+        html = u''
+        if self.shouldShowPageinfo(page):
+            info = page.lastEditInfo()
+            if info:
+                html = u'<span class="lastupdate">%s %s</span>' % (_('Last updated at'), info['time'])
+        return html
 
     def searchform(self, d):
         """

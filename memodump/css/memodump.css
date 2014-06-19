@@ -77,23 +77,6 @@ form.form-search:before {
         white-space: nowrap;
         text-overflow: ellipsis;
     }
-    #pagelocation {
-        display: table-cell;
-        max-width: 90px;
-        overflow-x: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-    }
-}
-@media screen and (min-width: 992px) { /* md */
-    #pagelocation {
-        max-width: 270px; /* 78px(md column)*10(columns) - 60px(sm column)*10 + 100px(#pagelocation@sm) */
-    }
-}
-@media screen and (min-width: 1200px) { /* lg */
-    #pagelocation {
-        max-width: 440px; /* 95px(lg column)*10(columns) - 78px(md column)*10 + 280px(#pagelocation@md) */
-    }
 }
 
 /*=========================================================
@@ -101,11 +84,17 @@ form.form-search:before {
 ===========================================================*/
 
 #sidebar {
-	padding-top: 40px;
-	padding-bottom: 20px;
+    padding-top: 40px;
+    padding-bottom: 20px;
 }
 #contentbox {
-	padding-top: 20px;
+    padding-top: 20px;
+}
+#pagebox {
+    padding-top: 0px;
+}
+#content {
+    padding-top: 0px;    
 }
 
 /*=========================================================
@@ -580,7 +569,7 @@ html {
 ===========================================================*/
 
 @media print {
-    #sidebar, .offcanvas-trigger, .alert, #footer, #pageinfo-container {
+    #sidebar, .offcanvas-trigger, .alert, #footer, #pageinfo-container, #location {
         display: none;
     }
     #outbox, #pagebox, #contentbox {
@@ -606,6 +595,40 @@ html {
 .sep {
     display: inline-block;
     margin: 0 5px;
+}
+/* location area */
+#location {
+    font-size: small;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 20px;
+}
+.lastupdate {
+    display: block;
+    font-size: smaller;
+    font-style: italic;
+    color: #999;
+    padding: 0;
+    margin: 0;
+}
+/* breadcrumb style */
+#pagelocation {
+    list-style: none;
+    font-weight: bold;
+    padding: 0;
+    margin: 0;
+}
+#pagelocation li {
+    display: inline-block;
+    padding: 0;
+}
+#pagelocation li + li:before {
+    padding: 0px 4px;
+    color: #ccc;
+    content: "/";
+}
+#pagelocation li:last-child,
+#pagelocation li:last-child a {
+    color: #999;
 }
 
 /*=========================================================
