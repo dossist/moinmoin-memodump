@@ -501,6 +501,9 @@ table > tfoot > tr.danger > th {
     margin-right: 2px;
 }
 
+pre {
+    overflow: visible;
+}
 
 /*=========================================================
    responsive toggle sidebar
