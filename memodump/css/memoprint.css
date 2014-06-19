@@ -1,0 +1,17 @@
+/*
+ * CSS for memodump theme for MoinMoin 1.9.x
+ * Copyright 2014 dossist.
+ * For action=print
+ * Load after all other theme css.
+ */
+
+#pagelocation,
+#pageinfo {
+    display: none;
+}
+#page {
+	padding: 0px;
+}
+a[href]:after { /* to stop printing anchor destinations in print mode */
+    content: "";
+}

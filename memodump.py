@@ -10,7 +10,7 @@
         memodump_menuoverride
             overrides menu elements. see self.menu() for details.
 
-        hide_location
+        memodump_hidelocation
             overrides list of page names that have no location area.
             e.g. [page_front_page, u'SideBar', ]
 
@@ -99,6 +99,13 @@ class Theme(ThemeBase):
         ('all',         'bootstrap-theme.min'),
         ('all',         'memodump'),
         ('all',         'moinizer'),
+        )
+    stylesheets_print = (
+        ('all',         'bootstrap.min'),
+        ('all',         'bootstrap-theme.min'),
+        ('all',         'memodump'),
+        ('all',         'moinizer'),
+        ('all',         'memoprint'),
         )
 
     def header(self, d, **kw):
@@ -290,13 +297,13 @@ class Theme(ThemeBase):
         """ Assemble location area on top of the page content.
         Certain pages shouldn't have location area as it feels redundant.
         Location area is excluded in FrontPage by default.
-        Config variable hide_location will override the list of pages to have no location area.
+        Config variable memodump_hidelocation will override the list of pages to have no location area.
         """
         html = u''
         page = d['page']
         pages_hide = [self.request.cfg.page_front_page,]
         try:
-            pages_hide = self.request.cfg.hide_location
+            pages_hide = self.request.cfg.memodump_hidelocation
         except AttributeError:
             pass
         if not page.page_name in pages_hide:
