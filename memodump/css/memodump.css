@@ -227,15 +227,14 @@ form.form-search:before {
 ===========================================================*/
 
 /* prettily underlined headers with better spacing */
-#content > h1, #content > h2, #content > h3,
-#content > h4, #content > h5, #content > h6 {
+#content h1, #content h2, #content h3,
+#content h4, #content h5, #content h6 {
     position: relative;
     overflow: hidden;
     padding-bottom: 10px;
     margin-bottom: 20px;
 }
-#content > h1:before, #content > h2:before, #content > h3:before,
-#content > h4:before, #content > h5:before, #content > h6:before {
+#content h1:before, #content h2:before, #content h3:before {
     content: "";
     display: inline-block;
     position: absolute;
@@ -243,8 +242,7 @@ form.form-search:before {
     border-bottom: 1px solid #51b3e8;
     width: 100%;
 }
-#content > h1:after, #content > h2:after, #content > h3:after,
-#content > h4:after, #content > h5:after, #content > h6:after {
+#content h1:after, #content h2:after, #content h3:after {
     content: "";
     display: inline-block;
     position: absolute;
@@ -253,14 +251,18 @@ form.form-search:before {
     width: 100%;
 }
 
-/* accented .page-header */
-.page-header > h1, .page-header > h2, .page-header > h3,
-.page-header > h4, .page-header > h5, .page-header > h6 {
-    border-bottom: 2px solid #51b3e8;
+#content h1:after, #content h1:before {
+    border-width: 2px;
+}
+#content h4 {
+    display: block;
+    border-bottom: 1px solid #eee;
+}
+#content h5, #content h6 {
     display: inline-block;
-    margin-top: 0;
-    margin-bottom: -11px;
-    padding-bottom: 19px;
+    border-bottom: 1px solid #eee;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
 }
 
 /* table style taken from Bootstrap */
