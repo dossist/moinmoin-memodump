@@ -308,7 +308,7 @@ class Theme(ThemeBase):
             html = u'<span class="pagepath"><span class="sep">/</span>%s</span>' % path_html
         else:
             html = u'<span class="pagepath">%s</span>' % wikiutil.escape(d['title_text'])
-        return u'<p class="navbar-text">%s</p>' % html
+        return u'<p class="navbar-text" id="pagelocation">%s</p>' % html
 
     def searchform(self, d):
         """
