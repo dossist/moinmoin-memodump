@@ -15,7 +15,7 @@
             e.g. [page_front_page, u'SideBar', ]
 
     @copyright: 2014 dossist.
-    @license: GNU GPL, see COPYING for details.
+    @license: GNU GPL, see http://www.gnu.org/licenses/gpl for details.
 """
 
 from MoinMoin.theme import ThemeBase
