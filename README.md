@@ -18,12 +18,12 @@ Will add some screen shots later.
 Install
 -------
 
-1. Get the files by cloning the repository or download a zip and unpack it.
+1. Get the files by cloning the repository or download a zip and unpack it.  
    To clone the repository, run the command below. (Files will be stored under your current directory.)
 
         git clone https://github.com/dossist/moinmoin-memodump.git
 
-2. Copy memodump.py into wiki/data/plugin/theme/
+2. Copy memodump.py into wiki/data/plugin/theme/ .  
    Assuming that cloned repository is stored in memodump-xxx (where xxx holds version number):
 
         cd memodump-xxx
@@ -39,7 +39,7 @@ Install
         cp -a modernized/img memodump/
 
 5. Done!
-   If you run MoinMoin in a server, you might have to terminate running MoinMoin processes to reflect changes.
+   If you run MoinMoin in a server, you might have to terminate running MoinMoin processes to reflect changes.  
    For example, on Ubuntu, run the following command on the shell to terminate MoinMoin processes.
    
         pkill moin
@@ -74,7 +74,7 @@ Customization
 ### SideBar ###
 
 Create a page named 'SideBar' to create your own site-wide sidebar.
-In sidebar, list items receive menu-like styles.
+In sidebar, list items receive menu-like styles.  
 Example:
 ```
 {{attachment:prettylogo.jpg}}
@@ -104,7 +104,7 @@ By default, page_front_page is the only page in the list.
 
 Basic knowledge of python language is required!
 
-By defining a variable named 'memodump_menuoverride' in wikiconfig.py, you can override menu entries.
+By defining a variable named 'memodump_menuoverride' in wikiconfig.py, you can override menu entries.  
 Example:
 
         memodump_menuoverride = [
