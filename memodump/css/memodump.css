@@ -259,10 +259,22 @@ form.form-search:before {
     border-bottom: 1px solid #eee;
 }
 #content h5, #content h6 {
-    display: inline-block;
+    display: inline;
     border-bottom: 1px solid #eee;
     padding-bottom: 5px;
-    margin-bottom: 10px;
+    margin: 15px 0;
+}
+#content h5:before, #content h6:before {
+    content: "";
+    display: block;
+    width: 100%;
+    margin-top: inherit;
+}
+#content h5:after, #content h6:after {
+    content: "";
+    display: block;
+    width: 100%;
+    margin-bottom: inherit;
 }
 
 /* table style taken from Bootstrap */
