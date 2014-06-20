@@ -2,8 +2,9 @@ moinmoin-memodump
 =================
 
 A simple MoinMoin theme based on Twitter Bootstrap.  
-Comes with responsive navbar and sidebar.  
-Sidebar is customizable by creating a page 'SideBar'.
+Comes with responsive navbar and sidebar.
+
+You can create your own sidebar by creating a page called 'SideBar'.
 
 Tested with MoinMoin 1.9.7 on Python 2.7.5.
 
@@ -23,8 +24,9 @@ Install
         git clone https://github.com/dossist/moinmoin-memodump.git
 
 2. Copy memodump.py into wiki/data/plugin/parser/
+   Assuming that cloned repository is stored in memodump-xxx (where xxx holds version number):
 
-        cd memodump-xxx (where xxx holds version number)
+        cd memodump-xxx
         cp memodump.py YourMoinDirectory/wiki/data/plugin/parser/
     
 3. Copy whole directory 'memodump-xxx/memodump' into MoinMoin/web/static/htdocs/
@@ -88,10 +90,10 @@ Example:
 
 ### Location area ###
 
-On top of page contents, we have an area which shows where in the wiki you are now, and when it was updated last time.
+On top of page contents, we have an area which shows where in the wiki you are now, and when it was updated last time.  
 However, showing the info on every page feels a bit redundant.
 You can define a list of pages which comes without the info.
-Define a list named 'memodump_hidelocation' in wikiconfig.py. The list has page names as its entries.
+Define a list named 'memodump_hidelocation' in wikiconfig.py. The list has page names as its entries.  
 Example:
 
         memodump_hidelocation = [page_front_page, u'SideBar', ]
@@ -101,6 +103,7 @@ By default, page_front_page is the only page in the list.
 ### Menu items ###
 
 Basic knowledge of python language is required!
+
 By defining a variable named 'memodump_menuoverride' in wikiconfig.py, you can override menu entries.
 Example:
 
@@ -117,7 +120,7 @@ Tips
 
 ### Trails and quick links ###
 
-They are moved into sidebar area, and will be displayed below site-wide SideBar if user has something to show.
+They are moved into sidebar area, and will be displayed below the site-wide SideBar if user has something to be shown.
 
 ### Logo ###
 
@@ -133,12 +136,12 @@ Just comment out logo_string in wikiconfig.py:
 
 ### I don't like backlinks! ###
 
-If you get the newest MoinMoin code (as of June 2014) [from the repository](https://bitbucket.org/thomaswaldmann/moin-1.9), you can disable backlinking behavior in location area by adding a line to wikiconfig.py:
+If you get the latest code of MoinMoin (as of June 2014) [from the repository](https://bitbucket.org/thomaswaldmann/moin-1.9), you can disable backlinking behavior in location area by adding a line to wikiconfig.py:
 
         backlink_method = lambda self, req: 'pagelink'
 
 This is not specific for this theme, but viable for other themes as well.
-Please note that this is not implemented in 1.9.7. It will work only with the newest code pulled directly from the repository.
+Please note that this is not implemented in 1.9.7. Will work only with the latest code pulled directly from the repository.
 
 
 Limitations
