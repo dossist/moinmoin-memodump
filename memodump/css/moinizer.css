@@ -30,10 +30,19 @@
     margin: 10px 0;
 }
 #pagebox p {
-    margin: 10px 0;
+    margin-top: 10px;
 }
 #pagebox .alert p {
     margin: 0;
+}
+#pagebox ul, ol {
+	margin-top: 10px;
+}
+#pagebox dl {
+	margin-top: 20px;
+}
+#pagebox dd {
+	margin-left: 20px;
 }
 #sidebar li p,
 #content li p,
