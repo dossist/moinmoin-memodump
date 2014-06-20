@@ -26,32 +26,29 @@
    general margins and paddings
 ===========================================================*/
 
-#pagebox pre {
+#content pre {
     margin: 10px 0;
 }
-#pagebox p {
+#content p {
     margin-top: 10px;
 }
-#pagebox .alert p {
-    margin: 0;
-}
-#pagebox ul, ol {
+#content ul, ol {
 	margin-top: 10px;
 }
-#pagebox dl {
+#content dl {
 	margin-top: 20px;
 }
-#pagebox dd {
+#content dd {
 	margin-left: 20px;
 }
 #sidebar li p,
 #content li p,
 #content dd p,
-#pagebox td p {
+#content td p {
     padding: 0;
     margin: 0;
 }
-#pagebox table {
+#content table {
 	margin: 10px;
 }
 
