@@ -511,6 +511,7 @@ table > tfoot > tr.danger > th {
 #pagebox input[type="radio"],
 #pagebox input[type="checkbox"] {
     margin-right: 2px;
+    margin-left: 4px;
 }
 
 /* misc */
