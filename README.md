@@ -9,11 +9,14 @@ You can create your own sidebar by creating a page called 'SideBar'.
 Tested with MoinMoin 1.9.7 on Python 2.7.5.
 
 
-Preview
--------
+Screenshots
+-----------
 
-Will add some screen shots later.
+Main screen
+![Main](test/memodump.jpg)
 
+Automatically collapsed navbar and sidebar under narrow viewport
+![Collapsed](test/memodump collapsed.jpg)
 
 Install
 -------
