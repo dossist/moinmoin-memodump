@@ -501,7 +501,8 @@ table > tfoot > tr.danger > th {
     margin-right: 2px;
 }
 
-pre {
+/* misc */
+#pagebox pre {
     overflow: visible;
 }
 

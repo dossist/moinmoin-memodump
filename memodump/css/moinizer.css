@@ -23,15 +23,27 @@
 }
 
 /*=========================================================
-   p insertion workarounds
+   general margins and paddings
 ===========================================================*/
 
+#pagebox pre {
+    margin: 10px 0;
+}
+#pagebox p {
+    margin: 10px 0;
+}
+#pagebox .alert p {
+    margin: 0;
+}
 #sidebar li p,
 #content li p,
 #content dd p,
-table p {
+#pagebox td p {
     padding: 0;
     margin: 0;
+}
+#pagebox table {
+	margin: 10px;
 }
 
 /*=========================================================
@@ -131,9 +143,8 @@ strong.highlight {
 .comment,
 .red, .green, .blue, .yellow, .orange,
 .solid, .dashed, .dotted {
-	/* taken from Bootstrap .well, but background-color */
+	/* taken from Bootstrap .well */
     min-height: 20px;
-    padding: 19px;
     margin-bottom: 20px;
     border: 0;
     border-color: #e3e3e3;
@@ -634,6 +645,7 @@ p.searchhint a {
 #content div.note > ul,
 #content div.tip > ul,
 #content div.warning > ul {
+	margin-top: 0;
 	/* Bootstrap .alert > p */
     margin-bottom: 0;
 }
