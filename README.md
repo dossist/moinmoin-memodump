@@ -23,11 +23,11 @@ Install
 
         git clone https://github.com/dossist/moinmoin-memodump.git
 
-2. Copy memodump.py into wiki/data/plugin/parser/
+2. Copy memodump.py into wiki/data/plugin/theme/
    Assuming that cloned repository is stored in memodump-xxx (where xxx holds version number):
 
         cd memodump-xxx
-        cp memodump.py YourMoinDirectory/wiki/data/plugin/parser/
+        cp memodump.py YourMoinDirectory/wiki/data/plugin/theme/
     
 3. Copy whole directory 'memodump-xxx/memodump' into MoinMoin/web/static/htdocs/
 
