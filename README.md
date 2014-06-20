@@ -140,6 +140,7 @@ If you get the newest MoinMoin code (as of June 2014) [from the repository](http
 This is not specific for this theme, but viable for other themes as well.
 Please note that this is not implemented in 1.9.7. It will work only with the newest code pulled directly from the repository.
 
+
 Limitations
 -----------
 
@@ -155,7 +156,7 @@ Limitations
 License
 -------
 
-Copyright 2014 dossist.
-This theme is licensed under [GNU GPL](http://www.gnu.org/licenses/gpl).
-[Twitter Bootstrap](http://getbootstrap.com/) is copyrighted by Twitter, Inc and licensed under [the MIT license](https://github.com/twbs/bootstrap/blob/master/LICENSE).
+Copyright 2014 dossist.  
+This theme is licensed under [GNU GPL](http://www.gnu.org/licenses/gpl).  
+[Twitter Bootstrap](http://getbootstrap.com/) is copyrighted by Twitter, Inc and licensed under [the MIT license](https://github.com/twbs/bootstrap/blob/master/LICENSE).  
 [MoinMoin](https://moinmo.in/) is copyrighted by [The MoinMoin development team](https://moinmo.in/MoinCoreTeamGroup).
