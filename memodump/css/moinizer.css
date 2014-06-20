@@ -515,22 +515,60 @@ p.searchhint a {
 	font-weight: bold;
     color: #245269;
 }
-/* need to be revisited */
+/* pagination area at the bottom of search result, styles taken from Bootstrap */
 .searchpages {
-    margin-left: auto;
-    margin-right: auto;
+	color: #fff;
+    background-color: #428bca;
+	border: 1px solid #428bca;
+    border-radius: 5px;
+    border-collapse: separate;
+    margin: 20px auto;
+}
+.searchpages tbody {
+	border-radius: 4px; /* to prevent background from slightly oozing off corners */
 }
 .searchpages tr, .searchpages td {
-    border: 0;
-    padding: 5px;
+    border: none;
+    border-radius: inherit;
+    padding: 0;
     margin: 0;
     text-align: center;
     vertical-align: middle;
-    color: #b93a58;
-    font-weight: bold;
+}
+.searchpages td {
+	width: 30px;
+}
+.searchpages td:first-child,
+.searchpages td:first-child a,
+.searchpages td:empty + td {
+    border-top-left-radius: inherit;
+    border-bottom-left-radius: inherit;
+}
+.searchpages td:last-child,
+.searchpages td:last-child a {
+    border-top-right-radius: inherit;
+    border-bottom-right-radius: inherit;
+}
+.searchpages td:empty {
+	display: none;
+}
+.searchpages td {
+	border-radius: 0;
 }
 .searchpages td a, .searchpages td a:link {
-    text-decoration: underline;
+	display: block;
+    color: #428bca;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 5px 0px;
+	width: 32px;
+	margin: -1px;
+}
+.searchpages td a:hover,
+.searchpages td a:focus {
+    color: #2a6496;
+    background-color: #eee;
+    text-decoration: none;
 }
 
 /*=========================================================
