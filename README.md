@@ -66,8 +66,8 @@ Please note that indentations are important in python codes, and here you must
 indent the line by exactly 4 spaces.
 
 
-Customizations
---------------
+Customization
+-------------
 
 ### SideBar ###
 
