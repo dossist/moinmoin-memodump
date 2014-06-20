@@ -1,8 +1,8 @@
 moinmoin-memodump
 =================
 
-A simple MoinMoin theme based on Twitter Bootstrap.
-Comes with responsive navbar and sidebar.
+A simple MoinMoin theme based on Twitter Bootstrap.  
+Comes with responsive navbar and sidebar.  
 Sidebar is customizable by creating a page 'SideBar'.
 
 Tested with MoinMoin 1.9.7 on Python 2.7.5.
