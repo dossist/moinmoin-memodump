@@ -77,7 +77,7 @@ Customization
 
 Create a page named `SideBar` to create your own site-wide sidebar.
 In sidebar, list items receive menu-like styles.  
-Example:
+Sample:
 ```
 {{attachment:prettylogo.jpg}}
  * [[FrontPage]]
@@ -89,6 +89,15 @@ Example:
 ==== Utility ====
  * [[SideBar?action=edit | Edit Sidebar]]
 ```
+
+### Per-page sidebar ###
+
+    #pragma sidebar InsertYourSideBarName
+
+Add this line on top of the page to have a customized sidebar for the page (change Inert... to your per-page sidebar name).  
+You can include original site-wide sidebar in the per-page sidebar:
+
+    <<Include(SideBar)>>
 
 ### Location area ###
 
