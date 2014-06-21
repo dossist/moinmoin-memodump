@@ -841,6 +841,14 @@ p.searchhint a {
 #credits img {
 	vertical-align: middle;
 }
+#footer a {
+	color: inherit;
+	font-weight: bold;
+}
+#footer a:hover,
+#footer a:focus {
+	color: #777;
+}
 
 /*=========================================================
    misc actions
