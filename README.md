@@ -13,10 +13,10 @@ Screenshots
 -----------
 
 Main screen
-![Main](test/memodump.jpg)
+![Main](test/memodump.png)
 
 Automatically collapsed navbar and sidebar under narrow viewport
-![Collapsed](test/memodump collapsed.jpg)
+![Collapsed](test/memodump collapsed.png)
 
 Install
 -------
