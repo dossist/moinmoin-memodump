@@ -94,7 +94,7 @@ Sample:
 
     #pragma sidebar InsertYourSideBarName
 
-Add this line on top of the page to have a customized sidebar for the page (change Inert... to your per-page sidebar name).  
+Add this line at the top of the page which you want your customized sidebar on (change Inert... to your per-page sidebar name).  
 You can include original site-wide sidebar in the per-page sidebar:
 
     <<Include(SideBar)>>
