@@ -102,10 +102,12 @@ form.form-search:before {
 ===========================================================*/
 
 /* taken from bootstrap to fit into wiki output (to enable styles without classes) */
-#sidebar ul, #sidebar ol { /* .nav */
+#sidebar ul, #sidebar ol {
     padding-left: 0;
     margin-bottom: 0;
     list-style: none;
+    line-height: 1;
+    word-wrap: break-word;
 }
 #sidebar li { /* .nav > li */
     position: relative;
@@ -158,22 +160,22 @@ form.form-search:before {
 
 /* list padding */
 #sidebar ul, #sidebar ol {
-	padding: 0px 15px; /* whole list gets paddings on the left and the right */
+	padding: 0px 10px; /* whole list gets paddings on the left and the right */
 }
 #sidebar li {
-    padding: 5px 0px; /* every list item gets paddings on top and bottom */
+    padding: 6px 0px; /* every list item gets paddings on top and bottom */
 }
 /* padding workaround needed for highlighting behavior when hovered */
 #sidebar li a {
-    margin: -5px -15px; /* neutralize ul and li paddings */
-	padding: 5px 15px; /* and add same amount of paddings manually, which allows colorizing the hole background */
+    margin: -6px -10px; /* neutralize ul and li paddings */
+	padding: 6px 10px; /* and add same amount of paddings manually, which allows colorizing the hole background */
 }
 /* padding in nested list */
 #sidebar ul ul, #sidebar ul ol, #sidebar ol ul, #sidebar ol ol {
     padding: 0;
-	padding-top: 5px;
-    padding-left: 5px; /* we want to give some additional indent */
-	margin: -5px 0px; /* neutralize top/bottom paddings as we have some in our own <li> */
+	padding-top: 6px;
+    padding-left: 10px; /* we want to give some additional indent */
+	margin: -6px 0px; /* neutralize top/bottom paddings as we have some in our own <li> */
 }
 /* padding of a in nested list */
 #sidebar li li a {
@@ -181,16 +183,16 @@ form.form-search:before {
     padding-left: 20px;
 }
 #sidebar li li li a {
-    margin-left: -25px;
-    padding-left: 25px;
-}
-#sidebar li li li li a {
     margin-left: -30px;
     padding-left: 30px;
 }
+#sidebar li li li li a {
+    margin-left: -40px;
+    padding-left: 40px;
+}
 #sidebar li li li li li a { /* enough, isn't it? */
-    margin-left: -35px;
-    padding-left: 35px;
+    margin-left: -50px;
+    padding-left: 50px;
 }
 /* workaround for overflow */
 #sidebar div > ul,
