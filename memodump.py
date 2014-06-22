@@ -594,7 +594,7 @@ class Theme(ThemeBase):
                     'special': action_isremoved('raw')
                     #'special' can be:
                     #  'disabled', 'removed', 'separator' or 'header' for whatever they say,
-                    #  False, None or nonexistant means normal menu display
+                    #  False or nonexistant means normal menu display
                    },
             'print':           {'title': _('Print View'), 'args': 'action=print',
                                 'special': action_isremoved('print')},
@@ -713,7 +713,7 @@ class Theme(ThemeBase):
             }
 
         switch = {
-            '':          switch_default,
+            False:       switch_default,
             'disabled':  switch_disabled,
             'separator': switch_separator,
             'header':    switch_header,
@@ -725,10 +725,10 @@ class Theme(ThemeBase):
         for number, item in enumerate(menu):
             entry = menu_def[item]
 
-            if 'special' in entry and entry['special']:
+            if 'special' in entry:
                 line = switch[entry['special']]()
             else:
-                line = switch['']()
+                line = switch[False]()
 
             if line:
                 lines.append(line)
