@@ -550,17 +550,19 @@ class Theme(ThemeBase):
                 'HelpOnMoinWikiSyntax',
                 '__separator__',
                 '__title_edit__',
-                'AttachFile',
                 'RenamePage',
                 'DeletePage',
                 'CopyPage',
-                'info',
-                'Despam',
-                'editSideBar',
                 'Load',
                 'Save',
                 '__separator__',
-                '__title_user__',
+                '__title_admin__',
+                'Despam',
+                'editSideBar',
+                '__separator__',
+                '__title_page__',
+                'AttachFile',
+                'info',
                 'quicklink',
                 ]
 
@@ -596,6 +598,7 @@ class Theme(ThemeBase):
                     #'special' can be:
                     #  'disabled', 'removed', 'separator' or 'header' for whatever they say,
                     #  False or nonexistant means normal menu display
+                    # 'separator' and 'header' are automatically removed when there are no entries to show among them.
                    },
             'print':           {'title': _('Print View'), 'args': 'action=print',
                                 'special': action_isremoved('print')},
@@ -642,10 +645,12 @@ class Theme(ThemeBase):
             # menu decorations
             '__separator__':   {'title': _('------------------------'), 'special': 'separator', },
             '__title_navigation__': {'title': _('Navigation'), 'special': 'header', },
-            '__title_help__': {'title': _('Help'), 'special': 'header', },
+            '__title_help__':  {'title': _('Help'), 'special': 'header', },
             '__title_display__': {'title': _('Display'), 'special': 'header', },
-            '__title_edit__': {'title': _('Edit'), 'special': 'header', },
-            '__title_user__': {'title': _('User'), 'special': 'header', },
+            '__title_edit__':  {'title': _('Edit'), 'special': 'header', },
+            '__title_user__':  {'title': _('User'), 'special': 'header', },
+            '__title_page__':  {'title': _('Page'), 'special': 'header', },
+            '__title_admin__': {'title': _('Administration'), 'special': 'header'},
             # useful pages
             'RecentChanges':   {'title': page_recent_changes.page_name, 'href': page_recent_changes.url(request)},
             'FindPage':        {'title': page_find_page.page_name, 'href': page_find_page.url(request)},
