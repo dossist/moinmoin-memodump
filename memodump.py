@@ -290,9 +290,6 @@ class Theme(ThemeBase):
             html = page.link_to_raw(self.request, self.cfg.logo_string, css_class="navbar-brand")
         return html
 
-    def interwiki(self, d):
-        return u''
-
     def location(self, d):
         """ Assemble location area on top of the page content.
         Certain pages shouldn't have location area as it feels redundant.
@@ -309,10 +306,27 @@ class Theme(ThemeBase):
         if not page.page_name in pages_hide:
             html = u'''
         <div id="location">
+%(interwiki)s
 %(pagename)s
           %(lastupdate)s
         </div>
-''' % {'pagename': self.title(d), 'lastupdate': self.lastupdate(d),}
+''' % {'interwiki': self.interwiki(d), 'pagename': self.title(d), 'lastupdate': self.lastupdate(d),}
+        return html
+
+    def interwiki(self, d):
+        """ Assemble the interwiki name display, linking to page_front_page
+
+        @param d: parameter dictionary
+        @rtype: string
+        @return: interwiki html
+        """
+        if self.request.cfg.show_interwiki:
+            page = wikiutil.getFrontPage(self.request)
+            text = self.request.cfg.interwikiname or 'Self'
+            link = page.link_to(self.request, text=text, rel='nofollow')
+            html = u'<span id="interwiki">%s<span class="sep">:</span></span>' % link
+        else:
+            html = u''
         return html
 
     def lastupdate(self, d):

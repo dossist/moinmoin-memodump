@@ -619,8 +619,7 @@ html {
 }
 /* pagepath separator */
 .sep {
-    display: inline-block;
-    margin: 0 5px;
+    margin: 0 3px;
 }
 /* location area */
 #location {
@@ -638,6 +637,7 @@ html {
 }
 /* breadcrumb style */
 #pagelocation {
+    display: inline-block;
     list-style: none;
     font-weight: bold;
     padding: 0;
