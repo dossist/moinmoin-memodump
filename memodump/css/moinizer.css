@@ -749,6 +749,13 @@ p.searchhint a {
     background: url(../img/draft.png);
     margin: 20px 0;
 }
+#editor-help > *:first-child {
+	margin-top: 0;
+}
+#editor-help > *:last-child {
+	margin-bottom: 0;
+}
+
 
 /*=========================================================
    Recent changes
