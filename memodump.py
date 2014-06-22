@@ -180,7 +180,7 @@ class Theme(ThemeBase):
 %(sidebar)s
 <!-- End of SideBar contents -->
           </div>
-%(quicklinks)s
+%(navilinks)s
 %(trail)s
         </div> <!-- /#sidebar -->
         <!-- End of sidebar -->
@@ -201,7 +201,8 @@ class Theme(ThemeBase):
         'commentbutton': self.commentbutton(),
         'sidebar': self.sidebar(d),
         'trail': self.trail(d),
-        'quicklinks': self.quicklinks(d),
+        #'quicklinks': self.quicklinks(d),
+        'navilinks': self.navibar(d),
         'msg': self.msg(d),
         'custom_pre': self.emit_custom_html(self.cfg.page_header1), # custom html just below the navbar, not recommended!
         'custom_post': self.emit_custom_html(self.cfg.page_header2), # custom html just before the contents, not recommended!
@@ -834,6 +835,17 @@ class Theme(ThemeBase):
           </div>
 ''' % (_('Trail'), u'\n'.join(items))
 
+        return html
+
+    def navibar(self, d):
+        _ = self.request.getText
+        navihtml = ThemeBase.navibar(self, d)
+        html = u'''
+          <div id="navilinks">
+            <h4>%s</h4>
+%s
+          </div>
+''' % (_('Navigation'), navihtml)
         return html
 
     def quicklinks(self, d):
