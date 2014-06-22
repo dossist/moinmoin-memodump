@@ -622,6 +622,7 @@ html {
 /* pagepath separator */
 .sep {
     margin: 0 3px;
+    color: #ccc;
 }
 /* location area */
 #location {
