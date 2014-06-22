@@ -23,21 +23,9 @@
 }
 
 /*=========================================================
-   general margins and paddings
+   general margins
 ===========================================================*/
 
-#content pre {
-    margin: 10px 0;
-}
-#content p {
-    margin-top: 10px;
-}
-#content ul, ol {
-	margin-top: 10px;
-}
-#content dl {
-	margin-top: 20px;
-}
 #content dd {
 	margin-left: 20px;
 }
@@ -47,9 +35,6 @@
 #content td p {
     padding: 0;
     margin: 0;
-}
-#content table {
-	margin: 10px;
 }
 
 /*=========================================================
@@ -160,11 +145,25 @@ strong.highlight {
 .comment,
 .red, .green, .blue, .yellow, .orange,
 .solid, .dashed, .dotted {
-	/* taken from Bootstrap .well */
+	/* taken from Bootstrap .well, but background-color */
     min-height: 20px;
+    padding: 19px 0;
     margin-bottom: 20px;
     border: 0;
     border-color: #e3e3e3;
+}
+.comment > *:last-child,
+.red > *:last-child, .green > *:last-child, .blue > *:last-child,
+.yellow > *:last-child, .orange > *:last-child,
+.solid > *:last-child, .dashed > *:last-child, .dotted > *:last-child {
+	margin-bottom: 0;
+}
+.comment > div:last-child > table,
+.red > div:last-child > table, .green > div:last-child > table, .blue > div:last-child > table,
+.yellow > div:last-child > table, .orange > div:last-child > table,
+.solid > div:last-child > table, .dashed > div:last-child > table, .dotted > div:last-child > table {
+    /* MoinMoin wraps table with div, thus we have to cancel table margin inside the last div */
+    margin-bottom: 0;
 }
 /* box colors */
 .comment { /* .comment must be on top of other color box classes */
@@ -662,7 +661,6 @@ p.searchhint a {
 #content div.note > ul,
 #content div.tip > ul,
 #content div.warning > ul {
-	margin-top: 0;
 	/* Bootstrap .alert > p */
     margin-bottom: 0;
 }
@@ -749,13 +747,6 @@ p.searchhint a {
     background: url(../img/draft.png);
     margin: 20px 0;
 }
-#editor-help > *:first-child {
-	margin-top: 0;
-}
-#editor-help > *:last-child {
-	margin-bottom: 0;
-}
-
 
 /*=========================================================
    Recent changes
@@ -765,7 +756,7 @@ p.searchhint a {
 .rcrss {
     float: right;
     position: relative;
-    margin: 4px 17px 0 14px;
+    margin: 4px 7px 0 14px;
 }
 *[div="rtl"] .rcrss {
     float: left;
@@ -775,8 +766,6 @@ p.searchhint a {
 }
 /* recentchanges navigation */
 .recentchanges p {
-    margin-left: 10px;
-    margin-right: 10px;
     border-radius: 4px;
     background-color: #eee;
     padding: 5px;
@@ -879,4 +868,13 @@ p.searchhint a {
 .userpref table tbody tr th,
 .userpref table tbody tr td {
 	vertical-align: middle;
+}
+
+/* RandomQuote */
+.condensed {
+	padding: 0;
+}
+.condensed * {
+	margin-top: 0;
+	margin-bottom: 0;
 }

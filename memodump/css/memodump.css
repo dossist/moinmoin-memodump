@@ -515,7 +515,7 @@ table > tfoot > tr.danger > th {
 }
 
 /* misc */
-#pagebox pre {
+pre {
     overflow: visible;
 }
 
