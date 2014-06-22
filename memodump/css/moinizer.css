@@ -756,7 +756,7 @@ p.searchhint a {
 .rcrss {
     float: right;
     position: relative;
-    margin: 4px 7px 0 14px;
+    margin: 4px 7px 4px 14px;
 }
 *[div="rtl"] .rcrss {
     float: left;
@@ -770,6 +770,9 @@ p.searchhint a {
     background-color: #eee;
     padding: 5px;
     min-height: 30px;
+}
+.recentchanges p:empty {
+	display: none;
 }
 
 /* recentchanges area */
