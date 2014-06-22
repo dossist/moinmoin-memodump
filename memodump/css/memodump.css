@@ -635,6 +635,9 @@ html {
     padding: 0;
     margin: 0;
 }
+#interwiki {
+    font-weight: bold;
+}
 /* breadcrumb style */
 #pagelocation {
     display: inline-block;
