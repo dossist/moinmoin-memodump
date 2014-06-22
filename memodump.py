@@ -558,8 +558,8 @@ class Theme(ThemeBase):
                 'editSideBar',
                 'Load',
                 'Save',
-                '__separator_validuser__',
-                '__title_user_validuser__',
+                '__separator__',
+                '__title_user__',
                 'quicklink',
                 ]
 
@@ -640,15 +640,11 @@ class Theme(ThemeBase):
                                 'special': action_isremoved('Save')},
             # menu decorations
             '__separator__':   {'title': _('------------------------'), 'special': 'separator', },
-            '__separator_edittable__': {'title': _('------------------------'), 'special': is_edittable(page) and 'separator' or 'removed', },
-            '__separator_validuser__': {'title': _('------------------------'), 'special': request.user.valid and 'separator' or 'removed', },
             '__title_navigation__': {'title': _('Navigation'), 'special': 'header', },
             '__title_help__': {'title': _('Help'), 'special': 'header', },
             '__title_display__': {'title': _('Display'), 'special': 'header', },
             '__title_edit__': {'title': _('Edit'), 'special': 'header', },
-            '__title_edit_edittable__': {'title': _('Edit'), 'special': is_edittable(page) and 'header' or 'removed', },
             '__title_user__': {'title': _('User'), 'special': 'header', },
-            '__title_user_validuser__': {'title': _('User'), 'special': request.user.valid and 'header' or 'removed', },
             # useful pages
             'RecentChanges':   {'title': page_recent_changes.page_name, 'href': page_recent_changes.url(request)},
             'FindPage':        {'title': page_find_page.page_name, 'href': page_find_page.url(request)},
@@ -676,11 +672,45 @@ class Theme(ThemeBase):
             data.update(entry)
             return u'                  <li class="disabled"><a href="#" class="menu-dd-%(key)s" rel="nofollow">%(title)s</a></li>' % data
         def switch_separator():
-            return u'                  <li class="divider"></li>'
+            return switch_separator_check(number) and u'                  <li class="divider"></li>'
         def switch_header():
-            return u'                  <li class="dropdown-header">%(title)s</li>' % entry
+            return switch_header_check(number) and u'                  <li class="dropdown-header">%(title)s</li>' % entry
         def switch_removed():
             return u''
+
+        def switch_separator_check(pos):
+            position = pos + 1
+            if menu[position:]:
+                check_def = menu_def[menu[position]]
+                if 'special' in check_def:
+                    return separator_check[check_def['special']](position)
+                else:
+                    return separator_check[False](position)
+            return False
+        def switch_header_check(pos):
+            position = pos + 1
+            if menu[position:]:
+                check_def = menu_def[menu[position]]
+                if 'special' in check_def:
+                    return header_check[check_def['special']](position)
+                else:
+                    return header_check[False](position)
+            return False
+
+        separator_check = {
+            False:       lambda x: True,
+            'disabled':  lambda x: True,
+            'separator': lambda x: False,
+            'header':    switch_header_check,
+            'removed':   switch_separator_check,
+            }
+        header_check = {
+            False:       lambda x: True,
+            'disabled':  lambda x: True,
+            'separator': lambda x: False,
+            'header':    lambda x: False,
+            'removed':   switch_header_check,
+            }
 
         switch = {
             '':          switch_default,
@@ -692,7 +722,7 @@ class Theme(ThemeBase):
 
         lines = []
 
-        for item in menu:
+        for number, item in enumerate(menu):
             entry = menu_def[item]
 
             if 'special' in entry and entry['special']:
