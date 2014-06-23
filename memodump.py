@@ -531,6 +531,18 @@ class Theme(ThemeBase):
         rev = request.rev
         page = d['page']
 
+        page_recent_changes = wikiutil.getLocalizedPage(request, u'RecentChanges')
+        page_find_page = wikiutil.getLocalizedPage(request, u'FindPage')
+        page_help_contents = wikiutil.getLocalizedPage(request, u'HelpContents')
+        page_help_formatting = wikiutil.getLocalizedPage(request, u'HelpOnFormatting')
+        page_help_wikisyntax = wikiutil.getLocalizedPage(request, u'HelpOnMoinWikiSyntax')
+        page_title_index = wikiutil.getLocalizedPage(request, u'TitleIndex')
+        page_word_index = wikiutil.getLocalizedPage(request, u'WordIndex')
+        page_front_page = wikiutil.getFrontPage(request)
+        page_sidebar = Page(request, request.getPragma('sidebar', u'SideBar'))
+        quicklink = self.menuQuickLink(page)
+        subscribe = self.menuSubscribe(page)
+
         try:
             menu = request.cfg.memodump_menuoverride
         except AttributeError:
@@ -566,84 +578,63 @@ class Theme(ThemeBase):
                 'quicklink',
                 ]
 
-        excluded = request.cfg.actions_excluded
-        available = get_available_actions(request.cfg, page, request.user)
-
-        def action_isremoved(action, removeif=False, whattodo='removed'):
-            # Return 'removed' if action is to be removed by config, or if removeif is True.
-            return (action in excluded or (action[0].isupper() and not action in available) or removeif) and whattodo
-        def is_edittable(page_to_check):
-            # return True if page_to_check is edittable for user
-            return page_to_check.isWritable() and request.user.may.write(page_to_check.page_name)
-
-        page_recent_changes = wikiutil.getLocalizedPage(request, u'RecentChanges')
-        page_find_page = wikiutil.getLocalizedPage(request, u'FindPage')
-        page_help_contents = wikiutil.getLocalizedPage(request, u'HelpContents')
-        page_help_formatting = wikiutil.getLocalizedPage(request, u'HelpOnFormatting')
-        page_help_wikisyntax = wikiutil.getLocalizedPage(request, u'HelpOnMoinWikiSyntax')
-        page_title_index = wikiutil.getLocalizedPage(request, u'TitleIndex')
-        page_word_index = wikiutil.getLocalizedPage(request, u'WordIndex')
-        page_front_page = wikiutil.getFrontPage(request)
-        page_sidebar = Page(request, request.getPragma('sidebar', u'SideBar'))
-        quicklink = self.menuQuickLink(page)
-        subscribe = self.menuSubscribe(page)
-
         # menu element definitions
         menu_def = {
             # actions
             'raw': {'title': _('Raw Text'), # title for menu entry
                     'href': '', # nonexistant or empty for current page
-                    'args': 'action=raw', # if you like, specify this for <a href="href?args">
-                    'special': action_isremoved('raw')
+                    'args': 'action=raw&rev=%s' % (rev or ''), # optionally specify this for <a href="href?args">
+                    'special': self.menuActionIsRemoved(page, 'raw')
                     #'special' can be:
                     #  'disabled', 'removed', 'separator' or 'header' for whatever they say,
-                    #  False or nonexistant means normal menu display
+                    #  False, None or nonexistant means normal menu display
                     # 'separator' and 'header' are automatically removed when there are no entries to show among them.
                    },
-            'print':           {'title': _('Print View'), 'args': 'action=print',
-                                'special': action_isremoved('print')},
-            'refresh':         {'title': _('Delete Cache'), 'args': 'action=refresh',
-                                'special': action_isremoved('refresh', not page.canUseCache())},
-            'SpellCheck':      {'title': _('Check Spelling'), 'args': 'action=SpellCheck',
-                                'special': action_isremoved('SpellCheck')},
-            'RenamePage':      {'title': _('Rename Page'), 'args': 'action=RenamePage',
-                                'special': action_isremoved('RenamePage')},
-            'CopyPage':        {'title': _('Copy Page'), 'args': 'action=CopyPage',
-                                'special': action_isremoved('CopyPage')},
-            'DeletePage':      {'title': _('Delete Page'), 'args': 'action=DeletePage',
-                                'special': action_isremoved('DeletePage')},
-            'LikePages':       {'title': _('Like Pages'), 'args': 'action=LikePages',
-                                'special': action_isremoved('LikePages')},
-            'LocalSiteMap':    {'title': _('Local Site Map'), 'args': 'action=LocalSiteMap',
-                                'special': action_isremoved('LocalSiteMap')},
-            'MyPages':         {'title': _('My Pages'), 'args': 'action=MyPages',
-                                'special': action_isremoved('MyPages')},
-            'SubscribeUser':   {'title': _('Subscribe User'), 'args': 'action=SubscribeUser',
-                                'special': action_isremoved('Subscribe User', not request.user.may.admin(page.page_name))},
-            'Despam':          {'title': _('Remove Spam'), 'args': 'action=Despam',
-                                'special': action_isremoved('Despam', not request.user.isSuperUser())},
-            'revert':          {'title': _('Revert to this revision'), 'args': 'action=revert',
-                                'special': action_isremoved('revert', not request.user.may.revert(page.page_name))},
-            'PackagePages':    {'title': _('Package Pages'), 'args': 'action=PackagePages',
-                                'special': action_isremoved('PackagePages')},
-            'RenderAsDocbook': {'title': _('Render as Docbook'), 'args': 'action=RenderAsDocbook',
-                                'special': action_isremoved('RenderAsDocbook')},
-            'SyncPages':       {'title': _('Sync Pages'), 'args': 'action=SyncPages',
-                                'special': action_isremoved('SyncPages')},
-            'AttachFile':      {'title': _('Attachments'), 'args': 'action=AttachFile',
-                                'special': action_isremoved('AttachFile')},
-            'quicklink':       {'title': quicklink[1], 'args': 'action=%s' % quicklink[0],
+            'print':           {'title': _('Print View'), 'args': 'action=print&rev=%s' % (rev or ''),
+                                'special': self.menuActionIsRemoved(page, 'print')},
+            'refresh':         {'title': _('Delete Cache'), 'args': 'action=refresh&rev=%s' % (rev or ''),
+                                'special': self.menuActionIsRemoved(page, 'refresh', not page.canUseCache())},
+            'SpellCheck':      {'title': _('Check Spelling'), 'args': 'action=SpellCheck&rev=%s' % (rev or ''),
+                                'special': self.menuActionIsRemoved(page, 'SpellCheck')},
+            'RenamePage':      {'title': _('Rename Page'), 'args': 'action=RenamePage&rev=%s' % (rev or ''),
+                                'special': self.menuActionIsRemoved(page, 'RenamePage')},
+            'CopyPage':        {'title': _('Copy Page'), 'args': 'action=CopyPage&rev=%s' % (rev or ''),
+                                'special': self.menuActionIsRemoved(page, 'CopyPage')},
+            'DeletePage':      {'title': _('Delete Page'), 'args': 'action=DeletePage&rev=%s' % (rev or ''),
+                                'special': self.menuActionIsRemoved(page, 'DeletePage')},
+            'LikePages':       {'title': _('Like Pages'), 'args': 'action=LikePages&rev=%s' % (rev or ''),
+                                'special': self.menuActionIsRemoved(page, 'LikePages')},
+            'LocalSiteMap':    {'title': _('Local Site Map'), 'args': 'action=LocalSiteMap&rev=%s' % (rev or ''),
+                                'special': self.menuActionIsRemoved(page, 'LocalSiteMap')},
+            'MyPages':         {'title': _('My Pages'), 'args': 'action=MyPages&rev=%s' % (rev or ''),
+                                'special': self.menuActionIsRemoved(page, 'MyPages')},
+            'SubscribeUser':   {'title': _('Subscribe User'), 'args': 'action=SubscribeUser&rev=%s' % (rev or ''),
+                                'special': self.menuActionIsRemoved(page, 'Subscribe User', not request.user.may.admin(page.page_name))},
+            'Despam':          {'title': _('Remove Spam'), 'args': 'action=Despam&rev=%s' % (rev or ''),
+                                'special': self.menuActionIsRemoved(page, 'Despam', not request.user.isSuperUser())},
+            'revert':          {'title': _('Revert to this revision'), 'args': 'action=revert&rev=%s' % (rev or ''),
+                                'special': self.menuActionIsRemoved(page, 'revert', not request.user.may.revert(page.page_name))},
+            'PackagePages':    {'title': _('Package Pages'), 'args': 'action=PackagePages&rev=%s' % (rev or ''),
+                                'special': self.menuActionIsRemoved(page, 'PackagePages')},
+            'RenderAsDocbook': {'title': _('Render as Docbook'), 'args': 'action=RenderAsDocbook&rev=%s' % (rev or ''),
+                                'special': self.menuActionIsRemoved(page, 'RenderAsDocbook')},
+            'SyncPages':       {'title': _('Sync Pages'), 'args': 'action=SyncPages&rev=%s' % (rev or ''),
+                                'special': self.menuActionIsRemoved(page, 'SyncPages')},
+            'AttachFile':      {'title': _('Attachments'), 'args': 'action=AttachFile&rev=%s' % (rev or ''),
+                                'special': self.menuActionIsRemoved(page, 'AttachFile')},
+            'quicklink':       {'title': quicklink[1], 'args': 'action=%s&rev=%s' % (quicklink[0], rev or ''),
                                 'special': not quicklink[0] and 'removed'},
-            'subscribe':       {'title': subscribe[1], 'args': 'action=%s' % subscribe[0],
+            'subscribe':       {'title': subscribe[1], 'args': 'action=%s&rev=%s' % (subscribe[0], rev or ''),
                                 'special': not subscribe[0] and 'removed'},
-            'info':            {'title': _('Info'), 'args': 'action=info',
-                                'special': action_isremoved('info')},
-            'Load':            {'title': _('Load'), 'args': 'action=Load',
-                                'special': action_isremoved('Load')},
-            'Save':            {'title': _('Save'), 'args': 'action=Save',
-                                'special': action_isremoved('Save')},
+            'info':            {'title': _('Info'), 'args': 'action=info&rev=%s' % (rev or ''),
+                                'special': self.menuActionIsRemoved(page, 'info')},
+            'Load':            {'title': _('Load'), 'args': 'action=Load&rev=%s' % (rev or ''),
+                                'special': self.menuActionIsRemoved(page, 'Load')},
+            'Save':            {'title': _('Save'), 'args': 'action=Save&rev=%s' % (rev or ''),
+                                'special': self.menuActionIsRemoved(page, 'Save')},
             # menu decorations
             '__separator__':   {'title': _('------------------------'), 'special': 'separator', },
+            '----':            {'title': _('------------------------'), 'special': 'separator', },
             '__title_navigation__': {'title': _('Navigation'), 'special': 'header', },
             '__title_help__':  {'title': _('Help'), 'special': 'header', },
             '__title_display__': {'title': _('Display'), 'special': 'header', },
@@ -662,84 +653,12 @@ class Theme(ThemeBase):
             'FrontPage':       {'title': page_front_page.page_name, 'href': page_front_page.url(request)},
             'SideBar':         {'title': page_sidebar.page_name, 'href': page_sidebar.url(request)},
             'editSideBar':     {'title': _('Edit SideBar'), 'href': page_sidebar.url(request),
-                                'args': 'action=edit', 'special': not is_edittable(page_sidebar) and 'removed'},
+                                'args': 'action=edit', 'special': not self.menuPageIsEdittable(page_sidebar) and 'removed'},
             }
 
-        def switch_default():
-            if not ('href' in entry and entry['href']):
-                entry['href'] = page.url(request)
-            if 'args' in entry and entry['args']:
-                entry['href'] = u'%(href)s?%(args)s' % entry
-            data = {'key': item}
-            data.update(entry)
-            return u'                  <li><a href="%(href)s" class="menu-dd-%(key)s" rel="nofollow">%(title)s</a></li>' % data
-        def switch_disabled():
-            data = {'key': item}
-            data.update(entry)
-            return u'                  <li class="disabled"><a href="#" class="menu-dd-%(key)s" rel="nofollow">%(title)s</a></li>' % data
-        def switch_separator():
-            return switch_separator_check(number) and u'                  <li class="divider"></li>'
-        def switch_header():
-            return switch_header_check(number) and u'                  <li class="dropdown-header">%(title)s</li>' % entry
-        def switch_removed():
-            return u''
-
-        def switch_separator_check(pos):
-            position = pos + 1
-            if menu[position:]:
-                check_def = menu_def[menu[position]]
-                if 'special' in check_def:
-                    return separator_check[check_def['special']](position)
-                else:
-                    return separator_check[False](position)
-            return False
-        def switch_header_check(pos):
-            position = pos + 1
-            if menu[position:]:
-                check_def = menu_def[menu[position]]
-                if 'special' in check_def:
-                    return header_check[check_def['special']](position)
-                else:
-                    return header_check[False](position)
-            return False
-
-        separator_check = {
-            False:       lambda x: True,
-            'disabled':  lambda x: True,
-            'separator': lambda x: False,
-            'header':    switch_header_check,
-            'removed':   switch_separator_check,
-            }
-        header_check = {
-            False:       lambda x: True,
-            'disabled':  lambda x: True,
-            'separator': lambda x: False,
-            'header':    lambda x: False,
-            'removed':   switch_header_check,
-            }
-
-        switch = {
-            False:       switch_default,
-            'disabled':  switch_disabled,
-            'separator': switch_separator,
-            'header':    switch_header,
-            'removed':   switch_removed,
-            }
-
-        lines = []
-
-        for number, item in enumerate(menu):
-            entry = menu_def[item]
-
-            if 'special' in entry:
-                line = switch[entry['special']]()
-            else:
-                line = switch[False]()
-
-            if line:
-                lines.append(line)
-
-        html = u'''
+        menubody = self.menuAssemble(d, menu, menu_def)
+        if menubody:
+            html = u'''
               <li class="dropdown">
                 <!-- Menu button -->
                 <a href="#" class="menu-nav-menu dropdown-toggle" data-toggle="dropdown">
@@ -750,14 +669,105 @@ class Theme(ThemeBase):
 %s
                 </ul>
               </li> <!-- /dropdown -->
-''' % (_('Menu'), u'\n'.join(lines))
+''' % (_('Menu'), menubody)
+        else:
+            html = u''
 
         return html
+
+    def menuAssemble(self, d, menu, menu_def):
+        request = self.request
+        page = d['page']
+
+        # subroutines
+        def switch_default():
+            if not data.get('href'):
+                data['href'] = page.url(request)
+            if data.get('args'):
+                data['href'] = u'%(href)s?%(args)s' % data
+            data['key'] = key
+            return u'                  <li><a href="%(href)s" class="menu-dd-%(key)s" rel="nofollow">%(title)s</a></li>' % data
+        def switch_disabled():
+            data['key'] = key
+            return u'                  <li class="disabled"><a href="#" class="menu-dd-%(key)s" rel="nofollow">%(title)s</a></li>' % data
+        def switch_separator():
+            return switch_separator_check(number) and u'                  <li class="divider"></li>'
+        def switch_header():
+            return switch_header_check(number) and u'                  <li class="dropdown-header">%(title)s</li>' % data
+        def switch_removed():
+            return u''
+        switch = {
+            False:       switch_default,
+            None:        switch_default,
+            'disabled':  switch_disabled,
+            'separator': switch_separator,
+            'header':    switch_header,
+            'removed':   switch_removed,
+            }
+
+        # subroutines to determine whether a separator (or a header) should be removed or not
+        def switch_separator_check(pos):
+            current = pos + 1
+            if menu[current:]:
+                check_data = menu_def[menu[current]]
+                return separator_check[check_data.get('special')](current)
+            return False
+        def switch_header_check(pos):
+            current = pos + 1
+            if menu[current:]:
+                check_data = menu_def[menu[current]]
+                return header_check[check_data.get('special')](current)
+            return False
+        separator_check = {
+            False:       lambda x: True,
+            None:        lambda x: True,
+            'disabled':  lambda x: True,
+            'separator': lambda x: False,
+            'header':    switch_header_check,
+            'removed':   switch_separator_check,
+            }
+        header_check = {
+            False:       lambda x: True,
+            None:        lambda x: True,
+            'disabled':  lambda x: True,
+            'separator': lambda x: False,
+            'header':    lambda x: False,
+            'removed':   switch_header_check,
+            }
+
+        # let's start
+        lines = []
+        for number, key in enumerate(menu):
+            data = menu_def[key]
+            line = switch[data.get('special')]()
+            if line:
+                lines.append(line)
+        return u'\n'.join(lines)
+
+    def menuActionIsRemoved(self, page, action, removeif=False, whattodo='removed'):
+        """
+        Return whattodo (defaults to 'removed') if action is to be removed by config.
+        Or if optional condition removeif is True, the method returns whattodo.
+        If conditions are met, return False.
+        """
+        request = self.request
+        excluded = request.cfg.actions_excluded
+        available = get_available_actions(request.cfg, page, request.user)
+        return (action in excluded or (action[0].isupper() and not action in available) or removeif) and whattodo
+
+    def menuPageIsEdittable(self, page):
+        """
+        Return True if page is edittable for current user, False if not.
+
+        @param page: page object
+        """
+        return page.isWritable() and self.request.user.may.write(page.page_name)
 
     def menuQuickLink(self, page):
         """
         Return quicklink action name and localized text according to status of page
 
+        @param page: page object
         @rtype: unicode
         @return (action, text)
         """
