@@ -546,102 +546,116 @@ class Theme(ThemeBase):
         try:
             menu = request.cfg.memodump_menuoverride
         except AttributeError:
-            # default list of items in dropdown menu
+            # default list of items in dropdown menu.
+            # menu items are assembled in this order.
+            # see wiki for detailed info on customization.
             menu = [
-                '__title_navigation__',
+                '===== Page =====',
+                'AttachFile',
+                'info',
+                '__separator__',
+                '===== Navigation =====',
                 'RecentChanges',
                 'FindPage',
                 'LocalSiteMap',
                 '__separator__',
-                '__title_display__',
+                '===== Display =====',
                 'raw',
                 'print',
                 '__separator__',
-                '__title_help__',
+                '===== Help =====',
                 'HelpContents',
                 'HelpOnMoinWikiSyntax',
                 '__separator__',
-                '__title_edit__',
+                '===== Edit =====',
                 'RenamePage',
                 'DeletePage',
                 'CopyPage',
                 'Load',
                 'Save',
                 '__separator__',
-                '__title_admin__',
+                '===== Administration =====',
                 'Despam',
                 'editSideBar',
                 '__separator__',
-                '__title_page__',
-                'AttachFile',
-                'info',
+                '==== User ====',
                 'quicklink',
+                'subscribe',
                 ]
 
         # menu element definitions
         menu_def = {
-            # actions
-            'raw': {'title': _('Raw Text'), # title for menu entry
-                    'href': '', # nonexistant or empty for current page
-                    'args': 'action=raw&rev=%s' % (rev or ''), # optionally specify this for <a href="href?args">
-                    'special': self.menuActionIsRemoved(page, 'raw')
-                    #'special' can be:
-                    #  'disabled', 'removed', 'separator' or 'header' for whatever they say,
-                    #  False, None or nonexistant means normal menu display
-                    # 'separator' and 'header' are automatically removed when there are no entries to show among them.
-                   },
-            'print':           {'title': _('Print View'), 'args': 'action=print&rev=%s' % (rev or ''),
-                                'special': self.menuActionIsRemoved(page, 'print')},
-            'refresh':         {'title': _('Delete Cache'), 'args': 'action=refresh&rev=%s' % (rev or ''),
-                                'special': self.menuActionIsRemoved(page, 'refresh', not page.canUseCache())},
-            'SpellCheck':      {'title': _('Check Spelling'), 'args': 'action=SpellCheck&rev=%s' % (rev or ''),
-                                'special': self.menuActionIsRemoved(page, 'SpellCheck')},
-            'RenamePage':      {'title': _('Rename Page'), 'args': 'action=RenamePage&rev=%s' % (rev or ''),
-                                'special': self.menuActionIsRemoved(page, 'RenamePage')},
-            'CopyPage':        {'title': _('Copy Page'), 'args': 'action=CopyPage&rev=%s' % (rev or ''),
-                                'special': self.menuActionIsRemoved(page, 'CopyPage')},
-            'DeletePage':      {'title': _('Delete Page'), 'args': 'action=DeletePage&rev=%s' % (rev or ''),
-                                'special': self.menuActionIsRemoved(page, 'DeletePage')},
-            'LikePages':       {'title': _('Like Pages'), 'args': 'action=LikePages&rev=%s' % (rev or ''),
-                                'special': self.menuActionIsRemoved(page, 'LikePages')},
-            'LocalSiteMap':    {'title': _('Local Site Map'), 'args': 'action=LocalSiteMap&rev=%s' % (rev or ''),
-                                'special': self.menuActionIsRemoved(page, 'LocalSiteMap')},
-            'MyPages':         {'title': _('My Pages'), 'args': 'action=MyPages&rev=%s' % (rev or ''),
-                                'special': self.menuActionIsRemoved(page, 'MyPages')},
-            'SubscribeUser':   {'title': _('Subscribe User'), 'args': 'action=SubscribeUser&rev=%s' % (rev or ''),
-                                'special': self.menuActionIsRemoved(page, 'Subscribe User', not request.user.may.admin(page.page_name))},
-            'Despam':          {'title': _('Remove Spam'), 'args': 'action=Despam&rev=%s' % (rev or ''),
-                                'special': self.menuActionIsRemoved(page, 'Despam', not request.user.isSuperUser())},
-            'revert':          {'title': _('Revert to this revision'), 'args': 'action=revert&rev=%s' % (rev or ''),
-                                'special': self.menuActionIsRemoved(page, 'revert', not request.user.may.revert(page.page_name))},
-            'PackagePages':    {'title': _('Package Pages'), 'args': 'action=PackagePages&rev=%s' % (rev or ''),
-                                'special': self.menuActionIsRemoved(page, 'PackagePages')},
-            'RenderAsDocbook': {'title': _('Render as Docbook'), 'args': 'action=RenderAsDocbook&rev=%s' % (rev or ''),
-                                'special': self.menuActionIsRemoved(page, 'RenderAsDocbook')},
-            'SyncPages':       {'title': _('Sync Pages'), 'args': 'action=SyncPages&rev=%s' % (rev or ''),
-                                'special': self.menuActionIsRemoved(page, 'SyncPages')},
-            'AttachFile':      {'title': _('Attachments'), 'args': 'action=AttachFile&rev=%s' % (rev or ''),
-                                'special': self.menuActionIsRemoved(page, 'AttachFile')},
-            'quicklink':       {'title': quicklink[1], 'args': 'action=%s&rev=%s' % (quicklink[0], rev or ''),
-                                'special': not quicklink[0] and 'removed'},
-            'subscribe':       {'title': subscribe[1], 'args': 'action=%s&rev=%s' % (subscribe[0], rev or ''),
-                                'special': not subscribe[0] and 'removed'},
-            'info':            {'title': _('Info'), 'args': 'action=info&rev=%s' % (rev or ''),
-                                'special': self.menuActionIsRemoved(page, 'info')},
-            'Load':            {'title': _('Load'), 'args': 'action=Load&rev=%s' % (rev or ''),
-                                'special': self.menuActionIsRemoved(page, 'Load')},
-            'Save':            {'title': _('Save'), 'args': 'action=Save&rev=%s' % (rev or ''),
-                                'special': self.menuActionIsRemoved(page, 'Save')},
+            'raw': {
+                # Title for this menu entry
+                'title': _('Raw Text'),
+                # href and args are for normal entries ('special': False), otherwise ignored.
+                # 'href': Nonexistent or empty for current page
+                'href': '',
+                # 'args': {'query1': 'value1', 'query2': 'value2', }
+                # Optionally specify this for <a href="href?query1=value1&query2=value2">
+                # If href and args are both nonexistent or empty, key is automatically interpreted to be an action name
+                # and href and args are automatically set.
+                'args': '',
+                #'special' can be:
+                #   'disabled', 'removed', 'separator' or 'header' for whatever they say,
+                #    False, None or nonexistent for normal menu display.
+                #'separator' and 'header' are automatically removed when there are no entries to show among them.
+                'special': False,
+                },
+            'print': {'title': _('Print View'),},
+            'refresh': {
+                'title': _('Delete Cache'),
+                'special': not (self.menuActionIsAvailable(page, 'refresh') and page.canUseCache()) and 'removed',
+                },
+            'SpellCheck': {'title': _('Check Spelling'),},
+            'RenamePage': {'title': _('Rename Page'),},
+            'CopyPage':   {'title': _('Copy Page'),},
+            'DeletePage': {'title': _('Delete Page'),},
+            'LikePages':  {'title': _('Like Pages'),},
+            'LocalSiteMap': {'title': _('Local Site Map'),},
+            'MyPages':    {'title': _('My Pages'),},
+            'SubscribeUser': {
+                'title': _('Subscribe User'),
+                'special': not (self.menuActionIsAvailable(page, 'SubscribeUser')
+                                and request.user.may.admin(page.page_name)) and 'removed',
+                },
+            'Despam': {
+                'title': _('Remove Spam'),
+                'special': not (self.menuActionIsAvailable(page, 'Despam') and request.user.isSuperUser()) and 'removed',
+                },
+            'revert': {
+                'title': _('Revert to this revision'),
+                'special': not (self.menuActionIsAvailable(page, 'revert')
+                                and request.user.may.revert(page.page_name)) and 'removed',
+                },
+            'PackagePages': {'title': _('Package Pages'),},
+            'RenderAsDocbook': {'title': _('Render as Docbook'),},
+            'SyncPages': {'title': _('Sync Pages'),},
+            'AttachFile': {'title': _('Attachments'),},
+            'quicklink': {
+                'title': quicklink[1], 'args': dict(action=quicklink[0], rev=rev),
+                'special': not quicklink[0] and 'removed',
+                },
+            'subscribe': {
+                'title': subscribe[1], 'args': dict(action=subscribe[0], rev=rev),
+                'special': not subscribe[0] and 'removed',
+                },
+            'info': {'title': _('Info'),},
+# menu items not found on menu_def will be assumed to be action names,
+# and receive appropriate title, href, and args automatically.
+#           'Load': {'title': _('Load'), 'args':},
+#           'Save': {'title': _('Save'), 'args':},
             # menu decorations
             '__separator__':   {'title': _('------------------------'), 'special': 'separator', },
             '----':            {'title': _('------------------------'), 'special': 'separator', },
+            '-----':           {'title': _('------------------------'), 'special': 'separator', },
+            '------':          {'title': _('------------------------'), 'special': 'separator', },
+            '-------':         {'title': _('------------------------'), 'special': 'separator', },
+            '--------':        {'title': _('------------------------'), 'special': 'separator', },
+            '---------':       {'title': _('------------------------'), 'special': 'separator', },
+            '----------':      {'title': _('------------------------'), 'special': 'separator', },
+            # header example
             '__title_navigation__': {'title': _('Navigation'), 'special': 'header', },
-            '__title_help__':  {'title': _('Help'), 'special': 'header', },
-            '__title_display__': {'title': _('Display'), 'special': 'header', },
-            '__title_edit__':  {'title': _('Edit'), 'special': 'header', },
-            '__title_user__':  {'title': _('User'), 'special': 'header', },
-            '__title_page__':  {'title': _('Page'), 'special': 'header', },
-            '__title_admin__': {'title': _('Administration'), 'special': 'header'},
             # useful pages
             'RecentChanges':   {'title': page_recent_changes.page_name, 'href': page_recent_changes.url(request)},
             'FindPage':        {'title': page_find_page.page_name, 'href': page_find_page.url(request)},
@@ -652,11 +666,21 @@ class Theme(ThemeBase):
             'WordIndex':       {'title': page_word_index.page_name, 'href': page_word_index.url(request)},
             'FrontPage':       {'title': page_front_page.page_name, 'href': page_front_page.url(request)},
             'SideBar':         {'title': page_sidebar.page_name, 'href': page_sidebar.url(request)},
-            'editSideBar':     {'title': _('Edit SideBar'), 'href': page_sidebar.url(request),
-                                'args': 'action=edit', 'special': not self.menuPageIsEdittable(page_sidebar) and 'removed'},
+            'editSideBar': {
+                'title': _('Edit SideBar'), 'href': page_sidebar.url(request),
+                'args': dict(action='edit'),
+                'special': not self.menuPageIsEdittable(page_sidebar) and 'removed'
+                },
             }
 
-        menubody = self.menuAssemble(d, menu, menu_def)
+        try:
+            menu_def.update(request.cfg.memodump_menu_def)
+        except AttributeError:
+            pass
+
+        compiled = self.menuCompile(d, menu, menu_def)
+        menubody = self.menuRender(compiled)
+
         if menubody:
             html = u'''
               <li class="dropdown">
@@ -675,85 +699,127 @@ class Theme(ThemeBase):
 
         return html
 
-    def menuAssemble(self, d, menu, menu_def):
-        request = self.request
-        page = d['page']
+    def menuGetQueryString(self, args):
+        """
+        Return a URL query string generated from arguments dictionary.
+        {'q1': 'v1', 'q2': 'v2'} will turn into u'?q1=val&q2=val'
+        """
+        parts = []
+        for key, value in args.iteritems():
+            if value:
+                parts.append(u'%s=%s' % (key, value))
+        output = u'&'.join(parts)
+        if output:
+            output = u'?' + output
+        return output
 
-        # subroutines
-        def switch_default():
+    def menuCompile(self, d, menu, menu_def):
+        """
+        Return a compiled list of menu data ready to input to renderer.
+        """
+        # subroutines to generate compiled data
+        def generateAction(action, title=''):
+            query = self.menuGetQueryString({'action': action, 'rev': rev})
+            if not title:
+                title = _(action)
+            return (action, title, u'%s%s' % (page.url(request), query), False)
+        def generateHeader(key, title):
+            return (key, _(title), '', 'header')
+        def generateSpecial(key, data):
+            return (key, data.get('title', _(key)), data.get('href', u''), data.get('special', False))
+        def generateNormal(key, data):
             if not data.get('href'):
                 data['href'] = page.url(request)
             if data.get('args'):
-                data['href'] = u'%(href)s?%(args)s' % data
-            data['key'] = key
-            return u'                  <li><a href="%(href)s" class="menu-dd-%(key)s" rel="nofollow">%(title)s</a></li>' % data
-        def switch_disabled():
-            data['key'] = key
-            return u'                  <li class="disabled"><a href="#" class="menu-dd-%(key)s" rel="nofollow">%(title)s</a></li>' % data
-        def switch_separator():
-            return switch_separator_check(number) and u'                  <li class="divider"></li>'
-        def switch_header():
-            return switch_header_check(number) and u'                  <li class="dropdown-header">%(title)s</li>' % data
-        def switch_removed():
-            return u''
-        switch = {
-            False:       switch_default,
-            None:        switch_default,
-            'disabled':  switch_disabled,
-            'separator': switch_separator,
-            'header':    switch_header,
-            'removed':   switch_removed,
+                data['href'] = u'%s%s' % (data['href'], self.menuGetQueryString(data['args']))
+            return (key, data.get('title', _(key)), data.get('href'), False)
+
+        request = self.request
+        _ = request.getText
+        rev = request.rev
+        page = d['page']
+        header_re = re.compile(r'^(\=+)\s+(.+?)\s+\1$') # '= title ='
+
+        compiled = [] # [('key', 'title', 'href', 'special'), ]
+        for key in menu:
+            # check if key is in the definitions list
+            data = menu_def.get(key)
+            if data:
+                # 'removed', 'disabled', 'separator' or 'header'
+                if data.get('special'):
+                    compiled.append(generateSpecial(key, data))
+                # normal display
+                else:
+                    # recognizes key as action if href and args are not provided
+                    if not (data.get('href') or data.get('args')):
+                        if self.menuActionIsAvailable(page, key):
+                            compiled.append(generateAction(key, title=data.get('title', '')))
+                        else:
+                            continue
+                    # otherwise compile as a normal menu entry
+                    else:
+                        compiled.append(generateNormal(key, data))
+            else:
+                # check if key is header string
+                header_match = header_re.search(key)
+                # header
+                if header_match:
+                    compiled.append(generateHeader(key, header_match.group(2)))
+                # action not in menu_def
+                elif self.menuActionIsAvailable(page, key):
+                    compiled.append(generateAction(key))
+
+        return self.menuThinCompiled(compiled)
+
+    def menuThinCompiled(self, compiled):
+        """
+        Remove unnecessary rules and headers as well as 'removed' items from compiled menu data.
+        """
+        how_nice = {
+            False: 0,
+            'header': 2,
+            'separator': 1,
+            'removed': 1000,
+            }
+        thinned = []
+        atmosphere = how_nice['separator']
+
+        for record in reversed(compiled):
+            nice = how_nice.get(record[3], 0)
+            if nice < atmosphere:
+                thinned.append(record)
+                atmosphere = nice
+            if not nice:
+                atmosphere = 1000
+
+        thinned.reverse()
+        return thinned
+
+    def menuRender(self, compiled):
+        templates = {
+            False:       u'                  <li><a href="%(href)s" class="menu-dd-%(key)s" rel="nofollow">%(title)s</a></li>',
+            'disabled':  u'                  <li class="disabled"><a href="#" class="menu-dd-%(key)s" rel="nofollow">%(title)s</a></li>',
+            'separator': u'                  <li class="divider"></li>',
+            'header':    u'                  <li class="dropdown-header">%(title)s</li>',
+            'removed':   u'',
             }
 
-        # subroutines to determine whether a separator (or a header) should be removed or not
-        def switch_separator_check(pos):
-            current = pos + 1
-            if menu[current:]:
-                check_data = menu_def[menu[current]]
-                return separator_check[check_data.get('special')](current)
-            return False
-        def switch_header_check(pos):
-            current = pos + 1
-            if menu[current:]:
-                check_data = menu_def[menu[current]]
-                return header_check[check_data.get('special')](current)
-            return False
-        separator_check = {
-            False:       lambda x: True,
-            None:        lambda x: True,
-            'disabled':  lambda x: True,
-            'separator': lambda x: False,
-            'header':    switch_header_check,
-            'removed':   switch_separator_check,
-            }
-        header_check = {
-            False:       lambda x: True,
-            None:        lambda x: True,
-            'disabled':  lambda x: True,
-            'separator': lambda x: False,
-            'header':    lambda x: False,
-            'removed':   switch_header_check,
-            }
-
-        # let's start
         lines = []
-        for number, key in enumerate(menu):
-            data = menu_def[key]
-            line = switch[data.get('special')]()
-            if line:
-                lines.append(line)
+        for record in compiled:
+            special = record[3]
+            dictionary = dict(key=record[0], title=record[1], href=record[2])
+            lines.append(templates[special] % dictionary)
         return u'\n'.join(lines)
 
-    def menuActionIsRemoved(self, page, action, removeif=False, whattodo='removed'):
+    def menuActionIsAvailable(self, page, action):
         """
-        Return whattodo (defaults to 'removed') if action is to be removed by config.
-        Or if optional condition removeif is True, the method returns whattodo.
-        If conditions are met, return False.
+        Return if action is available or not.
+        If action starts with lowercase, return True without actually check if action exists.
         """
         request = self.request
         excluded = request.cfg.actions_excluded
         available = get_available_actions(request.cfg, page, request.user)
-        return (action in excluded or (action[0].isupper() and not action in available) or removeif) and whattodo
+        return not (action in excluded or (action[0].isupper() and not action in available))
 
     def menuPageIsEdittable(self, page):
         """
