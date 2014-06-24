@@ -4,15 +4,24 @@
 
     Based on modernized theme in MoinMoin
 
-    config variables:
-        following variables in wikiconfig.py will change something in the theme.
+    Config variables:
+        Following variables in wikiconfig.py will change something in the theme.
 
         memodump_menuoverride
-            overrides menu elements. see self.menu() for details.
+            Overrides menu elements.
+
+        memodump_menu_def
+            Additional detailed definitions of menu items.
 
         memodump_hidelocation
-            overrides list of page names that have no location area.
+            Overrides list of page names that have no location area.
             e.g. [page_front_page, u'SideBar', ]
+
+    References:
+        How to edit menu items:
+            https://github.com/dossist/moinmoin-memodump/wiki/EditMenu
+        Other customization and tips:
+            https://github.com/dossist/moinmoin-memodump/wiki/Tips
 
     @copyright: 2014 dossist.
     @license: GNU GPL, see http://www.gnu.org/licenses/gpl for details.
@@ -521,6 +530,8 @@ class Theme(ThemeBase):
 
         Menu can be customized by adding a config variable 'memodump_menuoverride'.
         The variable will override the default menu set.
+        Additional menu definitions are added via config variable 'memodump_menu_def'.
+        See the code below or project wiki for details.
 
         @param d: parameter dictionary
         @rtype: string
