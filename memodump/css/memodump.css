@@ -163,19 +163,19 @@ form.form-search:before {
 	padding: 0px 10px; /* whole list gets paddings on the left and the right */
 }
 #sidebar li {
-    padding: 6px 0px; /* every list item gets paddings on top and bottom */
+    padding: 7px 0px; /* every list item gets paddings on top and bottom */
 }
 /* padding workaround needed for highlighting behavior when hovered */
 #sidebar li a {
-    margin: -6px -10px; /* neutralize ul and li paddings */
-	padding: 6px 10px; /* and add same amount of paddings manually, which allows colorizing the hole background */
+    margin: -7px -10px; /* neutralize ul and li paddings */
+	padding: 7px 10px; /* and add same amount of paddings manually, which allows colorizing the hole background */
 }
 /* padding in nested list */
 #sidebar ul ul, #sidebar ul ol, #sidebar ol ul, #sidebar ol ol {
     padding: 0;
-	padding-top: 6px;
+	padding-top: 7px;
     padding-left: 10px; /* we want to give some additional indent */
-	margin: -6px 0px; /* neutralize top/bottom paddings as we have some in our own <li> */
+	margin: -7px 0px; /* neutralize top/bottom paddings as we have some in our own <li> */
 }
 /* padding of a in nested list */
 #sidebar li li a {
