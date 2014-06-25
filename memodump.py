@@ -108,14 +108,14 @@ class Theme(ThemeBase):
         ('all',         'bootstrap-theme.min'),
         ('all',         'memodump'),
         ('all',         'moinizer'),
-        )
+    )
     stylesheets_print = (
         ('all',         'bootstrap.min'),
         ('all',         'bootstrap-theme.min'),
         ('all',         'memodump'),
         ('all',         'moinizer'),
         ('all',         'memoprint'),
-        )
+    )
 
     def header(self, d, **kw):
         """ Assemble wiki header
@@ -367,7 +367,7 @@ class Theme(ThemeBase):
             'search_full_label': _('Text'),
             'search_title_label': _('Titles'),
             'url': self.request.href(d['page'].page_name)
-            }
+        }
         d.update(updates)
 
         html = u'''
@@ -499,7 +499,7 @@ class Theme(ThemeBase):
                 query['login'] = '1'
             if request.cfg.auth_have_login:
                 loginbutton = (d['page'].link_to_raw(request, text=_("Login"),
-                                                 querystr=query, css_class='menu-nav-login', rel='nofollow'))
+                                                     querystr=query, css_class='menu-nav-login', rel='nofollow'))
 
         if userbutton:
             userlinks_html = u'</li>\n                  <li>'.join(userlinks)
@@ -592,7 +592,7 @@ class Theme(ThemeBase):
                 '==== User ====',
                 'quicklink',
                 'subscribe',
-                ]
+            ]
 
         # menu element definitions
         menu_def = {
@@ -612,12 +612,12 @@ class Theme(ThemeBase):
                 #    False, None or nonexistent for normal menu display.
                 #'separator' and 'header' are automatically removed when there are no entries to show among them.
                 'special': False,
-                },
+            },
             'print': {'title': _('Print View'),},
             'refresh': {
                 'title': _('Delete Cache'),
                 'special': not (self.menuActionIsAvailable(page, 'refresh') and page.canUseCache()) and 'removed',
-                },
+            },
             'SpellCheck': {'title': _('Check Spelling'),},
             'RenamePage': {'title': _('Rename Page'),},
             'CopyPage':   {'title': _('Copy Page'),},
@@ -629,16 +629,16 @@ class Theme(ThemeBase):
                 'title': _('Subscribe User'),
                 'special': not (self.menuActionIsAvailable(page, 'SubscribeUser')
                                 and request.user.may.admin(page.page_name)) and 'removed',
-                },
+            },
             'Despam': {
                 'title': _('Remove Spam'),
                 'special': not (self.menuActionIsAvailable(page, 'Despam') and request.user.isSuperUser()) and 'removed',
-                },
+            },
             'revert': {
                 'title': _('Revert to this revision'),
                 'special': not (self.menuActionIsAvailable(page, 'revert')
                                 and request.user.may.revert(page.page_name)) and 'removed',
-                },
+            },
             'PackagePages': {'title': _('Package Pages'),},
             'RenderAsDocbook': {'title': _('Render as Docbook'),},
             'SyncPages': {'title': _('Sync Pages'),},
@@ -646,11 +646,11 @@ class Theme(ThemeBase):
             'quicklink': {
                 'title': quicklink[1], 'args': dict(action=quicklink[0], rev=rev),
                 'special': not quicklink[0] and 'removed',
-                },
+            },
             'subscribe': {
                 'title': subscribe[1], 'args': dict(action=subscribe[0], rev=rev),
                 'special': not subscribe[0] and 'removed',
-                },
+            },
             'info': {'title': _('Info'),},
 # menu items not found on menu_def will be assumed to be action names,
 # and receive appropriate title, href, and args automatically.
@@ -681,8 +681,8 @@ class Theme(ThemeBase):
                 'title': _('Edit SideBar'), 'href': page_sidebar.url(request),
                 'args': dict(action='edit'),
                 'special': not self.menuPageIsEdittable(page_sidebar) and 'removed'
-                },
-            }
+            },
+        }
 
         try:
             menu_def.update(request.cfg.memodump_menu_def)
@@ -791,7 +791,7 @@ class Theme(ThemeBase):
             'header': 2,
             'separator': 1,
             'removed': 1000,
-            }
+        }
         thinned = []
         atmosphere = how_nice['separator']
 
@@ -813,7 +813,7 @@ class Theme(ThemeBase):
             'separator': u'                  <li class="divider"></li>',
             'header':    u'                  <li class="dropdown-header">%(title)s</li>',
             'removed':   u'',
-            }
+        }
 
         lines = []
         for record in compiled:
@@ -996,7 +996,7 @@ class Theme(ThemeBase):
             'info': 'alert-info',
             'warning': 'alert-warning',
             'error': 'alert-danger',
-            }
+        }
 
         result = []
         template = u'''
@@ -1010,7 +1010,7 @@ class Theme(ThemeBase):
             'dismiss': 'alert-dismissable ',
             'msg': '',
             'color': '',
-            }
+        }
 
         for msg, msg_class in msgs:
             param['color'] = msg_conv['info']
