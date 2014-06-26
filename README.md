@@ -1,23 +1,25 @@
 moinmoin-memodump
 =================
 
-A simple MoinMoin theme based on Twitter Bootstrap.  
+A simple [MoinMoin][] theme based on [Twitter Bootstrap][].  
 Comes with responsive navbar and sidebar.
 
 You can create your own sidebar by creating a page called 'SideBar'.
 
 Tested with MoinMoin 1.9.7 on Python 2.7.5.
 
-For details, please refer to [the project wiki](https://github.com/dossist/moinmoin-memodump/wiki).
+For details, please refer to [the project wiki][Wiki Home].
+
 
 Screenshots
 -----------
 
-Main screen
+Normal view
 ![Main](https://github.com/dossist/moinmoin-memodump/wiki/memodump.png)
 
 Automatically collapsed navbar and sidebar under narrow viewport
 ![Collapsed](https://github.com/dossist/moinmoin-memodump/wiki/memodump%20collapsed.png)
+
 
 Install
 -------
@@ -73,32 +75,14 @@ indent the line by exactly 4 spaces.
 
 Customization
 -------------
+For details, please refer to [the project wiki][Wiki Home].
+
 
 ### SideBar ###
 
 Create a page named `SideBar` to create your own site-wide sidebar.
-In sidebar, list items receive menu-like styles.  
-Sample:
-```
-{{attachment:prettylogo.jpg}}
- * [[FrontPage]]
- * [[Project1]]
-   * [[Project1/Topic1]]
-   * [[Project1/Topic2]]
- * [[Project2]]
+In sidebar, list items receive special menu-like styles.  
 
-==== Utility ====
- * [[SideBar?action=edit | Edit Sidebar]]
-```
-
-### Per-page sidebar ###
-
-    #pragma sidebar InsertYourSideBarName
-
-Add this line at the top of the page which you want your customized sidebar on (change Inert... to your per-page sidebar name).  
-You can include original site-wide sidebar in the per-page sidebar:
-
-    <<Include(SideBar)>>
 
 ### Location area ###
 
@@ -112,6 +96,7 @@ Example:
 
 By default, `page_front_page` is the only page in the list.
 
+
 ### Menu items ###
 
 Basic knowledge of python language is required!
@@ -124,13 +109,13 @@ Example:
             'print',
         ]
 
-For details, please refer to [the project wiki](https://github.com/dossist/moinmoin-memodump/wiki/EditMenu).
+For details, please refer to [the project wiki][Wiki EditMenu].
 
 
 Limitations
 -----------
 
-* Some words in the theme are not translated. (Can be translated via [WikiDictionary](https://github.com/dossist/moinmoin-memodump/wiki/Translation) pages)
+* Some words in the theme are not translated. (Can be translated via [WikiDictionary][Wiki Translation] pages, though)
 * editbar and actionsMenu are replaced with the theme's own menu functionality, and settings
   on the replaced will not affect the new menu.
 * SlideShow mode is not ready.
@@ -143,6 +128,16 @@ License
 -------
 
 Copyright 2014 dossist.  
-This theme is licensed under [GNU GPL](http://www.gnu.org/licenses/gpl).  
-[Twitter Bootstrap](http://getbootstrap.com/) is copyrighted by Twitter, Inc and licensed under [the MIT license](https://github.com/twbs/bootstrap/blob/master/LICENSE).  
-[MoinMoin](https://moinmo.in/) is copyrighted by [The MoinMoin development team](https://moinmo.in/MoinCoreTeamGroup).
+This theme is licensed under [GNU GPL][].  
+[Twitter Bootstrap][] is copyrighted by Twitter, Inc and licensed under [the MIT license][MIT].  
+[MoinMoin][] is copyrighted by [The MoinMoin development team](https://moinmo.in/MoinCoreTeamGroup).
+
+
+
+[MoinMoin]: https://moinmo.in/
+[Twitter Bootstrap]: http://getbootstrap.com/
+[Wiki Home]: https://github.com/dossist/moinmoin-memodump/wiki
+[Wiki EditMenu]: https://github.com/dossist/moinmoin-memodump/wiki/EditMenu
+[Wiki Translation]: https://github.com/dossist/moinmoin-memodump/wiki/Translation
+[GNU GPL]: http://www.gnu.org/licenses/gpl
+[MIT]: https://github.com/twbs/bootstrap/blob/master/LICENSE
