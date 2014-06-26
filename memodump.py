@@ -607,16 +607,16 @@ class Theme(ThemeBase):
                 # If href and args are both nonexistent or empty, key is automatically interpreted to be an action name
                 # and href and args are automatically set.
                 'args': '',
-                #'special' can be:
+                # 'special' can be:
                 #   'disabled', 'removed', 'separator' or 'header' for whatever they say,
                 #    False, None or nonexistent for normal menu display.
-                #'separator' and 'header' are automatically removed when there are no entries to show among them.
+                # 'separator' and 'header' are automatically removed when there are no entries to show among them.
                 'special': False,
             },
             'print': {'title': _('Print View'),},
             'refresh': {
                 'title': _('Delete Cache'),
-                'special': not (self.menuIsAvailableAction(page, 'refresh') and page.canUseCache()) and 'removed',
+                'special': not (self.memodumpIsAvailableAction(page, 'refresh') and page.canUseCache()) and 'removed',
             },
             'SpellCheck': {'title': _('Check Spelling'),},
             'RenamePage': {'title': _('Rename Page'),},
@@ -627,16 +627,16 @@ class Theme(ThemeBase):
             'MyPages':    {'title': _('My Pages'),},
             'SubscribeUser': {
                 'title': _('Subscribe User'),
-                'special': not (self.menuIsAvailableAction(page, 'SubscribeUser')
+                'special': not (self.memodumpIsAvailableAction(page, 'SubscribeUser')
                                 and request.user.may.admin(page.page_name)) and 'removed',
             },
             'Despam': {
                 'title': _('Remove Spam'),
-                'special': not (self.menuIsAvailableAction(page, 'Despam') and request.user.isSuperUser()) and 'removed',
+                'special': not (self.memodumpIsAvailableAction(page, 'Despam') and request.user.isSuperUser()) and 'removed',
             },
             'revert': {
                 'title': _('Revert to this revision'),
-                'special': not (self.menuIsAvailableAction(page, 'revert')
+                'special': not (self.memodumpIsAvailableAction(page, 'revert')
                                 and request.user.may.revert(page.page_name)) and 'removed',
             },
             'PackagePages': {'title': _('Package Pages'),},
@@ -652,10 +652,10 @@ class Theme(ThemeBase):
                 'special': not subscribe[0] and 'removed',
             },
             'info': {'title': _('Info'),},
-# menu items not found on menu_def will be assumed to be action names,
+# menu items not in menu_def will be assumed to be action names,
 # and receive appropriate title, href, and args automatically.
-#           'Load': {'title': _('Load'), 'args':},
-#           'Save': {'title': _('Save'), 'args':},
+#           'Load': {'title': _('Load'),},
+#           'Save': {'title': _('Save'),},
             # menu decorations
             '__separator__':   {'title': _('------------------------'), 'special': 'separator', },
             '----':            {'title': _('------------------------'), 'special': 'separator', },
@@ -680,13 +680,13 @@ class Theme(ThemeBase):
             'editSideBar': {
                 'title': _('Edit SideBar'), 'href': page_sidebar.url(request),
                 'args': dict(action='edit'),
-                'special': not self.menuIsEditablePage(page_sidebar) and 'removed'
+                'special': not self.memodumpIsEditablePage(page_sidebar) and 'removed'
             },
         }
 
         # register state determining functions on request for use in config
-        request.menuIsAvailableAction = self.menuIsAvailableAction
-        request.menuIsEditablePage = self.menuIsEditablePage
+        request.memodumpIsAvailableAction = self.memodumpIsAvailableAction
+        request.memodumpIsEditablePage = self.memodumpIsEditablePage
 
         try:
             menu_def.update(request.cfg.memodump_menu_def(request))
@@ -767,7 +767,7 @@ class Theme(ThemeBase):
                 else:
                     # recognizes key as action if href and args are not provided
                     if not (data.get('href') or data.get('args')):
-                        if self.menuIsAvailableAction(page, key):
+                        if self.memodumpIsAvailableAction(page, key):
                             compiled.append(generateAction(key, title=data.get('title', '')))
                         else:
                             continue
@@ -781,7 +781,7 @@ class Theme(ThemeBase):
                 if header_match:
                     compiled.append(generateHeader(key, header_match.group(2)))
                 # action not in menu_def
-                elif self.menuIsAvailableAction(page, key):
+                elif self.memodumpIsAvailableAction(page, key):
                     compiled.append(generateAction(key))
 
         return self.menuThinCompiled(compiled)
@@ -826,7 +826,7 @@ class Theme(ThemeBase):
             lines.append(templates[special] % dictionary)
         return u'\n'.join(lines)
 
-    def menuIsAvailableAction(self, page, action):
+    def memodumpIsAvailableAction(self, page, action):
         """
         Return if action is available or not.
         If action starts with lowercase, return True without actually check if action exists.
@@ -836,7 +836,7 @@ class Theme(ThemeBase):
         available = get_available_actions(request.cfg, page, request.user)
         return not (action in excluded or (action[0].isupper() and not action in available))
 
-    def menuIsEditablePage(self, page):
+    def memodumpIsEditablePage(self, page):
         """
         Return True if page is editable for current user, False if not.
 
