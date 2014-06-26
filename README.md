@@ -8,15 +8,16 @@ You can create your own sidebar by creating a page called 'SideBar'.
 
 Tested with MoinMoin 1.9.7 on Python 2.7.5.
 
+For details, please refer to [the project wiki](https://github.com/dossist/moinmoin-memodump/wiki).
 
 Screenshots
 -----------
 
 Main screen
-![Main](test/memodump.png)
+![Main](https://github.com/dossist/moinmoin-memodump/wiki/memodump.png)
 
 Automatically collapsed navbar and sidebar under narrow viewport
-![Collapsed](test/memodump collapsed.png)
+![Collapsed](https://github.com/dossist/moinmoin-memodump/wiki/memodump%20collapsed.png)
 
 Install
 -------
@@ -123,44 +124,15 @@ Example:
             'print',
         ]
 
-For details, please refer to **menu()** method in `memodump.py`.
-
-
-Tips
-----
-
-### Trails and quick links ###
-
-They are moved into sidebar area, and will be displayed below the site-wide SideBar if user has something to be shown.
-
-### Logo ###
-
-If you use the default image logo, it's most likely that your logo will run off the navbar height.
-By disabling the logo, MoinMoin will use your site name as a text logo with a link to the FrontPage.
-Just comment out `logo_string` in `wikiconfig.py`:
-
-        logo_string = ...
-
-↓
-
-    #   logo_string = ...
-
-### I don't like backlinks! ###
-
-If you use the latest code of MoinMoin (as of June 2014) [from the repository](https://bitbucket.org/thomaswaldmann/moin-1.9), you can disable backlinking behavior in location area by adding a line to `wikiconfig.py`:
-
-        backlink_method = lambda self, req: 'pagelink'
-
-This is not specific for this theme, but viable for other themes as well.
-Please note that this is not implemented in 1.9.7. Will work only with the latest code pulled directly from the repository.
+For details, please refer to [the project wiki](https://github.com/dossist/moinmoin-memodump/wiki/EditMenu).
 
 
 Limitations
 -----------
 
-* Some words in the theme are not translated.
-* navibar, editbar, actionsMenu are replaced with the theme's own menu functionality, and settings
-  on the replaced will not affect the menu.
+* Some words in the theme are not translated. (Can be translated via [WikiDictionary](https://github.com/dossist/moinmoin-memodump/wiki/Translation) pages)
+* editbar and actionsMenu are replaced with the theme's own menu functionality, and settings
+  on the replaced will not affect the new menu.
 * SlideShow mode is not ready.
 * Sidebar area is reserved even if `SideBar` page does not exist nor is accessible.
 * Original actionsMenu were listing additional actions automatically, but the menu of this theme
