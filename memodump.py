@@ -616,7 +616,7 @@ class Theme(ThemeBase):
             'print': {'title': _('Print View'),},
             'refresh': {
                 'title': _('Delete Cache'),
-                'special': not (self.menuActionIsAvailable(page, 'refresh') and page.canUseCache()) and 'removed',
+                'special': not (self.menuIsAvailableAction(page, 'refresh') and page.canUseCache()) and 'removed',
             },
             'SpellCheck': {'title': _('Check Spelling'),},
             'RenamePage': {'title': _('Rename Page'),},
@@ -627,16 +627,16 @@ class Theme(ThemeBase):
             'MyPages':    {'title': _('My Pages'),},
             'SubscribeUser': {
                 'title': _('Subscribe User'),
-                'special': not (self.menuActionIsAvailable(page, 'SubscribeUser')
+                'special': not (self.menuIsAvailableAction(page, 'SubscribeUser')
                                 and request.user.may.admin(page.page_name)) and 'removed',
             },
             'Despam': {
                 'title': _('Remove Spam'),
-                'special': not (self.menuActionIsAvailable(page, 'Despam') and request.user.isSuperUser()) and 'removed',
+                'special': not (self.menuIsAvailableAction(page, 'Despam') and request.user.isSuperUser()) and 'removed',
             },
             'revert': {
                 'title': _('Revert to this revision'),
-                'special': not (self.menuActionIsAvailable(page, 'revert')
+                'special': not (self.menuIsAvailableAction(page, 'revert')
                                 and request.user.may.revert(page.page_name)) and 'removed',
             },
             'PackagePages': {'title': _('Package Pages'),},
@@ -680,7 +680,7 @@ class Theme(ThemeBase):
             'editSideBar': {
                 'title': _('Edit SideBar'), 'href': page_sidebar.url(request),
                 'args': dict(action='edit'),
-                'special': not self.menuPageIsEditable(page_sidebar) and 'removed'
+                'special': not self.menuIsEditablePage(page_sidebar) and 'removed'
             },
         }
 
@@ -763,7 +763,7 @@ class Theme(ThemeBase):
                 else:
                     # recognizes key as action if href and args are not provided
                     if not (data.get('href') or data.get('args')):
-                        if self.menuActionIsAvailable(page, key):
+                        if self.menuIsAvailableAction(page, key):
                             compiled.append(generateAction(key, title=data.get('title', '')))
                         else:
                             continue
@@ -777,7 +777,7 @@ class Theme(ThemeBase):
                 if header_match:
                     compiled.append(generateHeader(key, header_match.group(2)))
                 # action not in menu_def
-                elif self.menuActionIsAvailable(page, key):
+                elif self.menuIsAvailableAction(page, key):
                     compiled.append(generateAction(key))
 
         return self.menuThinCompiled(compiled)
@@ -822,7 +822,7 @@ class Theme(ThemeBase):
             lines.append(templates[special] % dictionary)
         return u'\n'.join(lines)
 
-    def menuActionIsAvailable(self, page, action):
+    def menuIsAvailableAction(self, page, action):
         """
         Return if action is available or not.
         If action starts with lowercase, return True without actually check if action exists.
@@ -832,7 +832,7 @@ class Theme(ThemeBase):
         available = get_available_actions(request.cfg, page, request.user)
         return not (action in excluded or (action[0].isupper() and not action in available))
 
-    def menuPageIsEditable(self, page):
+    def menuIsEditablePage(self, page):
         """
         Return True if page is editable for current user, False if not.
 
