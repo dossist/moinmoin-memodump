@@ -684,6 +684,10 @@ class Theme(ThemeBase):
             },
         }
 
+        # register state determining functions on request for use in config
+        request.menuIsAvailableAction = self.menuIsAvailableAction
+        request.menuIsEditablePage = self.menuIsEditablePage
+
         try:
             menu_def.update(request.cfg.memodump_menu_def(request))
         except AttributeError:
