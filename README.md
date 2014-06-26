@@ -20,6 +20,8 @@ Normal view
 Automatically collapsed navbar and sidebar under narrow viewport
 ![Collapsed](https://github.com/dossist/moinmoin-memodump/wiki/memodump%20collapsed.png)
 
+[More][Wiki Screenshots]
+
 
 Install
 -------
@@ -139,5 +141,6 @@ This theme is licensed under [GNU GPL][].
 [Wiki Home]: https://github.com/dossist/moinmoin-memodump/wiki
 [Wiki EditMenu]: https://github.com/dossist/moinmoin-memodump/wiki/EditMenu
 [Wiki Translation]: https://github.com/dossist/moinmoin-memodump/wiki/Translation
+[Wiki Screenshots]: https://github.com/dossist/moinmoin-memodump/wiki/Screenshots
 [GNU GPL]: http://www.gnu.org/licenses/gpl
 [MIT]: https://github.com/twbs/bootstrap/blob/master/LICENSE
