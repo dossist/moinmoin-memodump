@@ -11,14 +11,10 @@ Tested with MoinMoin 1.9.7 on Python 2.7.5.
 For details, please refer to [the project wiki][Wiki Home].
 
 
-Screenshots
------------
+Screenshot
+----------
 
-Normal view
 ![Main](https://github.com/dossist/moinmoin-memodump/wiki/memodump.png)
-
-Automatically collapsed navbar and sidebar under narrow viewport
-![Collapsed](https://github.com/dossist/moinmoin-memodump/wiki/memodump%20collapsed.png)
 
 [More][Wiki Screenshots]
 
