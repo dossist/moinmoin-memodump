@@ -680,7 +680,7 @@ class Theme(ThemeBase):
             'editSideBar': {
                 'title': _('Edit SideBar'), 'href': page_sidebar.url(request),
                 'args': dict(action='edit'),
-                'special': not self.menuPageIsEdittable(page_sidebar) and 'removed'
+                'special': not self.menuPageIsEditable(page_sidebar) and 'removed'
             },
         }
 
@@ -832,9 +832,9 @@ class Theme(ThemeBase):
         available = get_available_actions(request.cfg, page, request.user)
         return not (action in excluded or (action[0].isupper() and not action in available))
 
-    def menuPageIsEdittable(self, page):
+    def menuPageIsEditable(self, page):
         """
-        Return True if page is edittable for current user, False if not.
+        Return True if page is editable for current user, False if not.
 
         @param page: page object
         """
