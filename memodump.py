@@ -149,22 +149,21 @@ class Theme(ThemeBase):
         <!-- Body of navbar -->
         <div class="collapse navbar-collapse">
 
-          <!-- Global menu and user menu -->
+          <!-- Navbar elements -->
           <ul class="nav navbar-nav navbar-right">
+
+            <!-- Comment toggle button -->
+%(commentbutton)s
+            <!-- Edit button -->
+%(edit)s
+            <!-- Search form -->
+%(search)s
             <!-- Menu -->
 %(menu)s
             <!-- Login user -->
 %(usermenu)s
-          </ul>
 
-          <!-- Search form -->
-%(search)s
-
-          <!-- Edit button -->
-%(edit)s
-
-          <!-- Comment toggle button -->
-%(commentbutton)s
+          </ul> <!-- /.navbar-right -->
 
         </div> <!-- /.collapse -->
       </div> <!-- /.container -->
@@ -367,16 +366,18 @@ class Theme(ThemeBase):
         d.update(updates)
 
         html = u'''
-          <div class="navbar-form navbar-right">
-            <form class="form-search" role="search" id="searchform" method="get" action="%(url)s">
-              <input type="hidden" name="action" value="fullsearch">
-              <input type="hidden" name="context" value="180">
-              <div class="form-group">
-                <label class="sr-only" for="searchinput">%(search_label)s</label>
-                <input id="searchinput" type="text" class="form-control form-search" placeholder="%(search_hint)s" name="value" value="%(search_value)s">
-              </div>
-            </form>
-          </div>
+          <li>
+            <div class="navbar-form">
+              <form class="form-search" role="search" id="searchform" method="get" action="%(url)s">
+                <input type="hidden" name="action" value="fullsearch">
+                <input type="hidden" name="context" value="180">
+                <div class="form-group">
+                  <label class="sr-only" for="searchinput">%(search_label)s</label>
+                  <input id="searchinput" type="text" class="form-control form-search" placeholder="%(search_hint)s" name="value" value="%(search_value)s">
+                </div>
+              </form>
+            </div>
+          </li>
 ''' % d
         return html
 
@@ -406,11 +407,9 @@ class Theme(ThemeBase):
             button = page.link_to_raw(self.request, text=text, querystr=querystr, **attrs)
 
         html = u'''
-          <ul class="nav navbar-nav navbar-right">
             <li%s>
               %s
             </li>
-          </ul>
 ''' % (li_attr, button)
 
         return html
@@ -433,11 +432,9 @@ class Theme(ThemeBase):
         """
         _ = self.request.getText
         html = u'''
-          <ul class="nav navbar-nav navbar-right toggleCommentsButton" style="display:none;">
-            <li>
+            <li class="toggleCommentsButton" style="display:none;">
               <a href="#" class="menu-nav-comment nbcomment" rel="nofollow" onClick="toggleComments();return false;">%s</a>
             </li>
-          </ul>
 ''' % _('Comments')
         return html
 

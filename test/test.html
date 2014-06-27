@@ -43,8 +43,23 @@
 
         <!-- Body of navbar -->
         <div class="collapse navbar-collapse">
-          <!-- Global menu and user menu -->
+          <!-- Navbar elements -->
           <ul class="nav navbar-nav navbar-right">
+            <!-- Edit button -->
+            <li class="disabled">
+              <a class="menu-nav-edit">Edit</a>
+            </li>
+            <!-- Search form -->
+            <li>
+              <div class="navbar-form">
+                <form class="form-search" role="search">
+                  <div class="form-group">
+                    <label class="sr-only" for="searchinput">Search</label>
+                    <input id="searchinput" type="text" class="form-control form-search" placeholder="Search">
+                  </div>
+                </form>
+              </div>
+            </li>
             <!-- Menu -->
             <li class="dropdown">
               <!-- Menu button -->
@@ -71,24 +86,7 @@
                 <li><a href="#" class="menu-dd-logout">Logout</a></li>
               </ul>
             </li> <!-- /.dropdown -->
-          </ul>
-
-          <!-- Search form -->
-          <div class="navbar-form navbar-right">
-            <form class="form-search" role="search">
-              <div class="form-group">
-                <label class="sr-only" for="searchinput">Search</label>
-                <input id="searchinput" type="text" class="form-control form-search" placeholder="Search">
-              </div>
-            </form>
-          </div>
-
-          <!-- Edit button -->
-          <ul class="nav navbar-nav navbar-right">
-            <li class="disabled">
-              <a class="menu-nav-edit">Edit</a>
-            </li>
-          </ul>
+          </ul> <!-- /.navbar-right -->
         </div> <!-- /.collapse -->
       </div> <!-- /.container -->
     </div> <!-- /.navbar -->
