@@ -80,24 +80,6 @@ form.form-search:before {
 }
 
 /*=========================================================
-   content area wrappers
-===========================================================*/
-
-#sidebar {
-    padding-top: 40px;
-    padding-bottom: 20px;
-}
-#contentbox {
-    padding-top: 20px;
-}
-#pagebox {
-    padding-top: 0px;
-}
-#content {
-    padding-top: 0px;    
-}
-
-/*=========================================================
    sidebar elements
 ===========================================================*/
 
@@ -522,51 +504,99 @@ pre {
 }
 
 /*=========================================================
+   wrapper paddings and margins
+===========================================================*/
+
+#pagebox {
+    padding-top: 0px;
+}
+#sidebar {
+    padding-top: 40px;
+    padding-bottom: 20px;
+}
+#contentbox {
+    padding-top: 20px;
+}
+#content {
+    padding-top: 0px;    
+}
+#sidebar, #contentbox {
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.no-padding {
+    padding: 0;
+}
+
+/*=========================================================
    responsive toggle sidebar
 ===========================================================*/
 
 html {
-    overflow-x: hidden;
+    overflow-x: hidden; /* prevent horizontal scroll bar */
 }
+
+/* default size and position, for lg size */
 #pagebox { /*parent box*/
     position: relative;
 }
-/* turn on responsiveness in "small" screen width (991px) or below */
-/* swipe off sidebar */
-@media screen and (max-width: 991px) { /* sm */
-    .offcanvas {
-        transition: all .25s ease-out; /* animation */
-    }
-    /* when swiped out... */
-    #pagebox {
-        width: 1500px; /* double the original width of 750px to prevent elements to be vertically aligned */
-        left: -316px; /* offset outer box by sidebar width (195px) + max margin (121px) */
-    }
-    #sidebar { /* swipe sidebar out */
-        width: 195px; /* fixed width */
-        float: left; /* float left to prevent stacking vertically with #pagebox */
-    }
+#sidebar { /* whole sidebar box */
+    width: 195px;
+    position: relative;
+    float: left;
+}
+#contentbox {
+    width: 975px; /* .container width (1170px) - #sidebar width (195px) */
+    position: relative;
+    float: left;
+}
+/* swipe-in effect */
+#sidebar.offcanvas.active,
+#pagebox.offcanvas.active {
+    left: 0px;
+}
+/* md */
+@media screen and (max-width: 1199px) {
     #contentbox {
-        left: 121px; /* offset from edge of the sidebar (applying max margin of 121px) */
-    }
-    /* then when activated... */
-    #pagebox.offcanvas.active { /* parent box */
-        left: 0px;
+        width: 775px; /* .container width (970px) - #sidebar width (195px) */
     }
 }
-@media screen and (max-width: 767px) { /* xs */
+/* sm, swipe off sidebar */
+@media screen and (max-width: 991px) {
     #pagebox {
-        width: 200vw;
-        left: -195px;
+        width: 945px; /* .container width (750px) + #sidebar width (195px) */
+        left: -195px; /* #sidebar width */
+    }
+    #sidebar {
+        left: -121px; /* max possible margin of .container at this viewport */
     }
     #contentbox {
-        left: 0;
+        width: 750px; /* .container width */
     }
-    #pagebox.offcanvas.active {
-        left: 0;
+    /* animation */
+    .offcanvas {
+        -webkit-transition: all .25s ease-out;
+             -o-transition: all .25s ease-out;
+                transition: all .25s ease-out;
+    }
+}
+/* xs, .container now resizes with window size */
+@media screen and (max-width: 767px) { /* xs */
+    #pagebox {
+        width: 962px; /* max screen width (767px) + #sidebar width, for browsers with no calc() support */
+        width: calc(100% + 195px);
+        left: -195px;
+    }
+    #sidebar {
+        left: 0; /* no margin to consider now */
+    }
+    #contentbox {
+        width: 100vw; /* current screen width, for browsers with no calc() support */
+        width: calc(100% - 195px);
     }
 }
 
+/* trigger button */
 .offcanvas-trigger {
     background-image: none;
     position: fixed;

@@ -132,58 +132,54 @@ class Theme(ThemeBase):
     <!-- Bootstrap navbar -->
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
-        <div class="row">
 
-          <!-- Navbar header -->
-          <div class="col-md-2">
-            <div class="navbar-header">
-              <!-- Button to show navbar controls when collapsed -->
-              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="sr-only">Toggle navigation</span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-              </button>
-              <!-- Sitename -->
-              %(sitename)s
-            </div> <!-- /.navbar-header -->
-          </div> <!-- /.col-* -->
+        <!-- Navbar header -->
+        <div class="navbar-header">
+          <!-- Button to show navbar controls when collapsed -->
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <!-- Sitename -->
+          %(sitename)s
+        </div> <!-- /.navbar-header -->
 
-          <!-- Body of navbar -->
-          <div class="collapse navbar-collapse">
+        <!-- Body of navbar -->
+        <div class="collapse navbar-collapse">
 
-            <!-- Global menu and user menu -->
-            <ul class="nav navbar-nav navbar-right">
-              <!-- Menu -->
+          <!-- Global menu and user menu -->
+          <ul class="nav navbar-nav navbar-right">
+            <!-- Menu -->
 %(menu)s
-              <!-- Login user -->
+            <!-- Login user -->
 %(usermenu)s
-            </ul>
+          </ul>
 
-            <!-- Search form -->
+          <!-- Search form -->
 %(search)s
 
-            <!-- Edit button -->
+          <!-- Edit button -->
 %(edit)s
 
-            <!-- Comment toggle button -->
+          <!-- Comment toggle button -->
 %(commentbutton)s
 
-          </div> <!-- /.collapse -->
-        </div> <!-- /.row -->
+        </div> <!-- /.collapse -->
       </div> <!-- /.container -->
     </div> <!-- /.navbar -->
     <!-- End of navbar -->
 
-    <div class="container">
+    <div class="container no-padding">
       <button class="btn btn-default btn-xs offcanvas-trigger" data-toggle="offcanvas">
         <span class="glyphicon glyphicon-th-list"></span>
       </button>
 %(custom_pre)s
-      <div class="row offcanvas" id="pagebox">
+      <div class="offcanvas" id="pagebox">
 
         <!-- Sidebar -->
-        <div class="col-md-2" id="sidebar" role="navigation">
+        <div class="offcanvas" id="sidebar" role="navigation">
           <div id="sidebarpage">
 <!-- SideBar contents -->
 %(sidebar)s
@@ -195,7 +191,7 @@ class Theme(ThemeBase):
         <!-- End of sidebar -->
 
         <!-- Content body -->
-        <div class="col-xs-6 col-md-10" id="contentbox">
+        <div id="contentbox">
 %(custom_post)s
 %(msg)s
 %(location)s
@@ -371,16 +367,16 @@ class Theme(ThemeBase):
         d.update(updates)
 
         html = u'''
-            <div class="navbar-form navbar-right">
-              <form class="form-search" role="search" id="searchform" method="get" action="%(url)s">
-                <input type="hidden" name="action" value="fullsearch">
-                <input type="hidden" name="context" value="180">
-                <div class="form-group">
-                  <label class="sr-only" for="searchinput">%(search_label)s</label>
-                  <input id="searchinput" type="text" class="form-control form-search" placeholder="%(search_hint)s" name="value" value="%(search_value)s">
-                </div>
-              </form>
-            </div>
+          <div class="navbar-form navbar-right">
+            <form class="form-search" role="search" id="searchform" method="get" action="%(url)s">
+              <input type="hidden" name="action" value="fullsearch">
+              <input type="hidden" name="context" value="180">
+              <div class="form-group">
+                <label class="sr-only" for="searchinput">%(search_label)s</label>
+                <input id="searchinput" type="text" class="form-control form-search" placeholder="%(search_hint)s" name="value" value="%(search_value)s">
+              </div>
+            </form>
+          </div>
 ''' % d
         return html
 
@@ -410,11 +406,11 @@ class Theme(ThemeBase):
             button = page.link_to_raw(self.request, text=text, querystr=querystr, **attrs)
 
         html = u'''
-            <ul class="nav navbar-nav navbar-right">
-              <li%s>
-                %s
-              </li>
-            </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li%s>
+              %s
+            </li>
+          </ul>
 ''' % (li_attr, button)
 
         return html
@@ -437,11 +433,11 @@ class Theme(ThemeBase):
         """
         _ = self.request.getText
         html = u'''
-            <ul class="nav navbar-nav navbar-right toggleCommentsButton" style="display:none;">
-              <li>
-                <a href="#" class="menu-nav-comment nbcomment" rel="nofollow" onClick="toggleComments();return false;">%s</a>
-              </li>
-            </ul>
+          <ul class="nav navbar-nav navbar-right toggleCommentsButton" style="display:none;">
+            <li>
+              <a href="#" class="menu-nav-comment nbcomment" rel="nofollow" onClick="toggleComments();return false;">%s</a>
+            </li>
+          </ul>
 ''' % _('Comments')
         return html
 
@@ -502,21 +498,21 @@ class Theme(ThemeBase):
                                                      querystr=query, css_class='menu-nav-login', rel='nofollow'))
 
         if userbutton:
-            userlinks_html = u'</li>\n                  <li>'.join(userlinks)
+            userlinks_html = u'</li>\n                <li>'.join(userlinks)
             html = u'''
-              <li class="dropdown">
-                %s
-                <ul class="dropdown-menu">
-                  <li>%s</li>
-                </ul>
-              </li> <!-- /dropdown -->
+            <li class="dropdown">
+              %s
+              <ul class="dropdown-menu">
+                <li>%s</li>
+              </ul>
+            </li> <!-- /dropdown -->
 ''' % (userbutton, userlinks_html)
 
         elif loginbutton:
             html = u'''
-              <li>
-                %s
-              </li>
+            <li>
+              %s
+            </li>
 ''' % loginbutton
 
         else:
@@ -694,16 +690,16 @@ class Theme(ThemeBase):
 
         if menubody:
             html = u'''
-              <li class="dropdown">
-                <!-- Menu button -->
-                <a href="#" class="menu-nav-menu dropdown-toggle" data-toggle="dropdown">
-                  %s<span class="padding"></span><span class="caret"></span>
-                </a>
-                <!-- Dropdown contents -->
-                <ul class="dropdown-menu">
+            <li class="dropdown">
+              <!-- Menu button -->
+              <a href="#" class="menu-nav-menu dropdown-toggle" data-toggle="dropdown">
+                %s<span class="padding"></span><span class="caret"></span>
+              </a>
+              <!-- Dropdown contents -->
+              <ul class="dropdown-menu">
 %s
-                </ul>
-              </li> <!-- /dropdown -->
+              </ul>
+            </li> <!-- /dropdown -->
 ''' % (_('Menu'), menubody)
         else:
             html = u''
@@ -808,10 +804,10 @@ class Theme(ThemeBase):
 
     def menuRender(self, compiled):
         templates = {
-            False:       u'                  <li><a href="%(href)s" class="menu-dd-%(key)s" rel="nofollow">%(title)s</a></li>',
-            'disabled':  u'                  <li class="disabled"><a href="#" class="menu-dd-%(key)s" rel="nofollow">%(title)s</a></li>',
-            'separator': u'                  <li class="divider"></li>',
-            'header':    u'                  <li class="dropdown-header">%(title)s</li>',
+            False:       u'                <li><a href="%(href)s" class="menu-dd-%(key)s" rel="nofollow">%(title)s</a></li>',
+            'disabled':  u'                <li class="disabled"><a href="#" class="menu-dd-%(key)s" rel="nofollow">%(title)s</a></li>',
+            'separator': u'                <li class="divider"></li>',
+            'header':    u'                <li class="dropdown-header">%(title)s</li>',
             'removed':   u'',
         }
 
