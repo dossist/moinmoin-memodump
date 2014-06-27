@@ -983,6 +983,87 @@ class Theme(ThemeBase):
 
         return html
 
+    def navibar(self, d):
+        """ Assemble the navibar (which moved to sidebar as one of sections)
+        NavIbar, not the navbar at the page top!
+
+        @param d: parameter dictionary
+        @rtype: unicode
+        @return: navibar html
+        """
+        request = self.request
+        _ = request.getText
+        found = {} # pages we found. prevent duplicates
+        items = [] # navibar items
+        item = u'              <li class="%s">%s</li>'
+        current = d['page_name']
+
+        # Process config navi_bar
+        if request.cfg.navi_bar:
+            for text in request.cfg.navi_bar:
+                pagename, link = self.splitNavilink(text)
+                if pagename == current:
+                    cls = 'wikilink active'
+                else:
+                    cls = 'wikilink'
+                items.append(item % (cls, link))
+                found[pagename] = 1
+
+        # Add user links to wiki links, eliminating duplicates.
+        userlinks = request.user.getQuickLinks()
+        for text in userlinks:
+            # Split text without localization, user knows what he wants
+            pagename, link = self.splitNavilink(text, localize=0)
+            if not pagename in found:
+                if pagename == current:
+                    cls = 'userlink active'
+                else:
+                    cls = 'userlink'
+                items.append(item % (cls, link))
+                found[pagename] = 1
+
+        # Add current page at end of local pages
+#       if not current in found:
+#           title = d['page'].split_title()
+#           title = self.shortenPagename(title)
+#           link = d['page'].link_to(request, title)
+#           cls = 'active'
+#           items.append(item % (cls, link))
+
+        # Add sister pages.
+        for sistername, sisterurl in request.cfg.sistersites:
+            if sistername == request.cfg.interwikiname: # it is THIS wiki
+                cls = 'sisterwiki active'
+                items.append(item % (cls, sistername))
+            else:
+                # TODO optimize performance
+                cache = caching.CacheEntry(request, 'sisters', sistername, 'farm', use_pickle=True)
+                if cache.exists():
+                    data = cache.content()
+                    sisterpages = data['sisterpages']
+                    if current in sisterpages:
+                        cls = 'sisterwiki'
+                        url = sisterpages[current]
+                        link = request.formatter.url(1, url) + \
+                               request.formatter.text(sistername) +\
+                               request.formatter.url(0)
+                        items.append(item % (cls, link))
+
+        # Assemble html
+        items = u''.join(items)
+        html = u''
+        if items:
+            html = u'''
+          <div>
+            <h4>%s</h4>
+            <ul id='navibar'>
+%s
+            </ul>
+          </div>
+''' % (_('Navigation'), items)
+
+        return html
+
     def msg(self, d):
         """ Assemble the msg display
 
