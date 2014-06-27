@@ -531,7 +531,7 @@ html {
 #pagebox { /*parent box*/
     position: relative;
 }
-/* turn on responsibility in "small" screen width (991px) or below */
+/* turn on responsiveness in "small" screen width (991px) or below */
 /* swipe off sidebar */
 @media screen and (max-width: 991px) { /* sm */
     .offcanvas {
