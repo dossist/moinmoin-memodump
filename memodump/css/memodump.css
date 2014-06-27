@@ -52,6 +52,7 @@ html, body {
 /* search form customization: search icon inside input area */
 input.form-search {
     padding-right: 24px;
+    padding-left: 8px;
 }
 form.form-search {
 	position: relative;
