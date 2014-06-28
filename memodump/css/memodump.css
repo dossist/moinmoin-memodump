@@ -219,15 +219,14 @@ form.form-search:before {
    content elements
 ===========================================================*/
 
-/* prettily underlined headers with better spacing */
-#content h1, #content h2, #content h3,
-#content h4, #content h5, #content h6 {
+/* prettily underlined first level header */
+#content h1 {
     position: relative;
     overflow: hidden;
     padding-bottom: 10px;
     margin-bottom: 20px;
 }
-#content h1:before, #content h2:before, #content h3:before {
+#content h1:before {
     content: "";
     display: inline-block;
     position: absolute;
@@ -235,7 +234,7 @@ form.form-search:before {
     border-bottom: 1px solid #51b3e8;
     width: 100%;
 }
-#content h1:after, #content h2:after, #content h3:after {
+#content h1:after {
     content: "";
     display: inline-block;
     position: absolute;
@@ -243,33 +242,19 @@ form.form-search:before {
     border-bottom: 1px solid #eee;
     width: 100%;
 }
-
-#content h1:after, #content h1:before {
-    border-width: 2px;
+/* headers with wider margins */
+#content h2 {
+    margin-top: 50px;
+    margin-bottom: 30px;
 }
-#content h4 {
-    display: block;
-    border-bottom: 1px solid #eee;
+#content h3 {
+    margin-top: 40px;
+    margin-bottom: 25px;
 }
-#content h5, #content h6 {
-    display: inline;
-    border-bottom: 1px solid #eee;
-    padding-bottom: 5px;
-    margin: 15px 0;
+#content h4, #content h5, #content h6 {
+    margin-top: 30px;
+    margin-bottom: 20px;
 }
-#content h5:before, #content h6:before {
-    content: "";
-    display: block;
-    width: 100%;
-    margin-top: inherit;
-}
-#content h5:after, #content h6:after {
-    content: "";
-    display: block;
-    width: 100%;
-    margin-bottom: inherit;
-}
-
 /* table style taken from Bootstrap */
 table {
     /* .table */
