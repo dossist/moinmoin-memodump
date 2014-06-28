@@ -224,7 +224,7 @@ form.form-search:before {
     position: relative;
     overflow: hidden;
     padding-bottom: 10px;
-    margin-bottom: 20px;
+    margin-bottom: 30px;
 }
 #content h1:before {
     content: "";
