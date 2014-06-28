@@ -31,20 +31,15 @@ Install
 
         cd moinmoin-memodump
         cp memodump.py YourMoinDirectory/wiki/data/plugin/theme/
-    
+ 
 3. Copy whole directory `memodump` into `MoinMoin/web/static/htdocs/`.
 
         cp -a memodump YourMoinDirectory/MoinMoin/web/static/htdocs/
-    
-4. Copy image files for default *modernized* theme into memodump directory.
 
-        cd YourMoinDirectory/MoinMoin/web/static/htdocs
-        cp -a modernized/img memodump/
-
-5. Done!
+4. Done!
    If you run MoinMoin in a server, you might have to terminate running MoinMoin processes to reflect changes.  
    e.g. On Ubuntu:
-   
+
         pkill moin
 
 
@@ -114,21 +109,21 @@ Limitations
 -----------
 
 * Some words in the theme are not translated. (Can be translated via [WikiDictionary][Wiki Translation] pages, though)
+* Sidebar area is reserved even if `SideBar` page does not exist nor is accessible.
 * editbar and actionsMenu are replaced with the theme's own menu functionality, and settings
   on the replaced will not affect the new menu.
-* SlideShow mode is not ready.
-* Sidebar area is reserved even if `SideBar` page does not exist nor is accessible.
-* Original actionsMenu were listing additional actions automatically, but the menu of this theme
+* Original actionsMenu were listing all additional actions automatically, but the menu of this theme
   won't do so automatically.
 
 
-License
--------
+License and copyrights
+----------------------
 
 Copyright 2014 dossist.  
 This theme is licensed under [GNU GPL][].  
 [Twitter Bootstrap][] is copyrighted by Twitter, Inc and licensed under [the MIT license][MIT].  
-[MoinMoin][] is copyrighted by [The MoinMoin development team](https://moinmo.in/MoinCoreTeamGroup).
+[MoinMoin][] is copyrighted by [The MoinMoin development team](https://moinmo.in/MoinCoreTeamGroup) and licensed under [GNU GPL][].  
+Icons and some part of CSS were taken from the default modernized theme.  
 
 
 
