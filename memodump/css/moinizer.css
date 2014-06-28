@@ -47,9 +47,21 @@
 .alert td {
 	border: none;
 }
-
+.alert table {
+	margin-bottom: 0;
+}
+/* fix for RenamePage and DeletePage */
 .dialog {
 	overflow: hidden;
+}
+.alert td.label {
+	color: inherit;
+	text-align: inherit;
+	vertical-align: middle;
+	display: table-cell;
+}
+.alert td.label * {
+	margin: 0;
 }
 
 /*=========================================================
