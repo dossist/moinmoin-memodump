@@ -4,7 +4,7 @@ moinmoin-memodump
 A simple [MoinMoin][] theme based on [Twitter Bootstrap][].  
 Comes with responsive navbar and sidebar.
 
-You can create your own sidebar by creating a page called 'SideBar'.
+You can create your own sidebar by creating a page called `SideBar`.
 
 Tested with MoinMoin 1.9.7 on Python 2.7.5.
 
