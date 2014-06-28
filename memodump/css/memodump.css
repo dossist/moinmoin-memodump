@@ -69,14 +69,22 @@ form.form-search:before {
     right: 8px;
     opacity: .5;
 }
-/* truncate too long elements */
-@media screen and (min-width: 768px) { /* sm */
+@media screen and (min-width: 768px) { /* sm or above */
+    /* truncate too long elements */
     .nav-maxwidth-100 {
         display: table-cell;
         max-width: 100px;
         overflow-x: hidden;
         white-space: nowrap;
         text-overflow: ellipsis;
+    }
+    /* prevent navbar element from overflowing */
+    .navbar .container {
+        position: relative;
+    }
+    .navbar .navbar-collapse {
+        position: absolute;
+        right: 15px;
     }
 }
 
