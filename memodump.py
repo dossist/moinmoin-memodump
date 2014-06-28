@@ -401,7 +401,7 @@ class Theme(ThemeBase):
         else:
             _ = self.request.getText
             querystr = {'action': 'edit'}
-            text = _('Edit')
+            text = u'<span class="hidden-sm">%s</span>' % _('Edit')
             querystr['editor'] = 'text'
             attrs = {'name': 'texteditlink', 'rel': 'nofollow', 'css_class': 'menu-nav-edit'}
             button = page.link_to_raw(self.request, text=text, querystr=querystr, **attrs)
@@ -417,10 +417,11 @@ class Theme(ThemeBase):
     def disabledEdit(self):
         """ Return a disabled edit link """
         _ = self.request.getText
-        html = u'%s%s%s' % (self.request.formatter.url(1, css="menu-nav-edit"),
-                            _('Immutable Page'),
-                            self.request.formatter.url(0)
-                           )
+        html = u'%s<span class="hidden-sm">%s</span>%s' % (
+                   self.request.formatter.url(1, css="menu-nav-edit"),
+                   _('Immutable Page'),
+                   self.request.formatter.url(0)
+               )
         return html
 
     def commentbutton(self):
@@ -433,7 +434,9 @@ class Theme(ThemeBase):
         _ = self.request.getText
         html = u'''
             <li class="toggleCommentsButton" style="display:none;">
-              <a href="#" class="menu-nav-comment nbcomment" rel="nofollow" onClick="toggleComments();return false;">%s</a>
+              <a href="#" class="menu-nav-comment nbcomment" rel="nofollow" onClick="toggleComments();return false;">
+                <span class="hidden-sm">%s</span>
+              </a>
             </li>
 ''' % _('Comments')
         return html
