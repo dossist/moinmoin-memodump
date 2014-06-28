@@ -214,7 +214,12 @@ class Theme(ThemeBase):
 
         return html
 
-    editorheader = header
+    def editorheader(self, d, **kw):
+        """
+        header() for edit mode. Just set edit mode flag and call self.header().
+        """
+        d['edit_mode'] = 1
+        return self.header(d, **kw)
 
     def footer(self, d, **keywords):
         """ Assemble wiki footer
@@ -387,6 +392,7 @@ class Theme(ThemeBase):
         If the user can't edit, return a disabled edit button.
         """
         page = d['page']
+        edit_mode = d.get('edit_mode', 0)
 
         if 'edit' in self.request.cfg.actions_excluded:
             return u""
@@ -405,6 +411,8 @@ class Theme(ThemeBase):
             querystr['editor'] = 'text'
             attrs = {'name': 'texteditlink', 'rel': 'nofollow', 'css_class': 'menu-nav-edit'}
             button = page.link_to_raw(self.request, text=text, querystr=querystr, **attrs)
+            if edit_mode:
+                li_attr = u' class="active"'
 
         html = u'''
             <li%s>
