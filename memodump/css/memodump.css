@@ -219,12 +219,27 @@ form.form-search:before {
    content elements
 ===========================================================*/
 
+/* headers with wider margins */
+#content h1 {
+    margin-bottom: 30px;
+}
+#content h2 {
+    margin-top: 50px;
+    margin-bottom: 30px;
+}
+#content h3 {
+    margin-top: 40px;
+    margin-bottom: 25px;
+}
+#content h4, #content h5, #content h6 {
+    margin-top: 30px;
+    margin-bottom: 20px;
+}
 /* prettily underlined first level header */
 #content h1 {
     position: relative;
     overflow: hidden;
     padding-bottom: 10px;
-    margin-bottom: 30px;
 }
 #content h1:before {
     content: "";
@@ -242,19 +257,21 @@ form.form-search:before {
     border-bottom: 1px solid #eee;
     width: 100%;
 }
-/* headers with wider margins */
+/* h2 is underlined too, but without accent color */
 #content h2 {
-    margin-top: 50px;
-    margin-bottom: 30px;
+    position: relative;
+    overflow: hidden;
+    padding-bottom: 10px;
 }
-#content h3 {
-    margin-top: 40px;
-    margin-bottom: 25px;
+#content h2:before {
+    content: "";
+    display: inline-block;
+    position: absolute;
+    bottom: 0px;
+    border-bottom: 1px solid #eee;
+    width: 100%;
 }
-#content h4, #content h5, #content h6 {
-    margin-top: 30px;
-    margin-bottom: 20px;
-}
+
 /* table style taken from Bootstrap */
 table {
     /* .table */
