@@ -116,6 +116,13 @@ class Theme(ThemeBase):
         ('all',         'moinizer'),
         ('all',         'memoprint'),
     )
+    stylesheets_projection = (
+        ('all',         'bootstrap.min'),
+        ('all',         'bootstrap-theme.min'),
+        ('all',         'memodump'),
+        ('all',         'moinizer'),
+        ('all',         'memoslide'),
+    )
 
     def header(self, d, **kw):
         """ Assemble wiki header
