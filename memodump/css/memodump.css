@@ -69,6 +69,10 @@ form.form-search:before {
     right: 8px;
     opacity: .5;
 }
+.navbar-form { /* Bootstrap bug? counter glitchy margins when uncollapsed in xs view */
+    margin-left: 0;
+    margin-right: 0;
+}
 @media screen and (min-width: 768px) { /* sm or above */
     /* truncate too long elements */
     .nav-maxwidth-100 {
