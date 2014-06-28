@@ -37,7 +37,7 @@ Install
         cp -a memodump YourMoinDirectory/MoinMoin/web/static/htdocs/
 
 4. Done!
-   If you run MoinMoin in a server, you might have to terminate running MoinMoin processes to reflect changes.  
+   If you run MoinMoin on a server, you might have to terminate running MoinMoin processes to reflect changes.  
    e.g. On Ubuntu:
 
         pkill moin
