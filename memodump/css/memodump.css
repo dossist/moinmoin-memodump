@@ -10,24 +10,24 @@
 ===========================================================*/
 
 html, body {
-	/* need this to use relative sizes in children */
-	/* don't worry about contents longer than one screen height; they are just rendered properly */
+    /* need this to use relative sizes in children */
+    /* don't worry about contents longer than one screen height; they are just rendered properly */
     height: 100%;
     padding: 0;
     margin: 0;
 }
 #outbox {
-	position: relative; /* child elements are relative to this */
+    position: relative; /* child elements are relative to this */
     min-height: 100%;
-	height: auto !important;
-	width: 100%;
+    height: auto !important;
+    width: 100%;
     padding-top: 51px; /* navbar height. 50px + 1px border */
     padding-bottom: 60px; /* footer height */
 }
 /* sticky footer; sticks to the bottom of the screen as long as contents are less than 1 screen long */
 #footer {
-    position: absolute;
-    bottom: 0;
+    position: relative;
+    top: -95px;
     height: 60px; /* height of the footer */
     width: 100%;
 }
@@ -37,12 +37,13 @@ html, body {
     padding: 20px 15px;
 }
 #pageinfo-container {
-    position: absolute;
-    bottom: 60px;
+    position: relative;
+    top: -95px;
+    height: 35px;
     width: 100%;
 }
 #outbox {
-    padding-bottom: 110px; /* footer height + pageinfo height */
+    padding-bottom: 95px; /* footer height + pageinfo height */
 }
 
 /*=========================================================
@@ -55,7 +56,7 @@ input.form-search {
     padding-left: 8px;
 }
 form.form-search {
-	position: relative;
+    position: relative;
 }
 form.form-search:before {
     display: block;
@@ -124,7 +125,7 @@ form.form-search:before {
 
 /* list style */
 #sidebar ul, #sidebar ol {
-	background-color: #f7f7f7;
+    background-color: #f7f7f7;
     border-radius: 3px; /* box cornering */
 }
 /* workaround for cornering when hovered */
@@ -155,7 +156,7 @@ form.form-search:before {
 
 /* list padding */
 #sidebar ul, #sidebar ol {
-	padding: 0px 10px; /* whole list gets paddings on the left and the right */
+    padding: 0px 10px; /* whole list gets paddings on the left and the right */
 }
 #sidebar li {
     padding: 7px 0px; /* every list item gets paddings on top and bottom */
@@ -163,14 +164,14 @@ form.form-search:before {
 /* padding workaround needed for highlighting behavior when hovered */
 #sidebar li a {
     margin: -7px -10px; /* neutralize ul and li paddings */
-	padding: 7px 10px; /* and add same amount of paddings manually, which allows colorizing the hole background */
+    padding: 7px 10px; /* and add same amount of paddings manually, which allows colorizing the hole background */
 }
 /* padding in nested list */
 #sidebar ul ul, #sidebar ul ol, #sidebar ol ul, #sidebar ol ol {
     padding: 0;
-	padding-top: 7px;
+    padding-top: 7px;
     padding-left: 10px; /* we want to give some additional indent */
-	margin: -7px 0px; /* neutralize top/bottom paddings as we have some in our own <li> */
+    margin: -7px 0px; /* neutralize top/bottom paddings as we have some in our own <li> */
 }
 /* padding of a in nested list */
 #sidebar li li a {
@@ -198,11 +199,11 @@ form.form-search:before {
 /* head indenting */
 #sidebar div > h1, #sidebar div > h2, #sidebar div > h3,
 #sidebar div > h4, #sidebar div > h5, #sidebar div > h6 {
-	padding: 0 15px;
+    padding: 0 15px;
 }
 #sidebar div > h1[class], #sidebar div > h2[class], #sidebar div > h3[class],
 #sidebar div > h4[class], #sidebar div > h5[class], #sidebar div > h6[class] {
-	padding: 0;
+    padding: 0;
 }
 #sidebar h1, #sidebar h2, #sidebar h3,
 #sidebar h4, #sidebar h5, #sidebar h6 {
@@ -547,7 +548,7 @@ pre {
    responsive toggle sidebar
 ===========================================================*/
 
-html {
+#outbox {
     overflow-x: hidden; /* prevent horizontal scroll bar */
 }
 

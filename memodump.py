@@ -247,39 +247,38 @@ class Theme(ThemeBase):
         <!-- End of content body -->
       </div> <!-- /#pagebox -->
     </div> <!-- /.container -->
+  </div> <!-- /#outbox -->
 
-    <!-- pageinfo -->
-    <div id="pageinfo-container">
-      <div class="container">
-        %(pageinfo)s
-      </div>
+  <!-- pageinfo -->
+  <div id="pageinfo-container">
+    <div class="container">
+      %(pageinfo)s
     </div>
-    <!-- End of pageinfo -->
+  </div>
+  <!-- End of pageinfo -->
 
 %(custom_pre)s
 
-    <!-- Footer -->
-    <div id="footer">
-      <div class="container-fluid">
-        <div class="container text-right text-muted">
-          %(credits)s
-          %(version)s
+  <!-- Footer -->
+  <div id="footer">
+    <div class="container-fluid">
+      <div class="container text-right text-muted">
+        %(credits)s
+        %(version)s
 %(custom_post)s
-        </div> <!-- /.container -->
-      </div> <!-- /.container-fluid -->
-    </div> <!-- /#footer -->
-    <!-- End of footer -->
+      </div> <!-- /.container -->
+    </div> <!-- /.container-fluid -->
+  </div> <!-- /#footer -->
+  <!-- End of footer -->
 
-    <!-- Bootstrap core JavaScript -->
-    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-    <script src="%(prefix)s/%(theme)s/js/jquery.min.js"></script>
-    <!-- Include all compiled plugins (below), or include individual files as needed -->
-    <script src="%(prefix)s/%(theme)s/js/bootstrap.min.js"></script>
-    <!-- Offcanvas toggler, originally from http://getbootstrap.com/examples/offcanvas/offcanvas.js -->
-    <script src="%(prefix)s/%(theme)s/js/offcanvas.js"></script>
-    <!-- End of JavaScript -->
-
-  </div> <!-- /#outbox -->
+  <!-- Bootstrap core JavaScript -->
+  <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+  <script src="%(prefix)s/%(theme)s/js/jquery.min.js"></script>
+  <!-- Include all compiled plugins (below), or include individual files as needed -->
+  <script src="%(prefix)s/%(theme)s/js/bootstrap.min.js"></script>
+  <!-- Offcanvas toggler, originally from http://getbootstrap.com/examples/offcanvas/offcanvas.js -->
+  <script src="%(prefix)s/%(theme)s/js/offcanvas.js"></script>
+  <!-- End of JavaScript -->
 """ % { 'pageinfo': self.pageinfo(page),
         'custom_pre': self.emit_custom_html(self.cfg.page_footer1), # Pre footer custom html (not recommended!)
         'credits': self.credits(d),
