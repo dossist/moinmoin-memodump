@@ -1127,6 +1127,11 @@ class Theme(ThemeBase):
 
     def send_title(self, text, **keywords):
         """ Capture original send_title() and rewrite DOCTYPE for html5 """
+
+        # for mobile
+        additional_head = u'<meta name="viewport" content="width=device-width,initial-scale=1.0">\n'
+        self.request.cfg.html_head = u'%s%s' % (additional_head, self.request.cfg.html_head)
+
         buffer = StringIO.StringIO()
         self.request.redirect(buffer)
         try:
