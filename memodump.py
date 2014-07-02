@@ -1129,7 +1129,12 @@ class Theme(ThemeBase):
 
         # for mobile
         additional_head = u'<meta name="viewport" content="width=device-width,initial-scale=1.0">\n'
-        self.request.cfg.html_head = u'%s%s' % (additional_head, self.request.cfg.html_head)
+        try:
+            if not self.request.cfg.memodump_additional_head:
+                raise AttributeError
+        except AttributeError:
+            self.request.cfg.html_head = u'%s%s' % (additional_head, self.request.cfg.html_head)
+            self.request.cfg.memodump_additional_head = True
 
         buffer = StringIO.StringIO()
         self.request.redirect(buffer)
