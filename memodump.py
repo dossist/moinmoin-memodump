@@ -135,7 +135,7 @@ class Theme(ThemeBase):
         """
 
         html = u"""
-  <div id="outbox">
+  <div id="outbox" class="toggle">
     <!-- Bootstrap navbar -->
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
@@ -177,27 +177,25 @@ class Theme(ThemeBase):
     </div> <!-- /.navbar -->
     <!-- End of navbar -->
 
-    <div class="container no-padding">
-      <button class="btn btn-default btn-xs offcanvas-trigger" data-toggle="offcanvas">
+    <div class="container no-padding" id="pagebox">
+      <button class="btn btn-default btn-xs offcanvas-trigger" data-toggle="toggle">
         <span class="glyphicon glyphicon-th-list"></span>
       </button>
 %(custom_pre)s
-      <div class="offcanvas" id="pagebox">
 
-        <!-- Sidebar -->
-        <div class="offcanvas" id="sidebar" role="navigation">
-          <div id="sidebarpage">
+      <!-- Sidebar -->
+      <div class="toggle" id="sidebar-curtain">
+        <div class="toggle" id="sidebar-mover">
+          <div class="toggle" id="sidebar" role="navigation">
 <!-- SideBar contents -->
 %(sidebar)s
 <!-- End of SideBar contents -->
-          </div>
 %(navilinks)s
 %(trail)s
-        </div> <!-- /#sidebar -->
-        <!-- End of sidebar -->
+          </div> <!-- /#sidebar -->
+        </div> <!-- /#sidebar-mover -->
+      </div><div id="contentbox"> <!-- End of Sidebar and Beginning of content -->
 
-        <!-- Content body -->
-        <div id="contentbox">
 %(custom_post)s
 %(msg)s
 %(location)s
@@ -243,10 +241,9 @@ class Theme(ThemeBase):
         html = u"""
 <!-- End of page contents -->
 
-        </div> <!-- /#contentbox -->
-        <!-- End of content body -->
-      </div> <!-- /#pagebox -->
-    </div> <!-- /.container -->
+      </div> <!-- /#contentbox -->
+      <!-- End of content body -->
+    </div> <!-- /.container, #pagebox -->
   </div> <!-- /#outbox -->
 
   <!-- pageinfo -->
@@ -276,8 +273,8 @@ class Theme(ThemeBase):
   <script src="%(prefix)s/%(theme)s/js/jquery.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="%(prefix)s/%(theme)s/js/bootstrap.min.js"></script>
-  <!-- Offcanvas toggler, originally from http://getbootstrap.com/examples/offcanvas/offcanvas.js -->
-  <script src="%(prefix)s/%(theme)s/js/offcanvas.js"></script>
+  <!-- toggle.js by dossist -->
+  <script src="%(prefix)s/%(theme)s/js/toggle.js"></script>
   <!-- End of JavaScript -->
 """ % { 'pageinfo': self.pageinfo(page),
         'custom_pre': self.emit_custom_html(self.cfg.page_footer1), # Pre footer custom html (not recommended!)
@@ -902,7 +899,7 @@ class Theme(ThemeBase):
         request = self.request
         user = request.user
         html = u''
-        li = u'              <li>%s</li>'
+        li = u'                <li>%s</li>'
 
         if not user.valid or user.show_page_trail:
             trail = user.getTrail()
@@ -929,25 +926,14 @@ class Theme(ThemeBase):
                     items.append(li % link)
 
                 html = u'''
-          <div id="pagetrail">
-            <h4>%s</h4>
-            <ul>
+            <div id="pagetrail">
+              <h4>%s</h4>
+              <ul>
 %s
-            </ul>
-          </div>
+              </ul>
+            </div>
 ''' % (_('Trail'), u'\n'.join(items))
 
-        return html
-
-    def navibar(self, d):
-        _ = self.request.getText
-        navihtml = ThemeBase.navibar(self, d)
-        html = u'''
-          <div id="navilinks">
-            <h4>%s</h4>
-%s
-          </div>
-''' % (_('Navigation'), navihtml)
         return html
 
     def quicklinks(self, d):
@@ -959,7 +945,7 @@ class Theme(ThemeBase):
         """
         _ = self.request.getText
         html = u''
-        li = u'              <li class="%s">%s</li>'
+        li = u'                <li class="%s">%s</li>'
         found = {}
         items = []
         current = d['page_name']
@@ -979,12 +965,12 @@ class Theme(ThemeBase):
 
         if items:
             html = u'''
-          <div id="quicklinks">
-            <h4>%s</h4>
-            <ul>
+            <div id="quicklinks">
+              <h4>%s</h4>
+              <ul>
 %s
-            </ul>
-          </div>
+              </ul>
+            </div>
 ''' % (_('Quick links'), u'\n'.join(items))
 
         return html
@@ -1001,7 +987,7 @@ class Theme(ThemeBase):
         _ = request.getText
         found = {} # pages we found. prevent duplicates
         items = [] # navibar items
-        item = u'              <li class="%s">%s</li>'
+        item = u'                <li class="%s">%s</li>'
         current = d['page_name']
 
         # Process config navi_bar
@@ -1060,12 +1046,12 @@ class Theme(ThemeBase):
         html = u''
         if items:
             html = u'''
-          <div>
-            <h4>%s</h4>
-            <ul id='navibar'>
+            <div>
+              <h4>%s</h4>
+              <ul id='navibar'>
 %s
-            </ul>
-          </div>
+              </ul>
+            </div>
 ''' % (_('Navigation'), items)
 
         return html
@@ -1091,10 +1077,10 @@ class Theme(ThemeBase):
 
         result = []
         template = u'''
-          <div class="alert %(dismiss)s%(color)s">
-            %(close)s
-            %(msg)s
-          </div>
+        <div class="alert %(dismiss)s%(color)s">
+          %(close)s
+          %(msg)s
+        </div>
 '''
         param = {
             'close': u'<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>',

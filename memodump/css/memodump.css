@@ -549,28 +549,29 @@ pre {
    responsive toggle sidebar
 ===========================================================*/
 
-#outbox {
-    overflow-x: hidden; /* prevent horizontal scroll bar */
-}
-
 /* default size and position, for lg size */
-#pagebox { /*parent box*/
+#pagebox {
+    white-space: nowrap;
+}
+#pagebox > * {
+    white-space: normal;
+}
+#sidebar {
+    width: 195px;
+}
+#sidebar-curtain {
+    display: inline-block;
+    vertical-align: top;
     position: relative;
 }
-#sidebar { /* whole sidebar box */
-    width: 195px;
+#sidebar-mover {
     position: relative;
-    float: left;
+    left: 0;
 }
 #contentbox {
     width: 975px; /* .container width (1170px) - #sidebar width (195px) */
-    position: relative;
-    float: left;
-}
-/* swipe-in effect */
-#sidebar.offcanvas.active,
-#pagebox.offcanvas.active {
-    left: 0px;
+    display: inline-block;
+    vertical-align: top;
 }
 /* md */
 @media screen and (max-width: 1199px) {
@@ -580,36 +581,48 @@ pre {
 }
 /* sm, swipe off sidebar */
 @media screen and (max-width: 991px) {
-    #pagebox {
-        width: 945px; /* .container width (750px) + #sidebar width (195px) */
-        left: -195px; /* #sidebar width */
-    }
-    #sidebar {
-        left: -121px; /* max possible margin of .container at this viewport */
-    }
     #contentbox {
         width: 750px; /* .container width */
     }
+    #sidebar-curtain {
+        width: 0;
+        left: -121px; /* max possible margin of .container at this viewport */
+    }
+    #sidebar-mover {
+        left: -195px;
+    }
+    #sidebar {
+        display: none; /* erase sidebar for better footer position when collapsed */
+    }
+    /* when toggled */
+    #sidebar-curtain.active {
+        width: 195px;
+        left: 0;
+    }
+    #sidebar-mover.active {
+        left: 0;
+    }
+    #sidebar.active, #sidebar.toggling {
+        display: block;
+    }
     /* animation */
-    .offcanvas {
+    .toggling {
         -webkit-transition: all .25s ease-out;
              -o-transition: all .25s ease-out;
                 transition: all .25s ease-out;
     }
+    /* prevent horizontal scroll bar when toggled */
+    #outbox.toggle.active, #outbox.toggle.toggling {
+        overflow-x: hidden;
+    }
 }
 /* xs, .container now resizes with window size */
 @media screen and (max-width: 767px) { /* xs */
-    #pagebox {
-        width: 962px; /* max screen width (767px) + #sidebar width, for browsers with no calc() support */
-        width: calc(100% + 195px);
-        left: -195px;
-    }
-    #sidebar {
+    #sidebar-curtain {
         left: 0; /* no margin to consider now */
     }
     #contentbox {
-        width: 100vw; /* current screen width, for browsers with no calc() support */
-        width: calc(100% - 195px);
+        width: 100%;
     }
 }
 
