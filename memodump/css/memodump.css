@@ -226,6 +226,7 @@ form.form-search:before {
 
 /* headers with wider margins */
 #content h1 {
+    margin-top: 50px;
     margin-bottom: 30px;
 }
 #content h2 {
