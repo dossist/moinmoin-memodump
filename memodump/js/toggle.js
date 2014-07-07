@@ -22,7 +22,7 @@ $(document).ready(function () {
     $target.addClass('toggling');
     $target.toggleClass('active');
     $target.one('bsTransitionEnd', $.proxy(toggleEnd, $target))
-           .emulateTransitionEnd(1000);
+           .emulateTransitionEnd(250);
   }
 
   $('[data-toggle=toggle]').click(toggleHandler);
