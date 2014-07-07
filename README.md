@@ -22,25 +22,30 @@ Screenshot
 Install
 -------
 
-1. Get the files by cloning the repository or download a zip and unpack it.  
+1. Get files by cloning the repository or download a zip and unpack it.  
    To clone:
 
-        git clone https://github.com/dossist/moinmoin-memodump.git
+    ```console
+    $ git clone https://github.com/dossist/moinmoin-memodump.git
+    ```
 
-2. Copy memodump.py into `wiki/data/plugin/theme/`.
+2. Copy `memodump.py` into plugin directory `data/plugin/theme/`.
+   Location of the directory varies according to how you installed MoinMoin.
 
-        cd moinmoin-memodump
-        cp memodump.py YourMoinDirectory/wiki/data/plugin/theme/
- 
-3. Copy whole directory `memodump` into `MoinMoin/web/static/htdocs/`.
+3. Copy directory `memodump` into static files directory `MoinMoin/web/static/htdocs/`.
+   Again location of that directory will vary. It could be:
 
-        cp -a memodump YourMoinDirectory/MoinMoin/web/static/htdocs/
+    * `/usr/share/moin/htdocs` if you installed from Ubuntu package
+    * `/usr/local/lib/python2.7/dist-packages/MoinMoin/web/static/htdocs` if you installed from zip
+    * and so on
 
 4. Done!
    If you run MoinMoin on a server, you might have to terminate running MoinMoin processes to reflect changes.  
-   e.g. On Ubuntu:
+   e.g. on Ubuntu:
 
-        pkill moin
+    ```console
+    $ pkill moin
+    ```
 
 
 How to use
@@ -58,9 +63,10 @@ There are two ways to apply the theme.
 ### As the default theme ###
 
 Edit `wikiconfig.py` to change `theme_default`.
-(`wikiconfig.py` will be found in `YourMoinDirectory/wiki/config/`.)
 
-        theme_default = 'memodump'
+```python
+    theme_default = 'memodump'
+```
 
 Please note that indentations are important in python codes, and here you must
 indent the line by exactly 4 spaces.
