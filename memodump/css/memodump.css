@@ -27,7 +27,6 @@ html, body {
 /* sticky footer; sticks to the bottom of the screen as long as contents are less than 1 screen long */
 #footer {
     position: relative;
-    top: -95px;
     height: 60px; /* height of the footer */
     width: 100%;
 }
@@ -38,9 +37,9 @@ html, body {
 }
 #pageinfo-container {
     position: relative;
-    top: -95px;
     height: 35px;
     width: 100%;
+    margin-top: -95px; /* #footer + #pageinfo-container */
 }
 #outbox {
     padding-bottom: 95px; /* footer height + pageinfo height */
