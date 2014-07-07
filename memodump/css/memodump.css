@@ -651,6 +651,8 @@ pre {
 
 @media print {
     #sidebar,
+    #sidebar-curtain,
+    #sidebar-mover,
     .offcanvas-trigger,
     .alert,
     #footer,
