@@ -30,6 +30,11 @@
 
         <!-- Navbar header -->
         <div class="navbar-header">
+          <!-- Sidebar toggler -->
+          <button type="button" class="btn navbar-btn sidebar-toggler" data-toggle="toggle">
+            <span class="sr-only">Toggle sidebar</span>
+            <span class="menu-btn-sidebar-toggler toggle"></span>
+          </button>
           <!-- Button to show navbar controls when collapsed -->
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
@@ -38,7 +43,9 @@
             <span class="icon-bar"></span>
           </button>
           <!-- Sitename -->
-          <a class="navbar-brand" href="#">memodump</a>
+          <div class="navbar-brand-wrapper">
+            <a class="navbar-brand" href="#">memodump</a>
+          </div>
         </div> <!-- /.navbar-header -->
 
         <!-- Body of navbar -->
@@ -47,7 +54,7 @@
           <ul class="nav navbar-nav navbar-right">
             <!-- Edit button -->
             <li class="disabled">
-              <a class="menu-nav-edit">Edit</a>
+              <a class="menu-nav-edit"><span class="hidden-sm">Edit</span></a>
             </li>
             <!-- Search form -->
             <li>
@@ -93,9 +100,6 @@
     <!-- End of navbar -->
 
     <div class="container no-padding" id="pagebox">
-      <button class="btn btn-default btn-xs offcanvas-trigger" data-toggle="toggle">
-        <span class="glyphicon glyphicon-th-list"></span>
-      </button>
 
       <!-- SideBar -->
       <div class="toggle" id="sidebar-curtain">

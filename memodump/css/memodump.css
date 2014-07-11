@@ -92,6 +92,65 @@ form.form-search:before {
     }
 }
 
+/* Sidebar toggle button */
+.sidebar-toggler {
+    background-image: none;
+    background-color: transparent;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    float: left;
+}
+.sidebar-toggler:focus,
+.sidebar-toggler:active:focus {
+    outline: 0;
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+.navbar-default .sidebar-toggler {
+    color: #888;
+    border-color: #ddd;
+}
+.navbar-default .sidebar-toggler:hover,
+.navbar-default .sidebar-toggler:focus {
+    background-color: #ddd;
+}
+.navbar-inverse .sidebar-toggler {
+    color: #fff;
+    border-color: #333;
+}
+.navbar-inverse .sidebar-toggler:hover,
+.navbar-inverse .sidebar-toggler:focus {
+    background-color: #333;
+}
+.navbar-brand-wrapper { /* workaround for webkit bug */
+    float: left;
+}
+@media screen and (max-width: 767px) {
+    .sidebar-toggler {
+        margin-left: 15px;
+    }
+    /* workaround for webkit bug */
+    .navbar-brand-wrapper {
+        float: none;
+        text-align: center;
+    }
+    .navbar-brand {
+        float: none;
+        display: inline-block;
+    }
+}
+@media screen and (min-width: 992px) {
+    .sidebar-toggler {
+        display: none;
+    }
+}
+@media screen and (min-width: 768px) and (max-width: 991px) {
+    .navbar > .container .navbar-brand,
+    .navbar > .container-fluid .navbar-brand {
+        margin-left: 0px;
+    }
+}
+
 /*=========================================================
    sidebar elements
 ===========================================================*/
@@ -625,25 +684,6 @@ pre {
     }
 }
 
-/* trigger button */
-.offcanvas-trigger {
-    background-image: none;
-    position: fixed;
-    left: -1px;
-    z-index: 1000;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    border-bottom-left-radius: 0;
-}
-.offcanvas-trigger:focus {
-    background-color: #fff;
-}
-@media screen and (min-width: 992px) {
-    .offcanvas-trigger {
-        display: none;
-    }
-}
-
 /*=========================================================
    print view
 ===========================================================*/
@@ -747,6 +787,18 @@ pre {
 *[class^="menu-dd-"]:after {
     content: "";
     padding: 0 10px;
+}
+*[class^="menu-btn-"]:before {
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
 @media screen and (min-width: 768px) {
     *[class^="menu-nav-"] {
@@ -882,4 +934,10 @@ pre {
 }
 .menu-nav-comment:after {
     content: "";
+}
+.menu-btn-sidebar-toggler:before {
+    content: "\e080";
+}
+.menu-btn-sidebar-toggler.toggle.active:before {
+    content: "\e079";
 }

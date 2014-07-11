@@ -142,6 +142,11 @@ class Theme(ThemeBase):
 
         <!-- Navbar header -->
         <div class="navbar-header">
+          <!-- Sidebar toggler -->
+          <button type="button" class="btn navbar-btn sidebar-toggler" data-toggle="toggle">
+            <span class="sr-only">Toggle sidebar</span>
+            <span class="menu-btn-sidebar-toggler toggle"></span>
+          </button>
           <!-- Button to show navbar controls when collapsed -->
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
             <span class="sr-only">Toggle navigation</span>
@@ -150,7 +155,7 @@ class Theme(ThemeBase):
             <span class="icon-bar"></span>
           </button>
           <!-- Sitename -->
-          %(sitename)s
+%(sitename)s
         </div> <!-- /.navbar-header -->
 
         <!-- Body of navbar -->
@@ -178,9 +183,6 @@ class Theme(ThemeBase):
     <!-- End of navbar -->
 
     <div class="container no-padding" id="pagebox">
-      <button class="btn btn-default btn-xs offcanvas-trigger" data-toggle="toggle">
-        <span class="glyphicon glyphicon-th-list"></span>
-      </button>
 %(custom_pre)s
 
       <!-- Sidebar -->
@@ -301,6 +303,11 @@ class Theme(ThemeBase):
         if self.cfg.logo_string:
             page = wikiutil.getFrontPage(self.request)
             html = page.link_to_raw(self.request, self.cfg.logo_string, css_class="navbar-brand")
+            html = u'''
+          <div class="navbar-brand-wrapper">
+            %s
+          </div>
+          ''' % html
         return html
 
     def location(self, d):
