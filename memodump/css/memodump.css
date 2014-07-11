@@ -33,7 +33,7 @@ html, body {
 /* the footer will overflow in narrow screens. this extends the footer without masking contents */
 #footer > .container-fluid {
     background-color: #f5f5f5;
-    padding: 20px 15px;
+    padding: 20px 0px;
 }
 #pageinfo-container {
     position: relative;
