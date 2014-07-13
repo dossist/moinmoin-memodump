@@ -768,37 +768,34 @@ pre {
    implicit glyphicons
 ===========================================================*/
 
-*[class^="menu-"]:before {
+*[class^="menu-"]:before,
+*[class^="menu-"]:after {
     font-family: 'Glyphicons Halflings' !important;
     font-style: normal;
     font-weight: normal;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-}
-*[class^="menu-nav-"]:before {
-    font-size: smaller;
-    padding-left: 5px;
-    float: right;
-    margin-top: -1px;
-}
-*[class^="menu-dd-"]:before {
-    float: right;
-}
-*[class^="menu-dd-"]:after {
-    content: "";
-    padding: 0 10px;
-}
-*[class^="menu-btn-"]:before {
-    position: relative;
-    top: 1px;
-    display: inline-block;
-    font-family: 'Glyphicons Halflings';
-    font-style: normal;
-    font-weight: normal;
-    line-height: 1;
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+}
+*[class^="menu-nav-"]:before,
+*[class^="menu-dd-"]:before {
+    float: right;
+    margin-top: -1px;
+}
+*[class^="menu-nav-"]:before {
+    font-size: smaller;
+    margin-left: 5px;
+}
+*[class^="menu-dd-"]:after {
+    content: "";
+    line-height: 1;
+    padding-left: 1em;
+    margin-left: 5px;
+}
+*[class^="menu-btn-"]:before {
+    line-height: 1;
+    position: relative;
+    top: 1px;
 }
 @media screen and (min-width: 768px) {
     *[class^="menu-nav-"] {
@@ -916,14 +913,8 @@ pre {
 .menu-nav-login:before {
     content: "\e161"; /* .glyphicon-login */
 }
-.menu-nav-login:after {
-    content: "";
-}
 .menu-nav-edit:before {
     content: "\270f"; /* .glyphicon-pencil */
-}
-.menu-nav-edit:after {
-    content: "";
 }
 .menu-nav-menu:before {
 }
@@ -932,12 +923,10 @@ pre {
 .menu-nav-comment:before {
     content: "\e106";  /* .glyphicon-eye-close */
 }
-.menu-nav-comment:after {
-    content: "";
-}
+/* navbar buttons */
 .menu-btn-sidebar-toggler:before {
-    content: "\e080";
+    content: "\e080"; /* .glyphicon-chevron-right */
 }
 .menu-btn-sidebar-toggler.toggle.active:before {
-    content: "\e079";
+    content: "\e079"; /* .glyphicon-chevron-left */
 }
