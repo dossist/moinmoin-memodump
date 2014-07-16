@@ -145,6 +145,13 @@ form.form-search:before {
     }
 }
 
+/* navbar is no longer fixed for sideway view on smartphones */
+@media screen and (max-width: 480px) and (orientation: landscape) {
+    .navbar-fixed-top {
+        position: absolute;
+    }
+}
+
 /*=========================================================
    sidebar elements
 ===========================================================*/
