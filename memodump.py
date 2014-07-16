@@ -260,13 +260,11 @@ class Theme(ThemeBase):
 
   <!-- Footer -->
   <div id="footer">
-    <div class="container-fluid">
-      <div class="container text-right text-muted">
-        %(credits)s
-        %(version)s
+    <div class="container text-right text-muted">
+      %(credits)s
+      %(version)s
 %(custom_post)s
-      </div> <!-- /.container -->
-    </div> <!-- /.container-fluid -->
+    </div> <!-- /.container -->
   </div> <!-- /#footer -->
   <!-- End of footer -->
 
