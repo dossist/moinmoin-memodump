@@ -416,8 +416,7 @@ class Theme(ThemeBase):
             _ = self.request.getText
             querystr = {'action': 'edit'}
             text = u'<span class="hidden-sm">%s</span>' % _('Edit')
-            querystr['editor'] = 'text'
-            attrs = {'name': 'texteditlink', 'rel': 'nofollow', 'css_class': 'menu-nav-edit'}
+            attrs = {'name': 'editlink', 'rel': 'nofollow', 'css_class': 'menu-nav-edit'}
             button = page.link_to_raw(self.request, text=text, querystr=querystr, **attrs)
             if edit_mode:
                 li_attr = u' class="active"'
