@@ -135,7 +135,7 @@ class Theme(ThemeBase):
         """
 
         html = u"""
-  <div id="outbox" class="toggle">
+  <div id="outbox" class="sidebar-toggle">
     <!-- Bootstrap navbar -->
     <div class="navbar navbar-inverse navbar-fixed-top" role="navigation">
       <div class="container">
@@ -143,9 +143,9 @@ class Theme(ThemeBase):
         <!-- Navbar header -->
         <div class="navbar-header">
           <!-- Sidebar toggler -->
-          <button type="button" class="btn navbar-btn sidebar-toggler" data-toggle="toggle">
+          <button type="button" class="btn navbar-btn sidebar-toggler" data-toggle="toggle" data-target=".sidebar-toggle">
             <span class="sr-only">Toggle sidebar</span>
-            <span class="menu-btn-sidebar-toggler toggle"></span>
+            <span class="menu-btn-sidebar-toggler sidebar-toggle"></span>
           </button>
           <!-- Button to show navbar controls when collapsed -->
           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -186,9 +186,9 @@ class Theme(ThemeBase):
 %(custom_pre)s
 
       <!-- Sidebar -->
-      <div class="toggle" id="sidebar-curtain">
-        <div class="toggle" id="sidebar-mover">
-          <div class="toggle" id="sidebar" role="navigation">
+      <div class="sidebar-toggle" id="sidebar-curtain">
+        <div class="sidebar-toggle" id="sidebar-mover">
+          <div class="sidebar-toggle" id="sidebar" role="navigation">
 <!-- SideBar contents -->
 %(sidebar)s
 <!-- End of SideBar contents -->

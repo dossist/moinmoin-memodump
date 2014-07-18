@@ -654,14 +654,14 @@ pre {
         display: none; /* erase sidebar for better footer position when collapsed */
     }
     /* when toggled */
-    #sidebar-curtain.active {
+    #sidebar-curtain.on {
         width: 195px;
         left: 0;
     }
-    #sidebar-mover.active {
+    #sidebar-mover.on {
         left: 0;
     }
-    #sidebar.active, #sidebar.toggling {
+    #sidebar.on, #sidebar.toggling {
         display: block;
     }
     /* animation */
@@ -671,7 +671,7 @@ pre {
                 transition: all .25s ease-out;
     }
     /* prevent horizontal scroll bar when toggled */
-    #outbox.toggle.active, #outbox.toggle.toggling {
+    #outbox.on, #outbox.toggling {
         overflow-x: hidden;
     }
 }
@@ -928,6 +928,6 @@ pre {
 .menu-btn-sidebar-toggler:before {
     content: "\e080"; /* .glyphicon-chevron-right */
 }
-.menu-btn-sidebar-toggler.toggle.active:before {
+.menu-btn-sidebar-toggler.on:before {
     content: "\e079"; /* .glyphicon-chevron-left */
 }
