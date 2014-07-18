@@ -34,7 +34,6 @@ Install
 
 3. Copy directory `memodump` into static files directory `MoinMoin/web/static/htdocs/`.
    Again location of that directory will vary. It could be:
-
     * `/usr/share/moin/htdocs` if you installed MoinMoin from Ubuntu package
     * `/usr/local/lib/python2.7/dist-packages/MoinMoin/web/static/htdocs` if you installed MoinMoin from zip
     * and so on
