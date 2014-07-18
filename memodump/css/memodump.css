@@ -117,6 +117,7 @@ form.form-search:before {
     background-color: #333;
 }
 .navbar-brand-wrapper { /* workaround for webkit bug */
+    display: table;
     float: left;
 }
 @media screen and (max-width: 767px) {
@@ -125,6 +126,7 @@ form.form-search:before {
     }
     /* workaround for webkit bug */
     .navbar-brand-wrapper {
+        display: block;
         float: none;
         text-align: center;
     }
