@@ -147,10 +147,123 @@ form.form-search:before {
     }
 }
 
-/* navbar is no longer fixed for sideway view on smartphones */
+/* navbar is minified and made transparent-ish under sideway view on phones */
 @media screen and (max-width: 480px) and (orientation: landscape) {
     .navbar-fixed-top {
-        position: absolute;
+        left: auto;
+        right: 0;
+        background-image: none;
+        background-color: transparent;
+        border: none;
+
+        -webkit-box-shadow: none;
+                box-shadow: none;
+    }
+    .navbar-brand-wrapper {
+        display: none;
+    }
+    .sidebar-toggler {
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+    }
+    .navbar-toggle {
+        border-top-left-radius: 0;
+        border-bottom-left-radius: 0;
+    }
+    .navbar-default .sidebar-toggler,
+    .navbar-default .navbar-toggle {
+        background-color: rgba(248,248,248,0.8);
+        border-color: rgba(221,221,221,0.8);
+    }
+    .navbar-default .sidebar-toggler:hover,
+    .navbar-default .sidebar-toggler:focus,
+    .navbar-default .navbar-toggle:hover,
+    .navbar-default .navbar-toggle:focus {
+        background-color: rgba(221,221,221,0.8);
+        border-color: transparent;
+    }
+    .navbar-inverse .sidebar-toggler,
+    .navbar-inverse .navbar-toggle {
+        background-color: rgba(34,34,34,0.6);
+        border-color: rgba(34,34,34,0.1);
+    }
+    .navbar-inverse .sidebar-toggler:hover,
+    .navbar-inverse .sidebar-toggler:focus,
+    .navbar-inverse .navbar-toggle:hover,
+    .navbar-inverse .navbar-toggle:focus {
+        background-color: rgba(34,34,34,0.7);
+        border-color: transparent;
+    }
+    .navbar-default .sidebar-toggler,
+    .navbar-inverse .sidebar-toggler {
+        border-right-color: transparent;
+    }
+
+    /* when menu is uncollapsed */
+    .navbar-fixed-top {
+        -webkit-transition: none !important;
+             -o-transition: none !important;
+                transition: none !important;
+    }
+    .navbar-fixed-top.on {
+        left: 0;
+        border-width: 0 0 1px;
+        border-style: solid;
+    }
+    .navbar-fixed-top.on .navbar-brand-wrapper {
+        display: block;
+    }
+    .navbar-fixed-top.on .sidebar-toggler {
+        border-radius: 4px;
+    }
+    .navbar-fixed-top.on .navbar-toggle {
+        border-radius: 4px;
+    }
+    .navbar-fixed-top.navbar-default.on {
+        background-color: #f8f8f8;
+        border-color: #e7e7e7;
+        background-image: -webkit-linear-gradient(top, #fff 0%, #f8f8f8 100%);
+        background-image:      -o-linear-gradient(top, #fff 0%, #f8f8f8 100%);
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#fff), to(#f8f8f8));
+        background-image:         linear-gradient(to bottom, #fff 0%, #f8f8f8 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffffff', endColorstr='#fff8f8f8', GradientType=0);
+        filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+        -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 1px 5px rgba(0, 0, 0, .075);
+                box-shadow: inset 0 1px 0 rgba(255, 255, 255, .15), 0 1px 5px rgba(0, 0, 0, .075);
+    }
+    .navbar-fixed-top.navbar-inverse.on {
+        background-color: #222;
+        border-color: #080808;
+        background-image: -webkit-linear-gradient(top, #3c3c3c 0%, #222 100%);
+        background-image:      -o-linear-gradient(top, #3c3c3c 0%, #222 100%);
+        background-image: -webkit-gradient(linear, left top, left bottom, from(#3c3c3c), to(#222));
+        background-image:         linear-gradient(to bottom, #3c3c3c 0%, #222 100%);
+        filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff3c3c3c', endColorstr='#ff222222', GradientType=0);
+        filter: progid:DXImageTransform.Microsoft.gradient(enabled = false);
+    }
+    .navbar-default.navbar-fixed-top.on .sidebar-toggler,
+    .navbar-default.navbar-fixed-top.on .navbar-toggle {
+        background-color: transparent;
+        border-color: #ddd;
+    }
+    .navbar-default.navbar-fixed-top.on .sidebar-toggler:hover,
+    .navbar-default.navbar-fixed-top.on .sidebar-toggler:focus,
+    .navbar-default.navbar-fixed-top.on .navbar-toggle:hover,
+    .navbar-default.navbar-fixed-top.on .navbar-toggle:focus {
+        background-color: #ddd;
+        border-color: #ddd;
+    }
+    .navbar-inverse.navbar-fixed-top.on .sidebar-toggler,
+    .navbar-inverse.navbar-fixed-top.on .navbar-toggle {
+        background-color: transparent;
+        border-color: #333;
+    }
+    .navbar-inverse.navbar-fixed-top.on .sidebar-toggler:hover,
+    .navbar-inverse.navbar-fixed-top.on .sidebar-toggler:focus,
+    .navbar-inverse.navbar-fixed-top.on .navbar-toggle:hover,
+    .navbar-inverse.navbar-fixed-top.on .navbar-toggle:focus {
+        background-color: #333;
+        border-color: #333;
     }
 }
 
