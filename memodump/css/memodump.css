@@ -885,6 +885,10 @@ pre {
 #pagelocation li:last-child a {
     color: #999;
 }
+/* footer font-size */
+#footer div > * {
+    font-size: 85%;
+}
 
 /*=========================================================
    implicit glyphicons
