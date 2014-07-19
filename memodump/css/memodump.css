@@ -148,7 +148,13 @@ form.form-search:before {
 }
 
 /* navbar is minified and made transparent-ish under sideway view on phones */
-@media screen and (max-width: 480px) and (orientation: landscape) {
+@media screen and (max-width: 640px) and (orientation: landscape) {
+    #outbox {
+        padding-top: 0;
+    }
+    .alert { /* to avoid the close button hiding behind minified navbar buttons */
+        margin-top: 20px;
+    }
     .navbar-fixed-top {
         left: auto;
         right: 0;
