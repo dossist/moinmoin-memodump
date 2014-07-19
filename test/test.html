@@ -226,9 +226,19 @@
   <script src="../memodump/js/jquery.min.js"></script>
   <!-- Include all compiled plugins (below), or include individual files as needed -->
   <script src="../memodump/js/bootstrap.min.js"></script>
-
+  <!-- toggle.js by dossist -->
   <script src="../memodump/js/toggle.js"></script>
-  <script src="../memodump/js/mobilenav.js"></script>
+  <!-- Uncollapse minified navbar under mobile landscape view syncing with menu button -->
+  <script>
+    +function ($) {
+      $('.navbar-collapse').on('show.bs.collapse', function () {
+        $('.navbar-mobile-toggle').togglejs('show');
+      });
+      $('.navbar-collapse').on('hidden.bs.collapse', function () {
+        $('.navbar-mobile-toggle').togglejs('hide');
+      });
+    }(jQuery);
+  </script>
   <!-- End of JavaScript -->
 
   </body>

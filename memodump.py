@@ -275,8 +275,17 @@ class Theme(ThemeBase):
   <script src="%(prefix)s/%(theme)s/js/bootstrap.min.js"></script>
   <!-- toggle.js by dossist -->
   <script src="%(prefix)s/%(theme)s/js/toggle.js"></script>
-  <!-- Navbar collapse/uncollapse toggle on phones -->
-  <script src="%(prefix)s/%(theme)s/js/mobilenav.js"></script>
+  <!-- Uncollapse minified navbar under mobile landscape view syncing with menu button -->
+  <script>
+    +function ($) {
+      $('.navbar-collapse').on('show.bs.collapse', function () {
+        $('.navbar-mobile-toggle').togglejs('show');
+      });
+      $('.navbar-collapse').on('hidden.bs.collapse', function () {
+        $('.navbar-mobile-toggle').togglejs('hide');
+      });
+    }(jQuery);
+  </script>
   <!-- End of JavaScript -->
 """ % { 'pageinfo': self.pageinfo(page),
         'custom_pre': self.emit_custom_html(self.cfg.page_footer1), # Pre footer custom html (not recommended!)
