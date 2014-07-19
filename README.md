@@ -82,6 +82,22 @@ Create a page named `SideBar` to create your own site-wide sidebar.
 In sidebar, list items receive special menu-like styles.  
 
 
+### Site logo ###
+
+If you go with the default wikiconfig, the default logo picture will run off the navbar height.
+This theme is not optimized for the default logo picture (although it won't break page design).
+By disabling the logo, MoinMoin will use your site name as a text logo with a link to the FrontPage.
+To do it, just comment out `logo_string` in `wikiconfig.py`:
+
+```python
+    logo_string = ...
+```
+↓
+```python
+#   logo_string = ...
+```
+
+
 ### Location area ###
 
 On top of page contents, we have an area which shows where in the wiki you are now, and when it was updated last time.  
