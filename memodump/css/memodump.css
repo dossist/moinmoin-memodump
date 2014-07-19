@@ -52,15 +52,14 @@ form.form-search {
     position: relative;
 }
 form.form-search:before {
-    display: block;
-    width: 14px;
-    height: 14px;
-    font-size: small;
     content: "\e003";
     font-family: 'Glyphicons Halflings';
+    font-size: small;
+    display: block;
     position: absolute;
-    top: 9px;
+    width: 14px;
     right: 8px;
+    bottom: 7px; /* (parent box height (34px) - parent line height (20px)) / 2 */
     opacity: .5;
 }
 .navbar-form { /* Bootstrap bug? counter glitchy margins when uncollapsed in xs view */
