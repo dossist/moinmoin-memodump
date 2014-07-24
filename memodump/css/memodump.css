@@ -146,6 +146,45 @@ form.form-search:before {
     }
 }
 
+/* toggle button outline */
+.navbar a[href="#"]:focus {
+    outline: 0;
+}
+
+/* for comment toggle button */
+.navbar-default .navbar-nav > .on > a,
+.navbar-default .navbar-nav > .on > a:hover,
+.navbar-default .navbar-nav > .on > a:focus {
+    color: #555;
+    background-color: #e7e7e7;
+}
+.navbar-default .navbar-nav > .on > a {
+    background-image: -webkit-linear-gradient(top, #ebebeb 0%, #f3f3f3 100%);
+    background-image:      -o-linear-gradient(top, #ebebeb 0%, #f3f3f3 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#ebebeb), to(#f3f3f3));
+    background-image:         linear-gradient(to bottom, #ebebeb 0%, #f3f3f3 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffebebeb', endColorstr='#fff3f3f3', GradientType=0);
+    background-repeat: repeat-x;
+    -webkit-box-shadow: inset 0 3px 9px rgba(0, 0, 0, .075);
+            box-shadow: inset 0 3px 9px rgba(0, 0, 0, .075);
+}
+.navbar-inverse .navbar-nav > .on > a,
+.navbar-inverse .navbar-nav > .on > a:hover,
+.navbar-inverse .navbar-nav > .on > a:focus {
+    color: #fff;
+    background-color: #080808;
+}
+.navbar-inverse .navbar-nav > .on > a {
+    background-image: -webkit-linear-gradient(top, #222 0%, #282828 100%);
+    background-image:      -o-linear-gradient(top, #222 0%, #282828 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#222), to(#282828));
+    background-image:         linear-gradient(to bottom, #222 0%, #282828 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ff222222', endColorstr='#ff282828', GradientType=0);
+    background-repeat: repeat-x;
+    -webkit-box-shadow: inset 0 3px 9px rgba(0, 0, 0, .25);
+            box-shadow: inset 0 3px 9px rgba(0, 0, 0, .25);
+}
+
 /* navbar is minified and made transparent-ish under sideway view on phones */
 @media screen and (max-width: 640px) and (orientation: landscape) {
     #outbox {
@@ -943,7 +982,7 @@ pre {
 }
 /* main menu dropdown elems */
 .menu-dd-raw:before {
-    content: "\e105"; /* .glyphicon-eye-open */
+    content: "\e022"; /* .glyphicon-file */
 }
 .menu-dd-print:before {
     content: "\e045"; /* .glyphicon-print */
@@ -1050,6 +1089,9 @@ pre {
 .menu-nav-user:before {
 }
 .menu-nav-comment:before {
+    content: "\e105";  /* .glyphicon-eye-open */
+}
+.menu-nav-comment.on:before {
     content: "\e106";  /* .glyphicon-eye-close */
 }
 /* navbar buttons */
