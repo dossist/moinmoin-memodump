@@ -109,51 +109,60 @@ strong.highlight {
 	color: #999;
 }
 
-/* link type icons (would revisit later to replace with icon fonts) */
+/* link type icons */
 #content a[class]:before {
-	margin: 0 0.2em;
+    margin: 0 0.2em;
+    vertical-align: center;
+    font-family: 'Glyphicons Halflings' !important;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 83%;
+
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
 }
+
 #content a.www:before {
-	content: url(../img/moin-www.png);
+    content: "\e164"; /* .glyphicon-new-window */
 }
 #content a.http:before {
-	content: url(../img/moin-www.png);
+    content: "\e164"; /* .glyphicon-new-window */
 }
 #content a.https:before {
-	content: url(../img/moin-www.png);
+    content: "\e164"; /* .glyphicon-new-window */
 }
 #content a.file:before {
-	content: url(../img/moin-ftp.png);
+    content: "\e022"; /* .glyphicon-file */
 }
 #content a.ftp:before {
-	content: url(../img/moin-ftp.png);
+    content: "\e171"; /* .glyphicon-send */
 }
 #content a.nntp:before {
-	content: url(../img/moin-news.png)
+    content: "\e135" /* .glyphicon-globe */
 }
 #content a.news:before {
-	content: url(../img/moin-news.png);
+    content: "\e135" /* .glyphicon-globe */
 }
 #content a.telnet:before, #content a.ssh:before {
-	content: url(../img/moin-telnet.png);
+    content: "\e162"; /* .glyphicon-flash */
 }
 #content a.irc:before, #content a.ircs:before {
-	content: url(../img/moin-telnet.png);
+    comment: "\e111"; /* .glyphicon-comment */
 }
 #content a.mailto:before {
-	content: url(../img/moin-email.png);
+    content: "\2709"; /* .glyphicon-envelope */
 }
 #content a.attachment:before {
-	content: url(../img/moin-attach.png);
+    content: "\e142"; /* .glyphicon-paperclip */
 }
 #content a.badinterwiki:before {
-	content: url(../img/moin-inter.png);
+    content: "\e144"; /* .glyphicon-link */
 }
 #content a.interwiki:before {
-	content: url(../img/moin-inter.png);
+    content: "\e144"; /* .glyphicon-link */
 }
 #content a.action:before {
-	content: url(../img/moin-action.png);
+    content: "\e019"; /* .glyphicon-cog */
 }
 
 /*=========================================================
