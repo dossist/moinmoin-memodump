@@ -903,6 +903,29 @@ class Theme(ThemeBase):
 
         return (action, text)
 
+    def sidebar(self, d, **keywords):
+        """ Display page called SideBar as an additional element on every page
+        content_id has been changed from the original
+
+        @param d: parameter dictionary
+        @rtype: string
+        @return: sidebar html
+        """
+
+        # Check which page to display, return nothing if doesn't exist.
+        sidebar = self.request.getPragma('sidebar', u'SideBar')
+        page = Page(self.request, sidebar)
+        if not page.exists():
+            return u""
+        # Capture the page's generated HTML in a buffer.
+        buffer = StringIO.StringIO()
+        self.request.redirect(buffer)
+        try:
+            page.send_page(content_only=1, content_id="sidebar-content")
+        finally:
+            self.request.redirect()
+        return u'<div class="sidebar">%s</div>' % buffer.getvalue()
+
     def trail(self, d):
         """ Assemble page trail
 
