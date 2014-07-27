@@ -203,20 +203,20 @@ class Theme(ThemeBase):
 %(location)s
 
 <!-- Page contents -->
-""" % { 'sitename': self.logo(),
-        'location': self.location(d),
-        'menu': self.menu(d),
-        'usermenu': self.username(d),
-        'search': self.searchform(d),
-        'edit': self.editbutton(d),
-        'commentbutton': self.commentbutton(),
-        'sidebar': self.sidebar(d),
-        'trail': self.trail(d),
-        #'quicklinks': self.quicklinks(d),
-        'navilinks': self.navibar(d),
-        'msg': self.msg(d),
-        'custom_pre': self.emit_custom_html(self.cfg.page_header1), # custom html just below the navbar, not recommended!
-        'custom_post': self.emit_custom_html(self.cfg.page_header2), # custom html just before the contents, not recommended!
+""" % {'sitename': self.logo(),
+       'location': self.location(d),
+       'menu': self.menu(d),
+       'usermenu': self.username(d),
+       'search': self.searchform(d),
+       'edit': self.editbutton(d),
+       'commentbutton': self.commentbutton(),
+       'sidebar': self.sidebar(d),
+       'trail': self.trail(d),
+       #'quicklinks': self.quicklinks(d),
+       'navilinks': self.navibar(d),
+       'msg': self.msg(d),
+       'custom_pre': self.emit_custom_html(self.cfg.page_header1), # custom html just below the navbar, not recommended!
+       'custom_post': self.emit_custom_html(self.cfg.page_header2), # custom html just before the contents, not recommended!
       }
 
         return html
@@ -288,13 +288,13 @@ class Theme(ThemeBase):
     }(jQuery);
   </script>
   <!-- End of JavaScript -->
-""" % { 'pageinfo': self.pageinfo(page),
-        'custom_pre': self.emit_custom_html(self.cfg.page_footer1), # Pre footer custom html (not recommended!)
-        'credits': self.credits(d),
-        'version': self.showversion(d, **keywords),
-        'custom_post': self.emit_custom_html(self.cfg.page_footer2), # In-footer custom html (not recommended!)
-        'prefix': self.cfg.url_prefix_static,
-        'theme': self.name,
+""" % {'pageinfo': self.pageinfo(page),
+       'custom_pre': self.emit_custom_html(self.cfg.page_footer1), # Pre footer custom html (not recommended!)
+       'credits': self.credits(d),
+       'version': self.showversion(d, **keywords),
+       'custom_post': self.emit_custom_html(self.cfg.page_footer2), # In-footer custom html (not recommended!)
+       'prefix': self.cfg.url_prefix_static,
+       'theme': self.name,
       }
 
         return html
@@ -328,7 +328,7 @@ class Theme(ThemeBase):
         """
         html = u''
         page = d['page']
-        pages_hide = [self.request.cfg.page_front_page,]
+        pages_hide = [self.request.cfg.page_front_page, ]
         try:
             pages_hide = self.request.cfg.memodump_hidelocation
         except AttributeError:
@@ -340,7 +340,7 @@ class Theme(ThemeBase):
 %(pagename)s
           %(lastupdate)s
         </div>
-''' % {'interwiki': self.interwiki(d), 'pagename': self.title(d), 'lastupdate': self.lastupdate(d),}
+''' % {'interwiki': self.interwiki(d), 'pagename': self.title(d), 'lastupdate': self.lastupdate(d), }
         return html
 
     def interwiki(self, d):
@@ -632,18 +632,18 @@ class Theme(ThemeBase):
                 # 'separator' and 'header' are automatically removed when there are no entries to show among them.
                 'special': False,
             },
-            'print': {'title': _('Print View'),},
+            'print': {'title': _('Print View'), },
             'refresh': {
                 'title': _('Delete Cache'),
                 'special': not (self.memodumpIsAvailableAction(page, 'refresh') and page.canUseCache()) and 'removed',
             },
-            'SpellCheck': {'title': _('Check Spelling'),},
-            'RenamePage': {'title': _('Rename Page'),},
-            'CopyPage':   {'title': _('Copy Page'),},
-            'DeletePage': {'title': _('Delete Page'),},
-            'LikePages':  {'title': _('Like Pages'),},
-            'LocalSiteMap': {'title': _('Local Site Map'),},
-            'MyPages':    {'title': _('My Pages'),},
+            'SpellCheck': {'title': _('Check Spelling'), },
+            'RenamePage': {'title': _('Rename Page'), },
+            'CopyPage':   {'title': _('Copy Page'), },
+            'DeletePage': {'title': _('Delete Page'), },
+            'LikePages':  {'title': _('Like Pages'), },
+            'LocalSiteMap': {'title': _('Local Site Map'), },
+            'MyPages':    {'title': _('My Pages'), },
             'SubscribeUser': {
                 'title': _('Subscribe User'),
                 'special': not (self.memodumpIsAvailableAction(page, 'SubscribeUser')
@@ -658,10 +658,10 @@ class Theme(ThemeBase):
                 'special': not (self.memodumpIsAvailableAction(page, 'revert')
                                 and request.user.may.revert(page.page_name)) and 'removed',
             },
-            'PackagePages': {'title': _('Package Pages'),},
-            'RenderAsDocbook': {'title': _('Render as Docbook'),},
-            'SyncPages': {'title': _('Sync Pages'),},
-            'AttachFile': {'title': _('Attachments'),},
+            'PackagePages': {'title': _('Package Pages'), },
+            'RenderAsDocbook': {'title': _('Render as Docbook'), },
+            'SyncPages': {'title': _('Sync Pages'), },
+            'AttachFile': {'title': _('Attachments'), },
             'quicklink': {
                 'title': quicklink[1], 'args': dict(action=quicklink[0], rev=rev),
                 'special': not quicklink[0] and 'removed',
@@ -670,11 +670,11 @@ class Theme(ThemeBase):
                 'title': subscribe[1], 'args': dict(action=subscribe[0], rev=rev),
                 'special': not subscribe[0] and 'removed',
             },
-            'info': {'title': _('Info'),},
+            'info': {'title': _('Info'), },
 # menu items not in menu_def will be assumed to be action names,
 # and receive appropriate title, href, and args automatically.
-#           'Load': {'title': _('Load'),},
-#           'Save': {'title': _('Save'),},
+#           'Load': {'title': _('Load'), },
+#           'Save': {'title': _('Save'), },
             # menu decorations
             '__separator__':   {'title': _('------------------------'), 'special': 'separator', },
             '----':            {'title': _('------------------------'), 'special': 'separator', },
