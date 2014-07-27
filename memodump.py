@@ -242,6 +242,7 @@ class Theme(ThemeBase):
 
         html = u"""
 <!-- End of page contents -->
+        <div class="clearfix"></div>
 
       </div> <!-- /#contentbox -->
       <!-- End of content body -->
@@ -924,7 +925,7 @@ class Theme(ThemeBase):
             page.send_page(content_only=1, content_id="sidebar-content")
         finally:
             self.request.redirect()
-        return u'<div class="sidebar">%s</div>' % buffer.getvalue()
+        return u'<div class="sidebar clearfix">%s</div>' % buffer.getvalue()
 
     def trail(self, d):
         """ Assemble page trail
