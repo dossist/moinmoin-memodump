@@ -168,6 +168,12 @@ strong.highlight {
     content: "\e019"; /* .glyphicon-cog */
 }
 
+/* remove link icons on links with embedded images inside etc */
+#content a[title^="{{"][title$="}}"]:before,
+#content a[title^="{{"][title$="}}"]:after {
+    content: none;
+}
+
 /*=========================================================
    div styles
 ===========================================================*/
