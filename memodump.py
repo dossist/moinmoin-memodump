@@ -1123,7 +1123,7 @@ class Theme(ThemeBase):
 '''
         param = {
             'close': u'<button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>',
-            'dismiss': 'alert-dismissable ',
+            'dismiss': 'alert-dismissible ',
             'msg': '',
             'color': '',
         }
