@@ -110,44 +110,53 @@ strong.highlight {
 }
 
 /* link type icons */
-#content a[class]:before {
-    margin: 0 0.2em;
-    vertical-align: center;
+#content a[class]:before,
+#content a[class]:after {
     font-family: 'Glyphicons Halflings' !important;
     font-style: normal;
     font-weight: normal;
-    font-size: 83%;
+    font-size: 85.7143%; /* target size = 12px, which is 12 / base font size (14) */
+    margin: 0 0.25em; /* target margin = 3px, which is (3/12)em */
+    line-height: 1;
+    position: relative;
+    top: 1px;
+    color: #888;
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
 
-#content a.www:before {
+/* icons after links */
+#content a.www:after,
+#content a.http:after,
+#content a.https:after,
+#content a.badinterwiki:after,
+#content a.interwiki:after {
     content: "\e164"; /* .glyphicon-new-window */
 }
-#content a.http:before {
-    content: "\e164"; /* .glyphicon-new-window */
-}
-#content a.https:before {
-    content: "\e164"; /* .glyphicon-new-window */
+
+/* icons before links */
+#content a.badinterwiki:before,
+#content a.interwiki:before {
+    content: "\e135"; /* .glyphicon-globe */
 }
 #content a.file:before {
     content: "\e022"; /* .glyphicon-file */
 }
 #content a.ftp:before {
-    content: "\e171"; /* .glyphicon-send */
+    content: "\e172"; /* .glyphicon-floppy-disk */
 }
-#content a.nntp:before {
-    content: "\e135" /* .glyphicon-globe */
-}
+#content a.nntp:before,
 #content a.news:before {
-    content: "\e135" /* .glyphicon-globe */
+    content: "\e122"; /* .glyphicon-bullhorn */
 }
-#content a.telnet:before, #content a.ssh:before {
+#content a.telnet:before,
+#content a.ssh:before {
     content: "\e162"; /* .glyphicon-flash */
 }
-#content a.irc:before, #content a.ircs:before {
-    comment: "\e111"; /* .glyphicon-comment */
+#content a.irc:before,
+#content a.ircs:before {
+    content: "\e111"; /* .glyphicon-comment */
 }
 #content a.mailto:before {
     content: "\2709"; /* .glyphicon-envelope */
@@ -155,14 +164,14 @@ strong.highlight {
 #content a.attachment:before {
     content: "\e142"; /* .glyphicon-paperclip */
 }
-#content a.badinterwiki:before {
-    content: "\e144"; /* .glyphicon-link */
-}
-#content a.interwiki:before {
-    content: "\e144"; /* .glyphicon-link */
-}
 #content a.action:before {
     content: "\e019"; /* .glyphicon-cog */
+}
+
+/* remove link icons on links with embedded images inside etc */
+#content a[title^="{{"][title$="}}"]:before,
+#content a[title^="{{"][title$="}}"]:after {
+    content: none;
 }
 
 /*=========================================================
