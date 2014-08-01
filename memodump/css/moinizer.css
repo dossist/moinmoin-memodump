@@ -115,12 +115,11 @@ strong.highlight {
     font-family: 'Glyphicons Halflings' !important;
     font-style: normal;
     font-weight: normal;
-    font-size: 85.7143%; /* target size = 12px, which is 12 / base font size (14) */
+    font-size: 83%;
     margin: 0 0.25em; /* target margin = 3px, which is (3/12)em */
     line-height: 1;
     position: relative;
     top: 1px;
-    color: #888;
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -129,26 +128,24 @@ strong.highlight {
 /* icons after links */
 #content a.www:after,
 #content a.http:after,
-#content a.https:after,
+#content a.https:after {
+    content: "\e164"; /* .glyphicon-new-window */
+}
 #content a.badinterwiki:after,
 #content a.interwiki:after {
-    content: "\e164"; /* .glyphicon-new-window */
+    content: "\e144"; /* .glyphicon-link */
 }
 
 /* icons before links */
-#content a.badinterwiki:before,
-#content a.interwiki:before {
-    content: "\e135"; /* .glyphicon-globe */
-}
 #content a.file:before {
     content: "\e022"; /* .glyphicon-file */
 }
 #content a.ftp:before {
-    content: "\e172"; /* .glyphicon-floppy-disk */
+    content: "\e178"; /* .glyphicon-transfer */
 }
 #content a.nntp:before,
 #content a.news:before {
-    content: "\e122"; /* .glyphicon-bullhorn */
+    content: "\e028"; /* .glyphicon-inbox */
 }
 #content a.telnet:before,
 #content a.ssh:before {
