@@ -116,7 +116,7 @@ strong.highlight {
     font-style: normal;
     font-weight: normal;
     font-size: 83%;
-    margin: 0 0.25em; /* target margin = 3px, which is (3/12)em */
+    margin: 0 0.25em;
     line-height: 1;
     position: relative;
     top: 1px;
