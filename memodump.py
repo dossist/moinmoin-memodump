@@ -602,6 +602,7 @@ class Theme(ThemeBase):
                 '===== Edit =====',
                 'RenamePage',
                 'DeletePage',
+                'revert',
                 'CopyPage',
                 'Load',
                 'Save',
@@ -656,6 +657,7 @@ class Theme(ThemeBase):
             'revert': {
                 'title': _('Revert to this revision'),
                 'special': not (self.memodumpIsAvailableAction(page, 'revert')
+                                and rev
                                 and request.user.may.revert(page.page_name)) and 'removed',
             },
             'PackagePages': {'title': _('Package Pages'), },
