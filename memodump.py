@@ -1173,7 +1173,7 @@ class Theme(ThemeBase):
         self.request.write(html)
 
     def guiEditorScript(self, d):
-        """ Disable default skin javascript to prevent gui edit button from automatically appear """
+        """ Disable default skin javascript to prevent gui edit button from automatically appearing """
         return u''
 
     def _stylesheet_link(self, theme, media, href, title=None):
