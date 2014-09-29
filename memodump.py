@@ -276,17 +276,8 @@ class Theme(ThemeBase):
   <script src="%(prefix)s/%(theme)s/js/bootstrap.min.js"></script>
   <!-- toggle.js by dossist -->
   <script src="%(prefix)s/%(theme)s/js/toggle.js"></script>
-  <!-- Uncollapse minified navbar under mobile landscape view syncing with menu button -->
-  <script>
-    +function ($) {
-      $('.navbar-collapse').on('show.bs.collapse', function () {
-        $('.navbar-mobile-toggle').togglejs('show');
-      });
-      $('.navbar-collapse').on('hidden.bs.collapse', function () {
-        $('.navbar-mobile-toggle').togglejs('hide');
-      });
-    }(jQuery);
-  </script>
+  <!-- Custom script -->
+%(script)s
   <!-- End of JavaScript -->
 """ % {'pageinfo': self.pageinfo(page),
        'custom_pre': self.emit_custom_html(self.cfg.page_footer1), # Pre footer custom html (not recommended!)
@@ -295,10 +286,30 @@ class Theme(ThemeBase):
        'custom_post': self.emit_custom_html(self.cfg.page_footer2), # In-footer custom html (not recommended!)
        'prefix': self.cfg.url_prefix_static,
        'theme': self.name,
+       'script': self.script(),
       }
 
         return html
 
+    def script(self):
+        """
+        Append in-html script at the bottom of the page body.
+        """
+        
+        return ur"""
+  <script>
+    +function ($) {
+      // Toggle minified navbar under mobile landscape view
+      $('.navbar-collapse').on('show.bs.collapse', function () {
+        $('.navbar-mobile-toggle').togglejs('show');
+      });
+      $('.navbar-collapse').on('hidden.bs.collapse', function () {
+        $('.navbar-mobile-toggle').togglejs('hide');
+      });
+    }(jQuery);
+  </script>
+"""
+    
     def logo(self):
         """ Assemble logo with link to front page
         Using <a> tag only instead of wrapping with div
