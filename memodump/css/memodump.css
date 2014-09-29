@@ -483,17 +483,35 @@ form.form-search:before {
 }
 /* h2 is underlined too, but without accent color */
 #content h2 {
-    position: relative;
-    overflow: hidden;
     padding-bottom: 10px;
-}
-#content h2:before {
-    content: "";
-    display: inline-block;
-    position: absolute;
-    bottom: 0px;
     border-bottom: 1px solid #eee;
-    width: 100%;
+}
+
+/* fix for anchors hiding behind navbar */
+@media screen and (min-width: 641px), screen and (max-width: 640px) and (orientation: portrait) {
+    #content span[id]:empty:target { /* for firefox - I hate it! XD */
+        padding-top: 56px; /* shift amount - font size */
+    }
+    #content span[id]:empty:target:before,
+    #content h2[id]:target:before, #content h3[id]:target:before,
+    #content h4[id]:target:before, #content h5[id]:target:before,
+    #content h6[id]:target:before {
+        content: "";
+        display: block;
+        border-top: 70px solid transparent; /* pseudo border for padding */
+        margin-top: -70px; /* to cancel pseudo border height */
+        visibility: hidden; /* to prevent the fix from overlapping with elements above */
+        background-clip: padding-box; /* to prevent background bleeding */
+    }
+    #content h1[id]:target {
+        padding-top: 70px;
+        margin-top: -20px; /* original margin-top - padding-top */
+        z-index: -1; /* prevent overlapping */
+    }
+    #content > h1[id]:first-of-type:target {
+        padding-top: 70px;
+        margin-top: -70px;
+    }
 }
 
 /* table style taken from Bootstrap */
