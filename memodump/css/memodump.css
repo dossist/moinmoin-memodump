@@ -447,6 +447,9 @@ form.form-search:before {
     margin-top: 50px;
     margin-bottom: 30px;
 }
+#content > h1:first-of-type {
+    margin-top: 0;
+}
 #content h2 {
     margin-top: 50px;
     margin-bottom: 30px;
@@ -504,12 +507,12 @@ form.form-search:before {
         background-clip: padding-box; /* to prevent background bleeding */
     }
     #content h1[id]:target {
-        padding-top: 70px;
-        margin-top: -20px; /* original margin-top - padding-top */
+        border-top: 70px solid transparent;
+        margin-top: -20px; /* original margin-top - pseudo padding height */
+        background-clip: padding-box;
         z-index: -1; /* prevent overlapping */
     }
     #content > h1[id]:first-of-type:target {
-        padding-top: 70px;
         margin-top: -70px;
     }
 }

@@ -36,9 +36,6 @@
     padding: 0;
     margin: 0;
 }
-#content > h1:first-of-type {
-    margin-top: 0;
-}
 
 /*=========================================================
    alert styles
