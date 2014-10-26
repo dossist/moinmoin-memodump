@@ -306,6 +306,49 @@ class Theme(ThemeBase):
       $('.navbar-collapse').on('hidden.bs.collapse', function () {
         $('.navbar-mobile-toggle').togglejs('hide');
       });
+      
+      //Scroll position fix for hash anchors
+      var mdAnchorFix = {
+        escapeRe: /[ !"#$%&'()*+,.\/:;<=>?@\[\\\]^`{|}~]/g,
+        escape: function (str) {
+          return str.replace(mdAnchorFix.escapeRe, '\\$&');
+        },
+        rgbRe: /^rgba\(([ \t]*\d{1,3},){3}([ \t]*\d{1,3})\)$/i,
+        isTransparent: function (rgbstr) {
+          if (rgbstr === 'transparent') {
+            return true;
+          }
+          rgbMatch = rgbstr.match(mdAnchorFix.rgbRe);
+          if (rgbMatch) {
+            return (Number(rgbMatch[2]) ? false : true);
+          }
+          return false;
+        },
+        navbarHeight: function () {
+          var height = 0;
+          var $navbar = $('.navbar');
+          if ( !mdAnchorFix.isTransparent($navbar.css('background-color'))
+               && ($navbar.css('display') !== 'none')
+               && ($navbar.css('visibility') !== 'hidden') ) {
+            height = $navbar.height();
+          }
+          return height;
+        },
+        jump: function () {
+          origin = $('#' + mdAnchorFix.escape(location.hash.substr(1))).offset().top;
+          offset = mdAnchorFix.navbarHeight() + 15;
+          setTimeout(function () { window.scrollTo(0, origin - offset); }, 1);
+        },
+        clickWrapper: function () {
+          if ( ($(this).attr('href') === location.hash)
+               || !('onhashchange' in window.document.body) ) {
+            setTimeout(function () { $(window).trigger("hashchange"); }, 1);
+          }
+        },
+      };
+      $('#pagebox a[href^="#"]:not([href="#"])').on("click", mdAnchorFix.clickWrapper);
+      $(window).on("hashchange", mdAnchorFix.jump);
+      if (location.hash) setTimeout(function () { mdAnchorFix.jump(); }, 100);
     }(jQuery);
   </script>
 """

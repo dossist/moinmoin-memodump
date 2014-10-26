@@ -490,33 +490,6 @@ form.form-search:before {
     border-bottom: 1px solid #eee;
 }
 
-/* fix for anchors hiding behind navbar */
-@media screen and (min-width: 641px), screen and (max-width: 640px) and (orientation: portrait) {
-    #content span[id]:empty:target { /* for firefox - I hate it! XD */
-        padding-top: 56px; /* shift amount - font size */
-    }
-    #content span[id]:empty:target:before,
-    #content h2[id]:target:before, #content h3[id]:target:before,
-    #content h4[id]:target:before, #content h5[id]:target:before,
-    #content h6[id]:target:before {
-        content: "";
-        display: block;
-        border-top: 70px solid transparent; /* pseudo border for padding */
-        margin-top: -70px; /* to cancel pseudo border height */
-        visibility: hidden; /* to prevent the fix from overlapping with elements above */
-        background-clip: padding-box; /* to prevent background bleeding */
-    }
-    #content h1[id]:target {
-        border-top: 70px solid transparent;
-        margin-top: -20px; /* original margin-top - pseudo padding height */
-        background-clip: padding-box;
-        z-index: -1; /* prevent overlapping */
-    }
-    #content > h1[id]:first-of-type:target {
-        margin-top: -70px;
-    }
-}
-
 /* table style taken from Bootstrap */
 table {
     /* .table */
